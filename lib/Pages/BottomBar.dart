@@ -109,26 +109,29 @@ class _BottomBarState extends State<BottomBar> {
         print({"Bottom Bar",widget.Name, widget.Email, widget.PhoneNo,});
       }
     return 
-    Scaffold(
-      // appBar: AppBar(
-      //   title: Text("BottomNavigationBar", style: TextStyle(color: Colors.white)),
-      //   backgroundColor: Colors.deepPurple,
-      // ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _pageIndex,
-        onTap: onTabTapped,
-        backgroundColor: Colors.white,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem( icon: Icon(Icons.home), title: Text("Home")),
-          BottomNavigationBarItem(icon: Icon(Icons.mail), title: Text("Messages")),
-          BottomNavigationBarItem(icon: Icon(Icons.person), title: Text("Profile")),
-        ],
-
-      ),
-      body: PageView(
-        children: tabPages,
-        onPageChanged: onPageChanged,
-        controller: _pageController,
+    MaterialApp(
+            debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        // appBar: AppBar(
+        //   title: Text("BottomNavigationBar", style: TextStyle(color: Colors.white)),
+        //   backgroundColor: Colors.deepPurple,
+        // ),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _pageIndex,
+          onTap: onTabTapped,
+          backgroundColor: Colors.white,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem( icon: Icon(Icons.home), title: Text("Home")),
+            BottomNavigationBarItem(icon: Icon(Icons.mail), title: Text("Messages")),
+            BottomNavigationBarItem(icon: Icon(Icons.person), title: Text("Profile")),
+          ],
+    
+        ),
+        body: PageView(
+          children: tabPages,
+          onPageChanged: onPageChanged,
+          controller: _pageController,
+        ),
       ),
     );
   }

@@ -54,7 +54,11 @@ class _RegistrationState extends State<Registration> {
             "email": useremail,
             "PhoneNo": PhoneNo,
             "password": userpassword,
-            "UID": user.user.uid
+            "UID": user.user.uid,
+            "Available_Balance": 0,
+            "Panding Balance": 0,
+            "Daily Ads": 0,
+            "Total Point": 0,
           });
 
           Navigator.push(

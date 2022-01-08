@@ -3,10 +3,7 @@
 import 'package:ppc/Api/register.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Pages/BottomBar.dart';
-import 'dart:convert';
 
-import 'package:ppc/Pages/HomePage.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -156,7 +153,7 @@ class _LoginState extends State<Login> {
                                 shape: BoxShape.rectangle,
                               ),
                             ),
-                            const SizedBox(height: 10),
+                            const SizedBox(height: 20),
                             // // // // // // // // // // Email input // // // // // // // // //
                             TextField(
                               controller: useremailcontroller,
