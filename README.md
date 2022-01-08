@@ -59,8 +59,8 @@ Issuer: C=US, O=Android, CN=Android Debug
 Serial number: 1
 Valid from: Thu Aug 12 13:07:38 PKT 2021 until: Sat Aug 05 13:07:38 PKT 2051
 Certificate fingerprints:
-#         SHA1: 32:43:A9:AE:FB:1E:5E:0C:C9:2D:BB:80:8B:4E:63:31:4E:E0:8F:DA
-#         SHA256: 90:45:01:0D:9A:FD:80:55:09:7D:98:23:51:57:AD:B7:24:99:F1:9C:85:49:74:D2:68:3B:4A:71:D7:F8:AD:87
+         SHA1: 32:43:A9:AE:FB:1E:5E:0C:C9:2D:BB:80:8B:4E:63:31:4E:E0:8F:DA
+         SHA256: 90:45:01:0D:9A:FD:80:55:09:7D:98:23:51:57:AD:B7:24:99:F1:9C:85:49:74:D2:68:3B:4A:71:D7:F8:AD:87
 Signature algorithm name: SHA1withRSA (weak)
 Subject Public Key Algorithm: 2048-bit RSA key
 Version: 1
