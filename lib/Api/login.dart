@@ -29,14 +29,14 @@ class _LoginState extends State<Login> {
       TextEditingController(text: "qwerty");
 
   void register() async {
+    setState(() {
+      looding = true;
+    });
     Map? UserData = {};
         FirebaseAuth auth = FirebaseAuth.instance;
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     final String useremail = useremailcontroller.text;
     final String userpassword = userpasswordcontroller.text;
-    setState(() {
-      looding = true;
-    });
        try {
       final UserCredential user = await auth.signInWithEmailAndPassword(
           email: useremail, password: userpassword);
@@ -69,8 +69,13 @@ class _LoginState extends State<Login> {
               UID : UID,),
         ),
       );
-
+        setState(() {
+            looding = false;
+          });
     } catch (e) {
+              setState(() {
+            looding = false;
+          });
       print("Error ==============>$e");
       Widget okButton = TextButton(
         child: Text("OK"),

@@ -77,7 +77,7 @@ class _BottomBarState extends State<BottomBar> {
   List<Widget> tabPages = [
     const Login(),
     const Registration(),
-    const HomePage(),
+    const HomePage(Name: "Name", Email: "Email", PhoneNo: "PhoneNo", UID: "UID"),
   ];
 
   @override

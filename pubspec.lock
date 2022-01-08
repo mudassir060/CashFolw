@@ -37,7 +37,7 @@ packages:
     source: hosted
     version: "1.1.0"
   cloud_firestore:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
@@ -72,7 +72,7 @@ packages:
     source: hosted
     version: "1.0.4"
   email_auth:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: email_auth
       url: "https://pub.dartlang.org"
@@ -86,7 +86,7 @@ packages:
     source: hosted
     version: "1.2.0"
   firebase:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: firebase
       url: "https://pub.dartlang.org"

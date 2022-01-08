@@ -3,8 +3,16 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
+  final String Name;
+  final String Email;
+  final String UID;
+  final String PhoneNo;
   const HomePage(
-      {Key? key, String? UID, String? Name, String? Email, String? PhoneNo})
+      {Key? key,
+      required this.Name,
+      required this.Email,
+      required this.PhoneNo,
+      required this.UID})
       : super(key: key);
 
   @override
@@ -14,7 +22,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    print("");
+    print(widget.Name);
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Home Page",

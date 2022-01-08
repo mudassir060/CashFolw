@@ -23,14 +23,15 @@ class _RegistrationState extends State<Registration> {
   final TextEditingController userpasswordcontroller = TextEditingController();
   String UID = '';
   bool isCheck = false;
-  var selectedDate;
-  var selectedTime;
   bool NoData = false;
-  File? image;
+  bool looding = false;
 
   @override
   Widget build(BuildContext context) {
     void register() async {
+      setState(() {
+        looding = true;
+      });
       final String username = usernamecontroller.text;
       final String useremail = useremailcontroller.text;
       final String PhoneNo = phonenocontroller.text;
@@ -74,8 +75,34 @@ class _RegistrationState extends State<Registration> {
             NoData = true;
           });
         }
+        setState(() {
+          looding = false;
+        });
       } catch (e) {
+        setState(() {
+          looding = false;
+        });
         print("Error ==============>$e");
+              Widget okButton = TextButton(
+        child: Text("OK"),
+        onPressed: () {
+          Navigator.of(context).pop(); // dismiss dialog
+        },
+      );
+      AlertDialog alert = AlertDialog(
+        title: Center(child: Text("Error")),
+        content: Text("${e.toString()}"),
+        actions: [
+          okButton,
+        ],
+      );
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+   
       }
       // print([username, useremail, userpassword]);
     }
@@ -98,102 +125,112 @@ class _RegistrationState extends State<Registration> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                Container(
-                  height: vhight,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      // +++++++++++++++++++++++++++++++++++++++Logo Image+++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                      Container(
-                        height: 150,
-                        width: 220,
-                        decoration: BoxDecoration(
-                          image: const DecorationImage(
-                            image: AssetImage('images/Logo.png'),
-                            fit: BoxFit.fill,
-                          ),
-                          borderRadius: BorderRadius.circular(10),
-                          shape: BoxShape.rectangle,
-                        ),
-                      ),
-
-                      const SizedBox(height: 10),
-                      TextField(
-                        controller: usernamecontroller,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: "Username",
-                          labelText: "User Name",
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      TextField(
-                        controller: useremailcontroller,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: "Email",
-                          labelText: "Email",
-                        ),
-                      ),
-
-                      const SizedBox(height: 10),
-                      TextField(
-                        controller: phonenocontroller,
-                        decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: "Phone Number",
-                            labelText: "Phone Number"),
-                      ),
-                      const SizedBox(height: 10),
-                      TextField(
-                        controller: userpasswordcontroller,
-                        decoration: const InputDecoration(
-                            border: OutlineInputBorder(), hintText: "Password"),
-                      ),
-                      // FlutterPasswordStrength(
-                      //     password: userpasswordcontroller.text,
-                      //     strengthCallback: (strength) {
-                      //       debugPrint(strength.toString());
-                      //     }),
-
-                      NoData == true
-                          ? const Text(
-                              "Please fill all requirement",
-                              style: TextStyle(color: Colors.red, fontSize: 10),
-                            )
-                          : Container(),
-                      const SizedBox(height: 10),
-                      ElevatedButton(
-                        onPressed: register,
-                        child: const Text(
-                          'Registration',
-                          // style: TextStyle(fontSize: 10.0),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                Stack(
+                  children: [
+                    looding
+                        ? const Positioned(
+                            child: Center(child: CircularProgressIndicator()))
+                        : Center(),
+                    Container(
+                      height: vhight,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Login(),
-                                  ),
-                                );
-                              },
-                              child: const Text(
-                                "I have an account? Login",
-                                style: TextStyle(
-                                    fontSize: 12.0,
-                                    fontWeight: FontWeight.bold),
-                              )),
-                          const SizedBox(height: 50),
+                          // +++++++++++++++++++++++++++++++++++++++Logo Image+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                          Container(
+                            height: 150,
+                            width: 220,
+                            decoration: BoxDecoration(
+                              image: const DecorationImage(
+                                image: AssetImage('images/Logo.png'),
+                                fit: BoxFit.fill,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                              shape: BoxShape.rectangle,
+                            ),
+                          ),
+
+                          const SizedBox(height: 10),
+                          TextField(
+                            controller: usernamecontroller,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: "Username",
+                              labelText: "User Name",
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          TextField(
+                            controller: useremailcontroller,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: "Email",
+                              labelText: "Email",
+                            ),
+                          ),
+
+                          const SizedBox(height: 10),
+                          TextField(
+                            controller: phonenocontroller,
+                            decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: "Phone Number",
+                                labelText: "Phone Number"),
+                          ),
+                          const SizedBox(height: 10),
+                          TextField(
+                            controller: userpasswordcontroller,
+                            decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: "Password"),
+                          ),
+                          // FlutterPasswordStrength(
+                          //     password: userpasswordcontroller.text,
+                          //     strengthCallback: (strength) {
+                          //       debugPrint(strength.toString());
+                          //     }),
+
+                          NoData == true
+                              ? const Text(
+                                  "Please fill all requirement",
+                                  style: TextStyle(
+                                      color: Colors.red, fontSize: 10),
+                                )
+                              : Container(),
+                          const SizedBox(height: 10),
+                          ElevatedButton(
+                            onPressed: register,
+                            child: const Text(
+                              'Registration',
+                              // style: TextStyle(fontSize: 10.0),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => Login(),
+                                      ),
+                                    );
+                                  },
+                                  child: const Text(
+                                    "I have an account? Login",
+                                    style: TextStyle(
+                                        fontSize: 12.0,
+                                        fontWeight: FontWeight.bold),
+                                  )),
+                              const SizedBox(height: 50),
+                            ],
+                          ),
                         ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),
