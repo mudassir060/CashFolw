@@ -68,3 +68,21 @@ Version: 1
 
 Warning:
 The certificate uses the SHA1withRSA signature algorithm which is considered a security risk. This algorithm will be disabled in a future update.
+
+
+# dotted_line
+import 'package:dotted_line/dotted_line.dart';
+
+DottedLine(
+  direction: Axis.horizontal,
+  lineLength: double.infinity,
+  lineThickness: 1.0,
+  dashLength: 4.0,
+  dashColor: Colors.black,
+  dashGradient: [Colors.red, Colors.blue],
+  dashRadius: 0.0,
+  dashGapLength: 4.0,
+  dashGapColor: Colors.transparent,
+  dashGapGradient: [Colors.red, Colors.blue],
+  dashGapRadius: 0.0,
+)

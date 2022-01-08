@@ -2,6 +2,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:dotted_line/dotted_line.dart';
 
 class Plan extends StatefulWidget {
   final String Name;
@@ -93,6 +94,8 @@ class _CardState extends State<Card> {
         width: vwidth - 30,
         height: vhight - 250,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
               height: vhight / 3.5,
@@ -117,12 +120,12 @@ class _CardState extends State<Card> {
                     ),
                   ),
                   Container(
-                    height: 2,
+                    height: 1,
                     width: vwidth / 1.5,
                     color: Colors.white,
                   ),
                   const Text(
-                    "500 \$",
+                    "5 \$",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 60,
@@ -132,23 +135,55 @@ class _CardState extends State<Card> {
                 ],
               ),
             ),
-            Row(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 // IconButton(onPressed: (){}, icon: const Icon(Icons.icecream_outlined)),
-                SizedBox(
-                  width: vwidth / 2,
-                  child: Text(widget.titel),
+                const Text("Daily Limit : 100 PTC"),
+                const Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: DottedLine(
+                    dashLength: 0.5,
+                  ),
                 ),
-                SizedBox(
-                  width: 50,
-                  child: Icon(widget.icon_Data),
+                const Text("Validity : 5 Day"),
+                const Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: DottedLine(
+                    dashLength: 0.5,
+                  ),
                 ),
                 SizedBox(
                   width: 70,
-                  child: Text("\$ ${widget.No}"),
+                  child: Text("points: ${widget.No}"),
                 ),
+                const Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: DottedLine(
+                    dashLength: 0.5,
+                  ),
+                ),
+                Container(
+                  height: vhight / 11,
+                  width: vwidth - 30,
+                  child: const Center(
+                    child: Text(
+                      "Subscribe",
+                      style: TextStyle(
+                        fontSize: 30,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  decoration: const BoxDecoration(
+                    color: Colors.lightBlue,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    ),
+                  ),
+                )
               ],
             ),
           ],
