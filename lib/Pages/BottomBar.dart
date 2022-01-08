@@ -60,12 +60,24 @@
 //   }
 // }
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Api/login.dart';
 import 'package:ppc/Api/register.dart';
 import 'package:ppc/Pages/HomePage.dart';
 
 class BottomBar extends StatefulWidget {
+    final String Name;
+  final String Email;
+  final String UID;
+  final String PhoneNo;
+  const BottomBar(
+      {Key? key,
+      required this.Name,
+      required this.Email,
+      required this.PhoneNo,
+      required this.UID})
+      : super(key: key);
   @override
   _BottomBarState createState() => new _BottomBarState();
 }
@@ -73,7 +85,6 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   int _pageIndex = 0;
   late PageController _pageController;
-
   List<Widget> tabPages = [
     const Login(),
     const Registration(),
@@ -94,6 +105,9 @@ class _BottomBarState extends State<BottomBar> {
 
   @override
   Widget build(BuildContext context) {
+          if (kDebugMode) {
+        print({"Bottom Bar",widget.Name, widget.Email, widget.PhoneNo,});
+      }
     return 
     Scaffold(
       // appBar: AppBar(

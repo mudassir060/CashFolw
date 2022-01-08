@@ -1,5 +1,6 @@
 
-A new Flutter project.
+
+# Flutter project.
 
 # Run with --no-sound-null-safety Flutter project.
 flutter run --no-sound-null-safety

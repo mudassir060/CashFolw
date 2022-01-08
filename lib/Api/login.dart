@@ -2,6 +2,7 @@
 
 import 'package:ppc/Api/register.dart';
 import 'package:flutter/material.dart';
+import 'package:ppc/Pages/BottomBar.dart';
 import 'dart:convert';
 
 import 'package:ppc/Pages/HomePage.dart';
@@ -21,7 +22,6 @@ class _LoginState extends State<Login> {
   String Email = '';
   String PhoneNo = '';
   String UID = '';
-  String UserProfile = '';
   bool looding = false;
   final TextEditingController useremailcontroller =
       TextEditingController(text: "abc@gmail.com");
@@ -57,12 +57,12 @@ class _LoginState extends State<Login> {
         PhoneNo = UserData!["PhoneNo"];
         UID = UserData!["UID"];
       });
-      print({Name, Email, PhoneNo, "pic", UserProfile});
+      print({Name, Email, PhoneNo, userpassword});
 
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => HomePage(
+          builder: (context) => BottomBar(
               Name: Name,
               Email: Email,
               PhoneNo: PhoneNo,
