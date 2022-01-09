@@ -4,16 +4,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
-  final String Name;
-  final String Email;
-  final String UID;
-  final String PhoneNo;
-  const Dashboard(
-      {Key? key,
-      required this.Name,
-      required this.Email,
-      required this.PhoneNo,
-      required this.UID})
+  final String? Name;
+  final String? Email;
+  final String? UID;
+  final String? PhoneNo;
+  const Dashboard({Key? key, this.Name, this.Email, this.PhoneNo, this.UID})
       : super(key: key);
 
   @override
@@ -51,23 +46,55 @@ class _DashboardState extends State<Dashboard> {
                 Icons.arrow_back,
               )),
         ),
-        body: Center(
+        body: SingleChildScrollView(
           child: Column(
             children: [
-              const Card(
-                  titel: "Available_Balance",
-                  icon_Data: Icons.price_change,
-                  No: "340"),
-              const Card(
-                  titel: "Panding Balance",
-                  icon_Data: Icons.price_change,
-                  No: "340"),
-              const Card(
-                  titel: "Total Point",
-                  icon_Data: Icons.price_change,
-                  No: "340"),
-              const Card(
-                  titel: "Daily Ads", icon_Data: Icons.price_change, No: "340"),
+              GestureDetector(
+                onTap: () {
+                  print("Available_Balance");
+                },
+                child: const Card(
+                    titel: "Available_Balance",
+                    icon_Data: Icons.account_balance_outlined,
+                    No: "340"),
+              ),
+              GestureDetector(
+                onTap: () {
+                  print("TOTAL EARN POINT");
+                },
+                child: const Card(
+                    titel: "TOTAL EARN POINT",
+                    icon_Data: Icons.price_change,
+                    No: "340"),
+              ),
+              GestureDetector(
+                onTap: () {
+                  print("Panding Balance");
+                },
+                child: const Card(
+                    titel: "Panding Balance",
+                    icon_Data: Icons.account_balance,
+                    No: "340"),
+              ),
+              GestureDetector(
+                onTap: () {
+                  print("TOTAL CLICK");
+                },
+                child: const Card(
+                    titel: "TOTAL CLICK",
+                    icon_Data: Icons.collections_bookmark,
+                    No: "340"),
+              ),
+              GestureDetector(
+                onTap: () {
+                  print("REMAIN TODAY CLICK");
+                },
+                child: const Card(
+                    titel: "REMAIN TODAY CLICK",
+                    icon_Data: Icons.price_change,
+                    No: "340"),
+              ),
+              _space
             ],
           ),
         ),
@@ -102,23 +129,25 @@ class _CardState extends State<Card> {
       child: Center(
         child: Container(
             width: vwidth - 15,
-            height: 50,
-            child: Row(
+            height: vwidth / 2,
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
+              children: [
                 // IconButton(onPressed: (){}, icon: const Icon(Icons.icecream_outlined)),
-                SizedBox(
-                  width: 50,
-                  child: Icon(widget.icon_Data),
+                Icon(
+                  widget.icon_Data,
+                  size: vwidth / 3,
                 ),
-                SizedBox(
-                  width: vwidth / 2,
-                  child: Text(widget.titel),
+                Text(
+                  widget.titel,
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
-                  width: 70,
-                  child: Text("\$ ${widget.No}"),
+                Text(
+                  "\$ ${widget.No}",
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -142,3 +171,7 @@ class _CardState extends State<Card> {
     );
   }
 }
+
+Widget get _space => const SizedBox(
+      height: 10,
+    );

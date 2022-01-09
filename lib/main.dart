@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Api/login.dart';
 import 'package:ppc/Pages/Publisher/Plan.dart';
+import 'package:ppc/Pages/Viewer/ViewAd.dart';
 
 import 'Pages/Dashboard.dart';
 
@@ -14,14 +15,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-    const Plan(
-                Name: "Name",
-                Email: "Email",
-                PhoneNo: "PhoneNo",
-                UID: "UID",
-              );
-     MaterialApp(
+    return ViewAd();
+    const Dashboard(
+      Name: "Name",
+      Email: "Email",
+      PhoneNo: "PhoneNo",
+      UID: "UID",
+    );
+    MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Pay Per Click',
         theme: ThemeData(
