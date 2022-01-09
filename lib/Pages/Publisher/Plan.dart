@@ -156,7 +156,7 @@ class _CardState extends State<Card> {
                 ),
                 SizedBox(
                   width: 70,
-                  child: Text("points: ${widget.No}"),
+                  child: Text("Points: ${widget.No}"),
                 ),
                 const Padding(
                   padding: EdgeInsets.all(12.0),
