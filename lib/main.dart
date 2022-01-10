@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ViewAd();
+    return const ViewAd();
     const Dashboard(
       Name: "Name",
       Email: "Email",
