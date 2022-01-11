@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -12,20 +13,21 @@ class ViewAd extends StatefulWidget {
 
 class _ViewAdState extends State<ViewAd> {
   final _key = UniqueKey();
-  // var runing_time = 0;
-  // run() {
-  //   for (var i = 0; i < 30; i++) {
-  //    sleep(const Duration(seconds:1));
-  //     setState(() {
-  //       runing_time++;
-  //     });
-  //     print("============>>>>>$runing_time");
-  //   }
-  // }
+  void initState() {
+    super.initState();
+    var runingTime = 0;
+    // for (var i = 0; i < 30; i++) {
+    //   Future.delayed(const Duration(seconds: 1), () {
+    //     print('===========>>>> $runingTime');
+    //     setState(() {
+    //       runingTime++;
+    //     });
+    //   });
+    // }
+  }
 
   @override
   Widget build(BuildContext context) {
-    // run();
     return MaterialApp(
       home: Scaffold(
         body: Stack(
