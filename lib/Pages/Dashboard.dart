@@ -34,19 +34,20 @@ class _DashboardState extends State<Dashboard> {
         primarySwatch: Colors.lightBlue,
       ),
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "Dashboard",
-          ),
-          centerTitle: true,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: const Icon(
-                Icons.arrow_back,
-              )),
-        ),
+        // appBar: AppBar(
+        //   title: const Text(
+        //     "Dashboard",
+        //   ),
+        //   centerTitle: true,
+        //   leading: IconButton(
+        //       onPressed: () {
+        //         Navigator.of(context).pop();
+        //       },
+        //       icon: const Icon(
+        //         Icons.arrow_back,
+        //       )),
+        // ),
+      
         body: SingleChildScrollView(
           child: Column(
             children: [

@@ -60,6 +60,8 @@
 //   }
 // }
 
+// ignore_for_file: non_constant_identifier_names, deprecated_member_use
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Pages/Dashboard.dart';
@@ -106,8 +108,22 @@ class _BottomBarState extends State<BottomBar> {
     super.dispose();
   }
 
+  String Titel = "";
   @override
   Widget build(BuildContext context) {
+    if (_pageIndex == 0) {
+      setState(() {
+        Titel = "Pay Per Click";
+      });
+    }    if (_pageIndex == 1) {
+      setState(() {
+        Titel = "Dashboard";
+      });
+    }    if (_pageIndex == 2) {
+      setState(() {
+        Titel = "Profile";
+      });
+    }
     if (kDebugMode) {
       print({
         "Bottom Bar",
@@ -118,14 +134,12 @@ class _BottomBarState extends State<BottomBar> {
     }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-            theme: ThemeData(
+      theme: ThemeData(
         primarySwatch: Colors.lightBlue,
       ),
       home: Scaffold(
-             appBar: AppBar(
-          title: const Text(
-            "Pay Par Click",
-          ),
+        appBar: AppBar(
+          title: Text(Titel),
           centerTitle: true,
           // leading: IconButton(
           //     onPressed: () {
@@ -139,11 +153,11 @@ class _BottomBarState extends State<BottomBar> {
           currentIndex: _pageIndex,
           onTap: onTabTapped,
           backgroundColor: Colors.white,
-          items: <BottomNavigationBarItem>[
+          items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 icon: Icon(Icons.home), title: Text("Home")),
             BottomNavigationBarItem(
-                icon: Icon(Icons.mail), title: Text("Messages")),
+                icon: Icon(Icons.dashboard), title: Text("Dashboard")),
             BottomNavigationBarItem(
                 icon: Icon(Icons.person), title: Text("Profile")),
           ],
