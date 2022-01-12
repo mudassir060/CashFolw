@@ -139,7 +139,7 @@ class _BottomBarState extends State<BottomBar> {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text(Titel),
+          title: Text(Titel, style: const TextStyle(color: Colors.white),),
           centerTitle: true,
           // leading: IconButton(
           //     onPressed: () {

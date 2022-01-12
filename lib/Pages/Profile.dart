@@ -31,7 +31,6 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    double maxWidth = 600;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -46,12 +45,15 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Container(
                   height: 100,
                   width: 100,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage(photoUrl),
-                        fit: BoxFit.cover),
-                    shape: BoxShape.circle,
-                  ),
+                  child: const Icon(Icons.account_circle_outlined,
+                  color: Colors.black38,
+                  size: 120,),
+                  // decoration: BoxDecoration(
+                  //   image: DecorationImage(
+                  //       image: NetworkImage(photoUrl),
+                  //       fit: BoxFit.cover),
+                  //   shape: BoxShape.circle,
+                  // ),
                 ),
               ),
               UserDataField(

@@ -2,6 +2,11 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:ppc/Pages/Publisher/Deposit.dart';
+import 'package:ppc/Pages/Publisher/Plan.dart';
+import 'package:ppc/Pages/Publisher/PostAd.dart';
+import 'package:ppc/Pages/Viewer/Referral.dart';
+import 'package:ppc/Pages/Viewer/Withdraw.dart';
 
 class HomePage extends StatefulWidget {
   final String Name;
@@ -33,7 +38,6 @@ class _HomePageState extends State<HomePage> {
     }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Home Page",
       // theme: ThemeData(
       //   primarySwatch: Colors.lightBlue,
       // ),
@@ -45,7 +49,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisSpacing: 20,
           maxCrossAxisExtent: 200.0,
           children: const [
-            Grid_Card(icon_Data: Icons.dashboard, titel: "Dashboard"),
+            Grid_Card(icon_Data: Icons.add_box, titel: "Post ADS"),
             Grid_Card(icon_Data: Icons.payment, titel: "Deposit"),
             Grid_Card(icon_Data: Icons.money, titel: "Withdraw"),
             Grid_Card(icon_Data: Icons.help, titel: "Plan"),
@@ -72,23 +76,77 @@ class Grid_Card extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (titel == "Dashboard") {
-          print(titel);
+        if (titel == "Post ADS") {
+                Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const PostAd(
+              Name: "Name",
+              Email: "Email",
+              PhoneNo: "PhoneNo",
+              UID : "UID",),
+        ),
+      );
         }
                 if (titel == "Deposit") {
-          print(titel);
+                    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const Deposit(
+              Name: "Name",
+              Email: "Email",
+              PhoneNo: "PhoneNo",
+              UID : "UID",),
+        ),
+      );
         }
                 if (titel == "Withdraw") {
-          print(titel);
+                    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const Withdraw(
+              Name: "Name",
+              Email: "Email",
+              PhoneNo: "PhoneNo",
+              UID : "UID",),
+        ),
+      );
         }
                 if (titel == "Plan") {
-          print(titel);
+                    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const Plan(
+              Name: "Name",
+              Email: "Email",
+              PhoneNo: "PhoneNo",
+              UID : "UID",),
+        ),
+      );
         }
                 if (titel == "Referral") {
-          print(titel);
+                    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const Referral(
+              Name: "Name",
+              Email: "Email",
+              PhoneNo: "PhoneNo",
+              UID : "UID",),
+        ),
+      );
         }
              if (titel == "ADS View") {
-          print(titel);
+                    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const PostAd(
+              Name: "Name",
+              Email: "Email",
+              PhoneNo: "PhoneNo",
+              UID : "UID",),
+        ),
+      );
         }
         
       },

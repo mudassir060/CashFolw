@@ -4,24 +4,24 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Widget/Cards.dart';
 
-class Deposit extends StatefulWidget {
+class Referral extends StatefulWidget {
   final String? Name;
   final String? Email;
   final String? UID;
   final String? PhoneNo;
-  const Deposit({Key? key, this.Name, this.Email, this.PhoneNo, this.UID})
+  const Referral({Key? key, this.Name, this.Email, this.PhoneNo, this.UID})
       : super(key: key);
 
   @override
-  _DepositState createState() => _DepositState();
+  _ReferralState createState() => _ReferralState();
 }
 
-class _DepositState extends State<Deposit> {
+class _ReferralState extends State<Referral> {
   @override
   Widget build(BuildContext context) {
     if (kDebugMode) {
       print({
-        "Deposit Page",
+        "Referral Page",
         widget.Name,
         widget.Email,
         widget.PhoneNo,
@@ -29,14 +29,14 @@ class _DepositState extends State<Deposit> {
     }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Deposit",
+      title: "Referral",
       theme: ThemeData(
         primarySwatch: Colors.lightBlue,
       ),
       home: Scaffold(
         appBar: AppBar(
           title: const Text(
-            "Deposit",
+            "Referral",
           ),
           centerTitle: true,
           leading: IconButton(
@@ -51,7 +51,7 @@ class _DepositState extends State<Deposit> {
         body: Center(
           child: SingleChildScrollView(
             child: Column(children: [
-              Text("Deposit"),
+              Text("Referral"),
             ],),
           ),
         ),
