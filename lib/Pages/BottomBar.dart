@@ -54,7 +54,7 @@
 //           ],
 //         ),
 //       ),
-      
+
 // bottomNavigationBar: MyBottomBarDemo(),
 //     );
 //   }
@@ -62,12 +62,12 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ppc/Api/login.dart';
-import 'package:ppc/Api/register.dart';
+import 'package:ppc/Pages/Dashboard.dart';
 import 'package:ppc/Pages/HomePage.dart';
+import 'package:ppc/Pages/Profile.dart';
 
 class BottomBar extends StatefulWidget {
-    final String Name;
+  final String Name;
   final String Email;
   final String UID;
   final String PhoneNo;
@@ -86,13 +86,16 @@ class _BottomBarState extends State<BottomBar> {
   int _pageIndex = 0;
   late PageController _pageController;
   List<Widget> tabPages = [
-    const Login(),
-    const Registration(),
-    const HomePage(Name: "Name", Email: "Email", PhoneNo: "PhoneNo", UID: "UID"),
+    const HomePage(
+        Name: "HomePage", Email: "Email", PhoneNo: "PhoneNo", UID: "UID"),
+    const Dashboard(
+        Name: "Dashboard", Email: "Email", PhoneNo: "PhoneNo", UID: "UID"),
+    const ProfilePage(
+        Name: "Name", Email: "Email", PhoneNo: "PhoneNo", UID: "UID"),
   ];
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     _pageController = PageController(initialPage: _pageIndex);
   }
@@ -105,27 +108,45 @@ class _BottomBarState extends State<BottomBar> {
 
   @override
   Widget build(BuildContext context) {
-          if (kDebugMode) {
-        print({"Bottom Bar",widget.Name, widget.Email, widget.PhoneNo,});
-      }
-    return 
-    MaterialApp(
-            debugShowCheckedModeBanner: false,
+    if (kDebugMode) {
+      print({
+        "Bottom Bar",
+        widget.Name,
+        widget.Email,
+        widget.PhoneNo,
+      });
+    }
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+        primarySwatch: Colors.lightBlue,
+      ),
       home: Scaffold(
-        // appBar: AppBar(
-        //   title: Text("BottomNavigationBar", style: TextStyle(color: Colors.white)),
-        //   backgroundColor: Colors.deepPurple,
-        // ),
+             appBar: AppBar(
+          title: const Text(
+            "Pay Par Click",
+          ),
+          centerTitle: true,
+          // leading: IconButton(
+          //     onPressed: () {
+          //       Navigator.of(context).pop();
+          //     },
+          //     icon: const Icon(
+          //       Icons.arrow_back,
+          //     )),
+        ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _pageIndex,
           onTap: onTabTapped,
           backgroundColor: Colors.white,
           items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem( icon: Icon(Icons.home), title: Text("Home")),
-            BottomNavigationBarItem(icon: Icon(Icons.mail), title: Text("Messages")),
-            BottomNavigationBarItem(icon: Icon(Icons.person), title: Text("Profile")),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home), title: Text("Home")),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.mail), title: Text("Messages")),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person), title: Text("Profile")),
           ],
-    
         ),
         body: PageView(
           children: tabPages,
@@ -135,6 +156,7 @@ class _BottomBarState extends State<BottomBar> {
       ),
     );
   }
+
   void onPageChanged(int page) {
     setState(() {
       this._pageIndex = page;
@@ -142,7 +164,8 @@ class _BottomBarState extends State<BottomBar> {
   }
 
   void onTabTapped(int index) {
-    this._pageController.animateToPage(index,duration: const Duration(milliseconds: 500),curve: Curves.easeInOut);
+    this._pageController.animateToPage(index,
+        duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
   }
 }
 

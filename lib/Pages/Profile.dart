@@ -3,11 +3,17 @@
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
-  final Map UserData;
+    final String Name;
+  final String Email;
+  final String UID;
+  final String PhoneNo;
 
   const ProfilePage({
     Key? key,
-    required this.UserData,
+    required this.Name,
+      required this.Email,
+      required this.PhoneNo,
+      required this.UID,
   }) : super(key: key);
 
   @override
@@ -51,17 +57,17 @@ class _ProfilePageState extends State<ProfilePage> {
               UserDataField(
                 icon: Icons.account_circle_outlined,
                 titleText: "User Name",
-                text: widget.UserData['Name'],
+                text: widget.Name,
               ),
               UserDataField(
                 icon: Icons.email_outlined,
                 titleText: "Email",
-                text: widget.UserData['email'],
+                text: widget.Email,
               ),
               UserDataField(
                 icon: Icons.phone,
                 titleText: "Phone No",
-                text: widget.UserData['phoneNo'],
+                text: widget.PhoneNo,
               ),
           ],
         ),

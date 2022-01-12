@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class ViewAd extends StatefulWidget {
@@ -28,8 +29,7 @@ class _ViewAdState extends State<ViewAd> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         body: Stack(
           children: [
             Expanded(
@@ -39,13 +39,30 @@ class _ViewAdState extends State<ViewAd> {
                 javascriptMode: JavascriptMode.unrestricted,
               ),
             ),
-            const Center(
-                child: CircularProgressIndicator(
-              strokeWidth: 6,
-            )),
+            Center(
+              child: Container(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CircularPercentIndicator(
+                    radius: 60.0,
+                    lineWidth: 5.0,
+                    percent: 1.0,
+                    center: const Text("30 Sec"),
+                    progressColor: Colors.green,
+                    animation: true,
+                    animationDuration: 12000,
+                    footer:  const Text(
+                      "Sales this week",
+                      style:
+                           TextStyle(fontWeight: FontWeight.bold, fontSize: 17.0),
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
-      ),
     );
   }
 }

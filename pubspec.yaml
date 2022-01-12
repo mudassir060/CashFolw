@@ -23,6 +23,7 @@ dependencies:
   dotted_line: ^3.1.0
   image_picker: ^0.6.7+22
   webview_flutter: ^2.0.14
+  percent_indicator: ^3.4.0
 
 dev_dependencies:
   flutter_test:

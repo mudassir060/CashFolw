@@ -2,6 +2,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:ppc/Widget/Cards.dart';
 
 class Dashboard extends StatefulWidget {
   final String? Name;
@@ -53,7 +54,7 @@ class _DashboardState extends State<Dashboard> {
                 onTap: () {
                   print("Available_Balance");
                 },
-                child: const Card(
+                child: const Cards(
                     titel: "Available_Balance",
                     icon_Data: Icons.account_balance_outlined,
                     No: "340"),
@@ -62,7 +63,7 @@ class _DashboardState extends State<Dashboard> {
                 onTap: () {
                   print("TOTAL EARN POINT");
                 },
-                child: const Card(
+                child: const Cards(
                     titel: "TOTAL EARN POINT",
                     icon_Data: Icons.price_change,
                     No: "340"),
@@ -71,7 +72,7 @@ class _DashboardState extends State<Dashboard> {
                 onTap: () {
                   print("Panding Balance");
                 },
-                child: const Card(
+                child: const Cards(
                     titel: "Panding Balance",
                     icon_Data: Icons.account_balance,
                     No: "340"),
@@ -80,7 +81,7 @@ class _DashboardState extends State<Dashboard> {
                 onTap: () {
                   print("TOTAL CLICK");
                 },
-                child: const Card(
+                child: const Cards(
                     titel: "TOTAL CLICK",
                     icon_Data: Icons.collections_bookmark,
                     No: "340"),
@@ -89,7 +90,7 @@ class _DashboardState extends State<Dashboard> {
                 onTap: () {
                   print("REMAIN TODAY CLICK");
                 },
-                child: const Card(
+                child: const Cards(
                     titel: "REMAIN TODAY CLICK",
                     icon_Data: Icons.price_change,
                     No: "340"),
@@ -98,75 +99,6 @@ class _DashboardState extends State<Dashboard> {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class Card extends StatefulWidget {
-  final IconData icon_Data;
-  final String titel;
-  final String No;
-
-  const Card(
-      {Key? key,
-      required this.titel,
-      required this.icon_Data,
-      required this.No})
-      : super(key: key);
-
-  @override
-  _CardState createState() => _CardState();
-}
-
-class _CardState extends State<Card> {
-  @override
-  Widget build(BuildContext context) {
-    var vwidth = MediaQuery.of(context).size.width;
-    var vhight = MediaQuery.of(context).size.height;
-    return Padding(
-      padding: const EdgeInsets.only(top: 10),
-      child: Center(
-        child: Container(
-            width: vwidth - 15,
-            height: vwidth / 2,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                // IconButton(onPressed: (){}, icon: const Icon(Icons.icecream_outlined)),
-                Icon(
-                  widget.icon_Data,
-                  size: vwidth / 3,
-                ),
-                Text(
-                  widget.titel,
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  "\$ ${widget.No}",
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: const Offset(0, 3), // changes position of shadow
-                ),
-              ],
-            )),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Api/login.dart';
+import 'package:ppc/Pages/BottomBar.dart';
 import 'package:ppc/Pages/Publisher/Plan.dart';
 import 'package:ppc/Pages/Viewer/ViewAd.dart';
 
@@ -15,14 +16,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ViewAd();
-    const Dashboard(
-      Name: "Name",
-      Email: "Email",
-      PhoneNo: "PhoneNo",
-      UID: "UID",
-    );
-    MaterialApp(
+    return     MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Pay Per Click',
         theme: ThemeData(
@@ -39,7 +33,7 @@ class MyApp extends StatelessWidget {
 
             // Once complete, show your application
             if (snapshot.connectionState == ConnectionState.done) {
-              return const Dashboard(
+              return const BottomBar(
                 Name: "Name",
                 Email: "Email",
                 PhoneNo: "PhoneNo",

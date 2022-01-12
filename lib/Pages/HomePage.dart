@@ -23,10 +23,15 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-      if (kDebugMode) {
-        print({"Home Page",widget.Name, widget.Email, widget.PhoneNo,});
-      }
-    return const MaterialApp(
+    if (kDebugMode) {
+      print({
+        "Home Page",
+        widget.Name,
+        widget.Email,
+        widget.PhoneNo,
+      });
+    }
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Home Page",
       // theme: ThemeData(
@@ -34,9 +39,39 @@ class _HomePageState extends State<HomePage> {
       // ),
       home: Scaffold(
         body: Center(
-          child: Text("Pakistan"),
+          child: GridView.extent(
+            primary: false,
+            padding: const EdgeInsets.all(16),
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            maxCrossAxisExtent: 200.0,
+            children: [],
+          ),
         ),
       ),
+    );
+  }
+}
+
+class Grid_Card extends StatelessWidget {
+  final IconData icon_Data;
+  final String titel;
+  const Grid_Card({
+    Key? key,
+    required this.icon_Data,
+    required this.titel,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(8),
+      child: Column(
+        children: [
+          Text(titel, style: const TextStyle(fontSize: 20)),
+        ],
+      ),
+      color: Colors.yellow,
     );
   }
 }
