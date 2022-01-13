@@ -29,25 +29,11 @@ class _ReferralState extends State<Referral> {
     }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Referral",
       theme: ThemeData(
         primarySwatch: Colors.lightBlue,
       ),
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "Referral",
-          ),
-          centerTitle: true,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: const Icon(
-                Icons.arrow_back,
-              )),
-        ),
-      
+        
         body: Center(
           child: SingleChildScrollView(
             child: Column(children: [

@@ -39,20 +39,7 @@ class _PlanState extends State<Plan> {
         primarySwatch: Colors.lightBlue,
       ),
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "Plan",
-          ),
-          centerTitle: true,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: const Icon(
-                Icons.arrow_back,
-              )),
-        ),
-        body: Center(
+         body: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,

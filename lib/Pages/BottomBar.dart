@@ -64,6 +64,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:ppc/Bloc/AppBar.dart';
 import 'package:ppc/Pages/Dashboard.dart';
 import 'package:ppc/Pages/HomePage.dart';
 import 'package:ppc/Pages/Profile.dart';
@@ -109,20 +110,17 @@ class _BottomBarState extends State<BottomBar> {
   }
 
   String Titel = "";
+  final appBarBloc = AppBarBloc();
   @override
   Widget build(BuildContext context) {
     if (_pageIndex == 0) {
-      setState(() {
-        Titel = "Pay Per Click";
-      });
-    }    if (_pageIndex == 1) {
-      setState(() {
-        Titel = "Dashboard";
-      });
-    }    if (_pageIndex == 2) {
-      setState(() {
-        Titel = "Profile";
-      });
+        appBarBloc.eventSink.add(AppBarAction.PayPerClick);
+    }
+    if (_pageIndex == 1) {
+        appBarBloc.eventSink.add(AppBarAction.Dashboard);
+    }
+    if (_pageIndex == 2) {
+        appBarBloc.eventSink.add(AppBarAction.Profile);
     }
     if (kDebugMode) {
       print({
@@ -139,15 +137,25 @@ class _BottomBarState extends State<BottomBar> {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text(Titel, style: const TextStyle(color: Colors.white),),
+          title: StreamBuilder(
+            stream: appBarBloc.TitelStream,
+            initialData: 0,
+            builder: (context, snapshot) {
+              //  return Text("$_counter");
+              return Text(
+                "${snapshot.data}",
+                style: const TextStyle(color: Colors.white),
+              );
+            },
+          ),
           centerTitle: true,
-          // leading: IconButton(
-          //     onPressed: () {
-          //       Navigator.of(context).pop();
-          //     },
-          //     icon: const Icon(
-          //       Icons.arrow_back,
-          //     )),
+          leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(
+                Icons.arrow_back,
+              )),
         ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _pageIndex,

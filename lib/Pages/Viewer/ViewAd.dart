@@ -6,7 +6,18 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class ViewAd extends StatefulWidget {
-  const ViewAd({Key? key}) : super(key: key);
+    final String Name;
+  final String Email;
+  final String UID;
+  final String PhoneNo;
+  const ViewAd(
+      {Key? key,
+      required this.Name,
+      required this.Email,
+      required this.PhoneNo,
+      required this.UID})
+      : super(key: key);
+
 
   @override
   _ViewAdState createState() => _ViewAdState();
