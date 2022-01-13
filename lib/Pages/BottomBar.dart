@@ -68,6 +68,7 @@ import 'package:ppc/Bloc/AppBar.dart';
 import 'package:ppc/Pages/Dashboard.dart';
 import 'package:ppc/Pages/HomePage.dart';
 import 'package:ppc/Pages/Profile.dart';
+import 'package:ppc/Pages/Viewer/Referral.dart';
 
 class BottomBar extends StatefulWidget {
   final String Name;
@@ -106,7 +107,7 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     List<Widget> tabPages = [
-      HomePage(
+      Referral(
           Name: widget.Name,
           Email: widget.Email,
           PhoneNo: widget.PhoneNo,
