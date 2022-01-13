@@ -88,14 +88,6 @@ class BottomBar extends StatefulWidget {
 class _BottomBarState extends State<BottomBar> {
   int _pageIndex = 0;
   late PageController _pageController;
-  List<Widget> tabPages = [
-    const HomePage(
-        Name: "HomePage", Email: "Email", PhoneNo: "PhoneNo", UID: "UID"),
-    const Dashboard(
-        Name: "Dashboard", Email: "Email", PhoneNo: "PhoneNo", UID: "UID"),
-    const ProfilePage(
-        Name: "Name", Email: "Email", PhoneNo: "PhoneNo", UID: "UID"),
-  ];
 
   @override
   void initState() {
@@ -113,14 +105,31 @@ class _BottomBarState extends State<BottomBar> {
   final appBarBloc = AppBarBloc();
   @override
   Widget build(BuildContext context) {
+    List<Widget> tabPages = [
+      HomePage(
+          Name: widget.Name,
+          Email: widget.Email,
+          PhoneNo: widget.PhoneNo,
+          UID: widget.UID),
+      Dashboard(
+          Name: widget.Name,
+          Email: widget.Email,
+          PhoneNo: widget.PhoneNo,
+          UID: widget.UID),
+      ProfilePage(
+          Name: widget.Name,
+          Email: widget.Email,
+          PhoneNo: widget.PhoneNo,
+          UID: widget.UID),
+    ];
     if (_pageIndex == 0) {
-        appBarBloc.eventSink.add(AppBarAction.PayPerClick);
+      appBarBloc.eventSink.add(AppBarAction.PayPerClick);
     }
     if (_pageIndex == 1) {
-        appBarBloc.eventSink.add(AppBarAction.Dashboard);
+      appBarBloc.eventSink.add(AppBarAction.Dashboard);
     }
     if (_pageIndex == 2) {
-        appBarBloc.eventSink.add(AppBarAction.Profile);
+      appBarBloc.eventSink.add(AppBarAction.Profile);
     }
     if (kDebugMode) {
       print({
@@ -151,7 +160,17 @@ class _BottomBarState extends State<BottomBar> {
           centerTitle: true,
           leading: IconButton(
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BottomBar(
+                      Name: widget.Name,
+                      Email: widget.Email,
+                      PhoneNo: widget.PhoneNo,
+                      UID: widget.UID,
+                    ),
+                  ),
+                );
               },
               icon: const Icon(
                 Icons.arrow_back,

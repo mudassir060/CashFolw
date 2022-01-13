@@ -21,11 +21,13 @@ class PostAd extends StatefulWidget {
   @override
   _PostAdState createState() => _PostAdState();
 }
-
+  final TextEditingController PostAdController =
+      TextEditingController();
 class _PostAdState extends State<PostAd> {
   @override
   Widget build(BuildContext context) {
-            final appBarBloc = AppBarBloc();
+      var vwidth = MediaQuery.of(context).size.width;
+    var vhight = MediaQuery.of(context).size.height;
     if (kDebugMode) {
       print({
         "PostAd Page",
@@ -33,21 +35,36 @@ class _PostAdState extends State<PostAd> {
         widget.Email,
         widget.PhoneNo,
       });
-        appBarBloc.eventSink.add(AppBarAction.Profile);
-
     }
+      final appBarBloc = AppBarBloc();
+        appBarBloc.eventSink.add(AppBarAction.PostADS);
 
-    return  StreamBuilder(
-            stream: appBarBloc.TitelStream,
-            initialData: 0,
-            builder: (context, snapshot) {
-              return Text(
-                "${snapshot.data}",
-                style: const TextStyle(color: Colors.black),
-              );
-            },
-          )
-      ;
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.lightBlue,
+      ),
+      home: Scaffold(
+        body: Center(
+          child: Container(
+            width: vwidth -50,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                   TextField(
+                                controller: PostAdController,
+                                decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    labelText: 'Post Ad',
+                                    hintText: "Enter Url Do You want to post"),
+                              ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 

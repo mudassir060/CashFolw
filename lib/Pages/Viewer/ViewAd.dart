@@ -24,18 +24,17 @@ class ViewAd extends StatefulWidget {
 }
 
 class _ViewAdState extends State<ViewAd> {
+    bool Delay = false;
   final _key = UniqueKey();
   void initState() {
     super.initState();
-    var runingTime = 0;
-    // for (var i = 0; i < 30; i++) {
-    //   Future.delayed(const Duration(seconds: 1), () {
-    //     print('===========>>>> $runingTime');
-    //     setState(() {
-    //       runingTime++;
-    //     });
-    //   });
-    // }
+      Future.delayed(const Duration(seconds: 5), () {
+        print('===========>>>> $Delay');
+        setState(() {
+          Delay = true;
+        });
+      });
+    
   }
 
   @override
@@ -50,7 +49,8 @@ class _ViewAdState extends State<ViewAd> {
                 javascriptMode: JavascriptMode.unrestricted,
               ),
             ),
-            Center(
+            Delay ?
+             Center(
               child: Container(
                 color: Colors.white,
                 child: Padding(
@@ -71,8 +71,9 @@ class _ViewAdState extends State<ViewAd> {
                   ),
                 ),
               ),
-            ),
-          ],
+            ): Center()
+         
+            ],
         ),
     );
   }
