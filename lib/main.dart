@@ -1,12 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Api/login.dart';
-import 'package:ppc/Pages/BottomBar.dart';
-import 'package:ppc/Pages/Publisher/Plan.dart';
-import 'package:ppc/Pages/Publisher/PostAd.dart';
-import 'package:ppc/Pages/Viewer/ViewAd.dart';
 
-import 'Pages/Dashboard.dart';
 
 void main() {
   runApp(const MyApp());

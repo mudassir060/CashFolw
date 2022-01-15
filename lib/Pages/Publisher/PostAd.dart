@@ -96,7 +96,7 @@ class _PostAdState extends State<PostAd> {
                       controller: PostAdController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        hintText: "2",
+                        hintText: "2-10",
                       ),
                     ),
                     _space,
@@ -108,7 +108,7 @@ class _PostAdState extends State<PostAd> {
                     TextField(
                       controller: PostAdController,
                       decoration: const InputDecoration(
-                          border: OutlineInputBorder(), hintText: "0"),
+                          border: OutlineInputBorder(), hintText: "2-5000"),
                     ),
                     _space,
                     ElevatedButton(
