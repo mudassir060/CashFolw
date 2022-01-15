@@ -139,60 +139,63 @@ class _BottomBarState extends State<BottomBar> {
         widget.PhoneNo,
       });
     }
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.lightBlue,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: StreamBuilder(
-            stream: appBarBloc.TitelStream,
-            initialData: 0,
-            builder: (context, snapshot) {
-              //  return Text("$_counter");
-              return Text(
-                "${snapshot.data}",
-                style: const TextStyle(color: Colors.white),
-              );
-            },
-          ),
-          centerTitle: true,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => BottomBar(
-                      Name: widget.Name,
-                      Email: widget.Email,
-                      PhoneNo: widget.PhoneNo,
-                      UID: widget.UID,
-                    ),
-                  ),
+    return WillPopScope(
+    onWillPop: () async => false,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.lightBlue,
+        ),
+        home: Scaffold(
+          appBar: AppBar(
+            title: StreamBuilder(
+              stream: appBarBloc.TitelStream,
+              initialData: 0,
+              builder: (context, snapshot) {
+                //  return Text("$_counter");
+                return Text(
+                  "${snapshot.data}",
+                  style: const TextStyle(color: Colors.white),
                 );
               },
-              icon: const Icon(
-                Icons.arrow_back,
-              )),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _pageIndex,
-          onTap: onTabTapped,
-          backgroundColor: Colors.white,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home), title: Text("Home")),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.dashboard), title: Text("Dashboard")),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person), title: Text("Profile")),
-          ],
-        ),
-        body: PageView(
-          children: tabPages,
-          onPageChanged: onPageChanged,
-          controller: _pageController,
+            ),
+            centerTitle: true,
+            leading: IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BottomBar(
+                        Name: widget.Name,
+                        Email: widget.Email,
+                        PhoneNo: widget.PhoneNo,
+                        UID: widget.UID,
+                      ),
+                    ),
+                  );
+                },
+                icon: const Icon(
+                  Icons.arrow_back,
+                )),
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: _pageIndex,
+            onTap: onTabTapped,
+            backgroundColor: Colors.white,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.home), title: Text("Home")),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.dashboard), title: Text("Dashboard")),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.person), title: Text("Profile")),
+            ],
+          ),
+          body: PageView(
+            children: tabPages,
+            onPageChanged: onPageChanged,
+            controller: _pageController,
+          ),
         ),
       ),
     );

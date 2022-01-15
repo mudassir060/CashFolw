@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ppc/Api/login.dart';
 import 'package:ppc/Pages/BottomBar.dart';
 import 'package:ppc/Pages/Publisher/Plan.dart';
+import 'package:ppc/Pages/Publisher/PostAd.dart';
 import 'package:ppc/Pages/Viewer/ViewAd.dart';
 
 import 'Pages/Dashboard.dart';
@@ -33,12 +34,7 @@ class MyApp extends StatelessWidget {
 
             // Once complete, show your application
             if (snapshot.connectionState == ConnectionState.done) {
-              return const BottomBar(
-                Name: "Name",
-                Email: "Email",
-                PhoneNo: "PhoneNo",
-                UID: "UID",
-              );
+              return const Login();
             }
 
             // Otherwise, show something whilst waiting for initialization to complete

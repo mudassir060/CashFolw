@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisSpacing: 20,
           maxCrossAxisExtent: 200.0,
           children: const [
-            Grid_Card(icon_Data: Icons.add_box, titel: "Post ADS"),
+            Grid_Card(icon_Data: Icons.add_box, titel: "Place ad"),
             Grid_Card(icon_Data: Icons.payment, titel: "Deposit"),
             Grid_Card(icon_Data: Icons.money, titel: "Withdraw"),
             Grid_Card(icon_Data: Icons.help, titel: "Plan"),
@@ -79,7 +79,7 @@ class Grid_Card extends StatelessWidget {
     final appBarBloc = AppBarBloc();
     return GestureDetector(
       onTap: () {
-        if (titel == "Post ADS") {
+        if (titel == "Place ad") {
           appBarBloc.eventSink.add(AppBarAction.PostADS);
           Navigator.push(
             context,
