@@ -148,53 +148,42 @@ class _CardState extends State<Card> {
                 ],
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                // IconButton(onPressed: (){}, icon: const Icon(Icons.icecream_outlined)),
-                Text("Daily Limit : ${widget.Daily_Limit} PTC"),
-                const Padding(
-                  padding: EdgeInsets.all(12.0),
-                  child: DottedLine(
-                    dashLength: 0.5,
-                  ),
-                ),
-                Text("Validity : ${widget.Validite} Day"),
-                const Padding(
-                  padding: EdgeInsets.all(12.0),
-                  child: DottedLine(
-                    dashLength: 0.5,
-                  ),
-                ),
-                Text("Points: ${widget.No}"),
-                const Padding(
-                  padding: EdgeInsets.all(12.0),
-                  child: DottedLine(
-                    dashLength: 0.5,
-                  ),
-                ),
-                Container(
-                  height: vhight / 11,
-                  width: vwidth - 30,
-                  child: const Center(
-                    child: Text(
-                      "Subscribe",
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.white,
+            Container(
+              height: vhight/3,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  // IconButton(onPressed: (){}, icon: const Icon(Icons.icecream_outlined)),
+                  _Line,
+                  Text("Daily Limit : ${widget.Daily_Limit} PTC"),
+                  _Line,
+                  Text("Validity : ${widget.Validite} Day"),
+                  _Line,
+                  Text("Points: ${widget.No}"),
+                  _Line,
+                  Container(
+                    height: vhight / 11,
+                    width: vwidth - 30,
+                    child: const Center(
+                      child: Text(
+                        "Subscribe",
+                        style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                  ),
-                  decoration: const BoxDecoration(
-                    color: Colors.lightBlue,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10),
+                    decoration: const BoxDecoration(
+                      color: Colors.lightBlue,
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ],
         ),
@@ -219,4 +208,7 @@ class _CardState extends State<Card> {
 
 Widget get _space => const SizedBox(
       height: 30,
+    );
+Widget get _Line => const DottedLine(
+      dashLength: 0.5,
     );

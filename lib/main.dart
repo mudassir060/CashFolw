@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Api/login.dart';
+import 'package:ppc/Pages/Admin/Create_Plan.dart';
 
 
 void main() {
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
 
             // Once complete, show your application
             if (snapshot.connectionState == ConnectionState.done) {
-              return const Login();
+              return  Create_Plan(Name: "Name", Email: "Email", PhoneNo: "PhoneNo");
             }
 
             // Otherwise, show something whilst waiting for initialization to complete
