@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Api/login.dart';
 import 'package:ppc/Pages/Admin/Create_Plan.dart';
-
+import 'package:ppc/Pages/Publisher/Plan.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return     MaterialApp(
+    return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Pay Per Click',
         theme: ThemeData(
@@ -30,7 +30,14 @@ class MyApp extends StatelessWidget {
 
             // Once complete, show your application
             if (snapshot.connectionState == ConnectionState.done) {
-              return  Create_Plan(Name: "Name", Email: "Email", PhoneNo: "PhoneNo");
+              // return Login();
+              return Plan(
+                Name: "Name",
+                Email: "Email",
+                PhoneNo: "PhoneNo",
+                UID: '',
+                Admin: true,
+              );
             }
 
             // Otherwise, show something whilst waiting for initialization to complete

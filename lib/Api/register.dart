@@ -203,13 +203,17 @@ class _RegistrationState extends State<Registration> {
                                 )
                               : Container(),
                           const SizedBox(height: 10),
-                          ElevatedButton(
-                            onPressed: register,
-                            child: const Text(
-                              'Registration',
-                              // style: TextStyle(fontSize: 10.0),
+                        
+                            ElevatedButton(
+                              child: const Padding(
+                                padding: EdgeInsets.only(left: 50, right: 50),
+                                child: Text(
+                                  'Registration',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              onPressed: register,
                             ),
-                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [

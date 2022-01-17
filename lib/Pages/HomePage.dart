@@ -126,11 +126,11 @@ class Grid_Card extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const Plan(
+              builder: (context) => Plan(
                 Name: "Name",
                 Email: "Email",
                 PhoneNo: "PhoneNo",
-                UID: "UID",
+                UID: "UID", Admin: true,
               ),
             ),
           );

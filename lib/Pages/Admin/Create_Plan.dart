@@ -1,17 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:ppc/Widget/PopUp.dart';
+import 'package:ppc/Function/PopUp.dart';
 
 class Create_Plan extends StatefulWidget {
-  final String Name;
-  final String Email;
-  final String PhoneNo;
-  Create_Plan({
-    required this.Name,
-    required this.Email,
-    required this.PhoneNo,
-  });
 
   @override
   _Create_PlanState createState() => _Create_PlanState();
@@ -47,8 +39,8 @@ class _Create_PlanState extends State<Create_Plan> {
         try {
           FirebaseFirestore firestore = FirebaseFirestore.instance;
           DateTime now = DateTime.now();
-          String formattedDate = DateFormat('EEE d MMM').format(now);
-          await firestore.collection("Plans").doc().set({
+          String formattedDate = DateFormat('EEE d MMM kk:mm:ss').format(now);
+          await firestore.collection("Plans").doc(formattedDate).set({
             "Date": formattedDate,
             "_Titel": _Titel,
             "_Price": _Price,
@@ -62,8 +54,8 @@ class _Create_PlanState extends State<Create_Plan> {
           //     duration: Duration(seconds: 3),
           //   ),
           // );
-          PopUp(context, '', 'Create Plan Successfully');
           setState(() {});
+          PopUp(context, '', 'Create Plan Successfully');
           // Navigator.of(context).pop();
         } catch (e) {
           print("Error ==============>$e");
