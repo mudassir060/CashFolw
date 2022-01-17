@@ -59,17 +59,21 @@ class _RegistrationState extends State<Registration> {
             "Panding Balance": 0,
             "Daily Ads": 0,
             "Total Point": 0,
+            "Total Click": 0,
+            "Remain Today Click": 0,
+            
           });
+          // Map UserData = {
+          //   "UID": UID,
+          //   "Name": username,
+          //   "Email": useremail,
+          //   "PhoneNo": PhoneNo,
+          // };
 
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => HomePage(
-                UID: UID,
-                Name: username,
-                Email: useremail,
-                PhoneNo: PhoneNo,
-              ),
+              builder: (context) => Login(),
             ),
           );
         } else {
@@ -87,26 +91,25 @@ class _RegistrationState extends State<Registration> {
           looding = false;
         });
         print("Error ==============>$e");
-              Widget okButton = TextButton(
-        child: Text("OK"),
-        onPressed: () {
-          Navigator.of(context).pop(); // dismiss dialog
-        },
-      );
-      AlertDialog alert = AlertDialog(
-        title: Center(child: Text("Error")),
-        content: Text("${e.toString()}"),
-        actions: [
-          okButton,
-        ],
-      );
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
-   
+        Widget okButton = TextButton(
+          child: Text("OK"),
+          onPressed: () {
+            Navigator.of(context).pop(); // dismiss dialog
+          },
+        );
+        AlertDialog alert = AlertDialog(
+          title: Center(child: Text("Error")),
+          content: Text("${e.toString()}"),
+          actions: [
+            okButton,
+          ],
+        );
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return alert;
+          },
+        );
       }
       // print([username, useremail, userpassword]);
     }
@@ -203,17 +206,17 @@ class _RegistrationState extends State<Registration> {
                                 )
                               : Container(),
                           const SizedBox(height: 10),
-                        
-                            ElevatedButton(
-                              child: const Padding(
-                                padding: EdgeInsets.only(left: 50, right: 50),
-                                child: Text(
-                                  'Registration',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
+
+                          ElevatedButton(
+                            child: const Padding(
+                              padding: EdgeInsets.only(left: 50, right: 50),
+                              child: Text(
+                                'Registration',
+                                style: TextStyle(fontWeight: FontWeight.bold),
                               ),
-                              onPressed: register,
                             ),
+                            onPressed: register,
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [

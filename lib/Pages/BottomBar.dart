@@ -70,17 +70,8 @@ import 'package:ppc/Pages/HomePage.dart';
 import 'package:ppc/Pages/Profile.dart';
 
 class BottomBar extends StatefulWidget {
-  final String Name;
-  final String Email;
-  final String UID;
-  final String PhoneNo;
-  const BottomBar(
-      {Key? key,
-      required this.Name,
-      required this.Email,
-      required this.PhoneNo,
-      required this.UID})
-      : super(key: key);
+  final Map UserData;
+  const BottomBar({Key? key, required this.UserData}) : super(key: key);
   @override
   _BottomBarState createState() => new _BottomBarState();
 }
@@ -106,21 +97,9 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     List<Widget> tabPages = [
-      HomePage(
-          Name: widget.Name,
-          Email: widget.Email,
-          PhoneNo: widget.PhoneNo,
-          UID: widget.UID),
-      Dashboard(
-          Name: widget.Name,
-          Email: widget.Email,
-          PhoneNo: widget.PhoneNo,
-          UID: widget.UID),
-      ProfilePage(
-          Name: widget.Name,
-          Email: widget.Email,
-          PhoneNo: widget.PhoneNo,
-          UID: widget.UID),
+      HomePage(UserData: widget.UserData),
+      Dashboard(UserData: widget.UserData),
+      ProfilePage(UserData: widget.UserData),
     ];
     if (_pageIndex == 0) {
       appBarBloc.eventSink.add(AppBarAction.PayPerClick);
@@ -132,15 +111,10 @@ class _BottomBarState extends State<BottomBar> {
       appBarBloc.eventSink.add(AppBarAction.Profile);
     }
     if (kDebugMode) {
-      print({
-        "Bottom Bar",
-        widget.Name,
-        widget.Email,
-        widget.PhoneNo,
-      });
+      print({"Bottom Bar", widget.UserData});
     }
     return WillPopScope(
-    onWillPop: () async => false,
+      onWillPop: () async => false,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
@@ -165,12 +139,8 @@ class _BottomBarState extends State<BottomBar> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => BottomBar(
-                        Name: widget.Name,
-                        Email: widget.Email,
-                        PhoneNo: widget.PhoneNo,
-                        UID: widget.UID,
-                      ),
+                      builder: (context) =>
+                          BottomBar(UserData: widget.UserData),
                     ),
                   );
                 },

@@ -15,10 +15,6 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  String Name = '';
-  String Email = '';
-  String PhoneNo = '';
-  String UID = '';
   bool looding = false;
   final TextEditingController useremailcontroller =
       TextEditingController(text: "abc@gmail.com");
@@ -29,7 +25,7 @@ class _LoginState extends State<Login> {
     setState(() {
       looding = true;
     });
-    Map? UserData = {};
+    Map UserData = {};
     FirebaseAuth auth = FirebaseAuth.instance;
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     final String useremail = useremailcontroller.text;
@@ -45,26 +41,21 @@ class _LoginState extends State<Login> {
       });
       print(
           '=========================User is Login...=============================');
-      print("Name =====> ${UserData!["username"]}");
-      print("Email =====> ${UserData!["email"]}");
-      print("Phone No =====> ${UserData!["PhoneNo"]}");
-      setState(() {
-        Name = UserData!["username"];
-        Email = UserData!["email"];
-        PhoneNo = UserData!["PhoneNo"];
-        UID = UserData!["UID"];
-      });
-      print({Name, Email, PhoneNo, userpassword});
+      print("Name =====> ${UserData["username"]}");
+      print("Email =====> ${UserData["email"]}");
+      print("Phone No =====> ${UserData["PhoneNo"]}");
+      // setState(() {
+      //   Name = UserData!["username"];
+      //   Email = UserData!["email"];
+      //   PhoneNo = UserData!["PhoneNo"];
+      //   UID = UserData!["UID"];
+      // });
+      // print({Name, Email, PhoneNo, userpassword});
 
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => BottomBar(
-            Name: Name,
-            Email: Email,
-            PhoneNo: PhoneNo,
-            UID: UID,
-          ),
+          builder: (context) => BottomBar(UserData: UserData,)
         ),
       );
       setState(() {

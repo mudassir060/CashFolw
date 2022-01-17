@@ -63,30 +63,31 @@ class _PlanState extends State<Plan> {
                     child: CircularProgressIndicator(),
                   );
                 }
-                var Money;
                 var vwidth = MediaQuery.of(context).size.width;
                 var vhight = MediaQuery.of(context).size.height;
                 return Column(
                   children: [
-                    ElevatedButton(
-                      child: const Padding(
-                        padding: EdgeInsets.only(left: 50, right: 50),
-                        child: Text(
-                          'Create Plan',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Create_Plan(),
-                          ),
-                        );
-                      },
-                    ),
+                    widget.Admin
+                        ? ElevatedButton(
+                            child: const Padding(
+                              padding: EdgeInsets.only(left: 50, right: 50),
+                              child: Text(
+                                'Create Plan',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Create_Plan(),
+                                ),
+                              );
+                            },
+                          )
+                        : Center(),
                     SizedBox(
-                      height: widget.Admin ? vhight - 50 : vhight,
+                      height: vhight-120,
                       child: ListView(
                         physics: const BouncingScrollPhysics(
                             parent: AlwaysScrollableScrollPhysics()),

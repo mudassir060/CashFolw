@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:ppc/Widget/Cards.dart';
 
 class Dashboard extends StatefulWidget {
-  final String? Name;
-  final String? Email;
-  final String? UID;
-  final String? PhoneNo;
-  const Dashboard({Key? key, this.Name, this.Email, this.PhoneNo, this.UID})
-      : super(key: key);
+  final Map UserData;
+  const Dashboard({
+    Key? key,
+    required this.UserData,
+  }) : super(key: key);
 
   @override
   _DashboardState createState() => _DashboardState();
@@ -22,9 +21,7 @@ class _DashboardState extends State<Dashboard> {
     if (kDebugMode) {
       print({
         "Dashboard Page",
-        widget.Name,
-        widget.Email,
-        widget.PhoneNo,
+        "${widget.UserData}"
       });
     }
     return MaterialApp(
@@ -47,7 +44,7 @@ class _DashboardState extends State<Dashboard> {
         //         Icons.arrow_back,
         //       )),
         // ),
-      
+
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -55,46 +52,46 @@ class _DashboardState extends State<Dashboard> {
                 onTap: () {
                   print("Available_Balance");
                 },
-                child: const Cards(
+                child: Cards(
                     titel: "Available_Balance",
                     icon_Data: Icons.account_balance_outlined,
-                    No: "340"),
+                    No: "${widget.UserData["Available_Balance"]}"),
               ),
               GestureDetector(
                 onTap: () {
                   print("TOTAL EARN POINT");
                 },
-                child: const Cards(
+                child: Cards(
                     titel: "TOTAL EARN POINT",
                     icon_Data: Icons.price_change,
-                    No: "340"),
+                    No: "${widget.UserData["Total Point"]}"),
               ),
               GestureDetector(
                 onTap: () {
                   print("Panding Balance");
                 },
-                child: const Cards(
+                child: Cards(
                     titel: "Panding Balance",
                     icon_Data: Icons.account_balance,
-                    No: "340"),
+                    No: "${widget.UserData["Panding Balance"]}"),
               ),
               GestureDetector(
                 onTap: () {
                   print("TOTAL CLICK");
                 },
-                child: const Cards(
+                child: Cards(
                     titel: "TOTAL CLICK",
                     icon_Data: Icons.collections_bookmark,
-                    No: "340"),
+                    No: "${widget.UserData["Total Click"]}"),
               ),
               GestureDetector(
                 onTap: () {
                   print("REMAIN TODAY CLICK");
                 },
-                child: const Cards(
+                child: Cards(
                     titel: "REMAIN TODAY CLICK",
                     icon_Data: Icons.price_change,
-                    No: "340"),
+                    No: "${widget.UserData["Remain Today Click"]}"),
               ),
               _space
             ],

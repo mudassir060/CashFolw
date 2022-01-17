@@ -11,17 +11,12 @@ import 'package:ppc/Pages/Viewer/ViewAd.dart';
 import 'package:ppc/Pages/Viewer/Withdraw.dart';
 
 class HomePage extends StatefulWidget {
-  final String Name;
-  final String Email;
-  final String UID;
-  final String PhoneNo;
-  const HomePage(
-      {Key? key,
-      required this.Name,
-      required this.Email,
-      required this.PhoneNo,
-      required this.UID})
-      : super(key: key);
+  final Map UserData;
+
+  const HomePage({
+    Key? key,
+    required this.UserData,
+  }) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -33,9 +28,7 @@ class _HomePageState extends State<HomePage> {
     if (kDebugMode) {
       print({
         "Home Page",
-        widget.Name,
-        widget.Email,
-        widget.PhoneNo,
+        "${widget.UserData}"
       });
     }
     return MaterialApp(
@@ -130,7 +123,8 @@ class Grid_Card extends StatelessWidget {
                 Name: "Name",
                 Email: "Email",
                 PhoneNo: "PhoneNo",
-                UID: "UID", Admin: true,
+                UID: "UID",
+                Admin: false,
               ),
             ),
           );
