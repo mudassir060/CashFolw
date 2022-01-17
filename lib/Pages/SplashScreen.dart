@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
           // ignore: avoid_unnecessary_containers
           Container(
               child: const Text(
-            "EasyDeals Is Loading",
+            "Pay Par Click Is Loading",
             style: TextStyle(
               fontSize: 20.0,
               color: Colors.black,

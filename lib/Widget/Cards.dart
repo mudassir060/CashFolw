@@ -34,15 +34,11 @@ class _CardsState extends State<Cards> {
                 // IconButton(onPressed: (){}, icon: const Icon(Icons.icecream_outlined)),
                 Icon(
                   widget.icon_Data,
+                  color: Colors.blueAccent.shade200,
                   size: vwidth / 3,
                 ),
                 Text(
-                  widget.titel,
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  "\$ ${widget.No}",
+                  "${widget.titel} : ${widget.No}",
                   style: const TextStyle(
                       fontSize: 20, fontWeight: FontWeight.bold),
                 ),

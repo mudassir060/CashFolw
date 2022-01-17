@@ -39,16 +39,38 @@ class _PlanState extends State<Plan> {
         primarySwatch: Colors.lightBlue,
       ),
       home: Scaffold(
-         body: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Card(
-                  titel: "Available_Balance",
-                  icon_Data: Icons.price_change,
-                  No: "340"),
-            ],
+        body: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                   _space,
+                const Card(
+                  Price: '5',
+                  titel: "Basic Plan",
+                  No: "340",
+                  Daily_Limit: '100',
+                  Validite: '5',
+                ),
+                              _space,
+                const Card(
+                  Price: '15',
+                  titel: "Mediam Plan",
+                  No: "640",
+                  Daily_Limit: '200',
+                  Validite: '10',
+                ),
+                _space,
+                const Card(
+                  Price: '25',
+                  titel: "Subscribe Plan",
+                  No: "840",
+                  Daily_Limit: '300',
+                  Validite: '15',
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -57,15 +79,19 @@ class _PlanState extends State<Plan> {
 }
 
 class Card extends StatefulWidget {
-  final IconData icon_Data;
+  final String Price;
   final String titel;
+  final String Daily_Limit;
+  final String Validite;
   final String No;
 
   const Card(
       {Key? key,
       required this.titel,
-      required this.icon_Data,
-      required this.No})
+      required this.No,
+      required this.Daily_Limit,
+      required this.Validite,
+      required this.Price})
       : super(key: key);
 
   @override
@@ -98,9 +124,9 @@ class _CardState extends State<Card> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  const Text(
-                    "Create Plan",
-                    style: TextStyle(
+                  Text(
+                    "${widget.titel}",
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 40,
                       color: Colors.white,
@@ -111,9 +137,9 @@ class _CardState extends State<Card> {
                     width: vwidth / 1.5,
                     color: Colors.white,
                   ),
-                  const Text(
-                    "5 \$",
-                    style: TextStyle(
+                  Text(
+                    "${widget.Price} \$",
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 60,
                       color: Colors.white,
@@ -127,24 +153,21 @@ class _CardState extends State<Card> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 // IconButton(onPressed: (){}, icon: const Icon(Icons.icecream_outlined)),
-                const Text("Daily Limit : 100 PTC"),
+                Text("Daily Limit : ${widget.Daily_Limit} PTC"),
                 const Padding(
                   padding: EdgeInsets.all(12.0),
                   child: DottedLine(
                     dashLength: 0.5,
                   ),
                 ),
-                const Text("Validity : 5 Day"),
+                Text("Validity : ${widget.Validite} Day"),
                 const Padding(
                   padding: EdgeInsets.all(12.0),
                   child: DottedLine(
                     dashLength: 0.5,
                   ),
                 ),
-                SizedBox(
-                  width: 70,
-                  child: Text("Points: ${widget.No}"),
-                ),
+                Text("Points: ${widget.No}"),
                 const Padding(
                   padding: EdgeInsets.all(12.0),
                   child: DottedLine(
@@ -193,3 +216,7 @@ class _CardState extends State<Card> {
         ));
   }
 }
+
+Widget get _space => const SizedBox(
+      height: 30,
+    );

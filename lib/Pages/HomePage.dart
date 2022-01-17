@@ -175,7 +175,7 @@ class Grid_Card extends StatelessWidget {
               Icon(
                 icon_Data,
                 size: 100,
-                color: Colors.purple,
+                color: Colors.blueAccent.shade200,
               ),
               Text(
                 titel,
