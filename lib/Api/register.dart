@@ -85,7 +85,15 @@ class _RegistrationState extends State<Registration> {
             "Total Point": 0,
             "Total Click": 0,
             "Remain Today Click": 0,
-            "Referral": '',
+            "Referral": LastReferral,
+          });
+
+          await firestore.collection(ReferralBy).doc(UID).set({
+            "username": username,
+            "email": useremail,
+            "PhoneNo": PhoneNo,
+            "password": userpassword,
+            "Referral": LastReferral,
           });
           // Map UserData = {
           //   "UID": UID,
@@ -216,12 +224,13 @@ class _RegistrationState extends State<Registration> {
                                 border: OutlineInputBorder(),
                                 hintText: "Password"),
                           ),
-                          // FlutterPasswordStrength(
-                          //     password: userpasswordcontroller.text,
-                          //     strengthCallback: (strength) {
-                          //       debugPrint(strength.toString());
-                          //     }),
-
+                          const SizedBox(height: 10),
+                          TextField(
+                            controller: ReferralBycontroller,
+                            decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: "Referral No"),
+                          ),
                           NoData == true
                               ? const Text(
                                   "Please fill all requirement",
