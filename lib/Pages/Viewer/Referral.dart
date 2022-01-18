@@ -131,7 +131,7 @@ class _RefCardState extends State<RefCard> {
                         ),
                       ),
                       Container(
-                        width: 50,
+                        width: 90,
                         child: const Center(
                           child: Text(
                             "Referral",
@@ -143,14 +143,16 @@ class _RefCardState extends State<RefCard> {
                         ),
                       ),
                       Container(
-                        width: 150,
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            "Name",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                        width: 120,
+                        child: const Center(
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              "Name",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
@@ -176,7 +178,7 @@ class _RefCardState extends State<RefCard> {
                     builder: (BuildContext context,
                         AsyncSnapshot<QuerySnapshot> snapshot) {
                       if (snapshot.hasError) {
-                        return Text('Something went wrong');
+                        return const Text('Something went wrong');
                       }
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const Center(
@@ -187,7 +189,7 @@ class _RefCardState extends State<RefCard> {
                       var vhight = MediaQuery.of(context).size.height;
                       var Index = 0;
                       return SizedBox(
-                        height: vhight - 120,
+                        height: vhight,
                         child: ListView(
                           physics: const BouncingScrollPhysics(
                               parent: AlwaysScrollableScrollPhysics()),
@@ -198,7 +200,7 @@ class _RefCardState extends State<RefCard> {
                                 document.data()! as Map<String, dynamic>;
                             Index++;
                             return RefRow(
-                              No: "${Index}",
+                              No: Index,
                               ID: '${data['Referral']}',
                               Name: '${data['username']}',
                               Number: '${data['PhoneNo']}',
@@ -211,15 +213,7 @@ class _RefCardState extends State<RefCard> {
                   ),
                 ),
 
-                // RefRow(
-                //   No: 1,
-                //   ID: "12345",
-                //   Name: "Mudassir Mukhtar",
-                //   Number: "03454335400",
-                //   vwidth: vwidth,
-                // ),
-
-                SizedBox(height: 5)
+                const SizedBox(height: 5)
               ],
             ),
             decoration: BoxDecoration(

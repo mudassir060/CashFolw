@@ -62,6 +62,11 @@ class _ProfilePageState extends State<ProfilePage> {
                 titleText: "Phone No",
                 text: widget.UserData["PhoneNo"],
               ),
+                            UserDataField(
+                icon: Icons.refresh_sharp,
+                titleText: "Referral No",
+                text: '${widget.UserData["Referral"]}',
+              ),
             ],
           ),
         )),
