@@ -31,13 +31,6 @@ class MyApp extends StatelessWidget {
             // Once complete, show your application
             if (snapshot.connectionState == ConnectionState.done) {
               return Login();
-              return Plan(
-                Name: "Name",
-                Email: "Email",
-                PhoneNo: "PhoneNo",
-                UID: '',
-                Admin: false,
-              );
             }
 
             // Otherwise, show something whilst waiting for initialization to complete

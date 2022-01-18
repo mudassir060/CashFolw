@@ -1,21 +1,17 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class ViewAd extends StatefulWidget {
-    final String Name;
-  final String Email;
-  final String UID;
-  final String PhoneNo;
+  final Map UserData;
+
   const ViewAd(
       {Key? key,
-      required this.Name,
-      required this.Email,
-      required this.PhoneNo,
-      required this.UID})
+      required this.UserData,})
       : super(key: key);
 
 
@@ -39,6 +35,12 @@ class _ViewAdState extends State<ViewAd> {
 
   @override
   Widget build(BuildContext context) {
+        if (kDebugMode) {
+      print({
+        "ViewAd Page",
+        "${widget.UserData}"
+      });
+    }
     return Scaffold(
         body: Stack(
           children: [

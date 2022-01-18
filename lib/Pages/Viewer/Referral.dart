@@ -5,11 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:ppc/Widget/Cards.dart';
 
 class Referral extends StatefulWidget {
-  final String? Name;
-  final String? Email;
-  final String? UID;
-  final String? PhoneNo;
-  const Referral({Key? key, this.Name, this.Email, this.PhoneNo, this.UID})
+  final Map UserData;
+  const Referral({Key? key, required this.UserData})
       : super(key: key);
 
   @override
@@ -22,9 +19,7 @@ class _ReferralState extends State<Referral> {
     if (kDebugMode) {
       print({
         "Referral Page",
-        widget.Name,
-        widget.Email,
-        widget.PhoneNo,
+        "${widget.UserData}"
       });
     }
     return MaterialApp(

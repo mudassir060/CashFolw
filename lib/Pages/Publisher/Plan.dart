@@ -8,19 +8,14 @@ import 'package:ppc/Function/deletePlan.dart';
 import 'package:ppc/Pages/Admin/Create_Plan.dart';
 
 class Plan extends StatefulWidget {
-  final String Name;
-  final String Email;
-  final String UID;
-  final String PhoneNo;
+  final Map UserData;
+
   late bool Admin;
-  Plan(
-      {Key? key,
-      required this.Name,
-      required this.Email,
-      required this.PhoneNo,
-      required this.Admin,
-      required this.UID})
-      : super(key: key);
+  Plan({
+    Key? key,
+    required this.UserData,
+    required this.Admin,
+  }) : super(key: key);
 
   @override
   _PlanState createState() => _PlanState();
@@ -37,9 +32,7 @@ class _PlanState extends State<Plan> {
     if (kDebugMode) {
       print({
         "Plan Page",
-        widget.Name,
-        widget.Email,
-        widget.PhoneNo,
+        "${widget.UserData}"
       });
     }
     return MaterialApp(
@@ -87,7 +80,7 @@ class _PlanState extends State<Plan> {
                           )
                         : Center(),
                     SizedBox(
-                      height: vhight-120,
+                      height: vhight - 120,
                       child: ListView(
                         physics: const BouncingScrollPhysics(
                             parent: AlwaysScrollableScrollPhysics()),

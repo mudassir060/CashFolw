@@ -6,16 +6,10 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:ppc/Bloc/AppBar.dart';
 
 class PostAd extends StatefulWidget {
-  final String Name;
-  final String Email;
-  final String UID;
-  final String PhoneNo;
+  final Map UserData;
+
   const PostAd(
-      {Key? key,
-      required this.Name,
-      required this.Email,
-      required this.PhoneNo,
-      required this.UID})
+      {Key? key, required this.UserData,})
       : super(key: key);
 
   @override
@@ -32,9 +26,7 @@ class _PostAdState extends State<PostAd> {
     if (kDebugMode) {
       print({
         "PostAd Page",
-        widget.Name,
-        widget.Email,
-        widget.PhoneNo,
+        "${widget.UserData}"
       });
     }
     final appBarBloc = AppBarBloc();

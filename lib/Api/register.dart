@@ -5,6 +5,7 @@ import 'package:email_auth/email_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ppc/Api/login.dart';
 import 'package:flutter/material.dart';
+import 'package:ppc/Function/PopUp.dart';
 import 'package:ppc/Pages/HomePage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -95,13 +96,6 @@ class _RegistrationState extends State<Registration> {
             "password": userpassword,
             "Referral": LastReferral,
           });
-          // Map UserData = {
-          //   "UID": UID,
-          //   "Name": username,
-          //   "Email": useremail,
-          //   "PhoneNo": PhoneNo,
-          // };
-
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -122,28 +116,8 @@ class _RegistrationState extends State<Registration> {
         setState(() {
           looding = false;
         });
-        print("Error ==============>$e");
-        Widget okButton = TextButton(
-          child: Text("OK"),
-          onPressed: () {
-            Navigator.of(context).pop(); // dismiss dialog
-          },
-        );
-        AlertDialog alert = AlertDialog(
-          title: Center(child: Text("Error")),
-          content: Text("${e.toString()}"),
-          actions: [
-            okButton,
-          ],
-        );
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return alert;
-          },
-        );
+        PopUp(context, "Error", e);
       }
-      // print([username, useremail, userpassword]);
     }
 
     var vwidth = MediaQuery.of(context).size.width;

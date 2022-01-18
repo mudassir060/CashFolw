@@ -6,16 +6,10 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:ppc/Bloc/AppBar.dart';
 
 class Withdraw extends StatefulWidget {
-  final String Name;
-  final String Email;
-  final String UID;
-  final String PhoneNo;
+  final Map UserData;
+
   const Withdraw(
-      {Key? key,
-      required this.Name,
-      required this.Email,
-      required this.PhoneNo,
-      required this.UID})
+      {Key? key,required this.UserData,})
       : super(key: key);
 
   @override
@@ -29,12 +23,10 @@ class _WithdrawState extends State<Withdraw> {
   Widget build(BuildContext context) {
     var vwidth = MediaQuery.of(context).size.width;
     var vhight = MediaQuery.of(context).size.height;
-    if (kDebugMode) {
+     if (kDebugMode) {
       print({
         "Withdraw Page",
-        widget.Name,
-        widget.Email,
-        widget.PhoneNo,
+        "${widget.UserData}"
       });
     }
     final appBarBloc = AppBarBloc();

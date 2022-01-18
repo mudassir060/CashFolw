@@ -26,10 +26,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     if (kDebugMode) {
-      print({
-        "Home Page",
-        "${widget.UserData}"
-      });
+      print({"Home Page", "${widget.UserData}"});
     }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -43,14 +40,35 @@ class _HomePageState extends State<HomePage> {
           crossAxisSpacing: 10,
           mainAxisSpacing: 20,
           maxCrossAxisExtent: 200.0,
-          children: const [
-            Grid_Card(icon_Data: Icons.add_box, titel: "Place ad"),
-            Grid_Card(icon_Data: Icons.payment, titel: "Deposit"),
-            Grid_Card(icon_Data: Icons.money, titel: "Withdraw"),
-            Grid_Card(icon_Data: Icons.help, titel: "Plan"),
-            Grid_Card(icon_Data: Icons.refresh, titel: "Referral"),
-            // Grid_Card(icon_Data: Icons.dashboard, titel: "Transaction"),
-            Grid_Card(icon_Data: Icons.ad_units, titel: "ADS View"),
+          children: [
+            Grid_Card(
+                UserData: widget.UserData,
+                icon_Data: Icons.add_box,
+                titel: "Place ad"),
+            Grid_Card(
+                UserData: widget.UserData,
+                icon_Data: Icons.payment,
+                titel: "Deposit"),
+            Grid_Card(
+                UserData: widget.UserData,
+                icon_Data: Icons.money,
+                titel: "Withdraw"),
+            Grid_Card(
+                UserData: widget.UserData,
+                icon_Data: Icons.help,
+                titel: "Plan"),
+            Grid_Card(
+                UserData: widget.UserData,
+                icon_Data: Icons.refresh,
+                titel: "Referral"),
+            Grid_Card(
+                UserData: widget.UserData,
+                icon_Data: Icons.dashboard,
+                titel: "Transaction"),
+            Grid_Card(
+                UserData: widget.UserData,
+                icon_Data: Icons.ad_units,
+                titel: "ADS View"),
           ],
         ),
       ),
@@ -59,12 +77,14 @@ class _HomePageState extends State<HomePage> {
 }
 
 class Grid_Card extends StatelessWidget {
+  final Map UserData;
   final IconData icon_Data;
   final String titel;
   const Grid_Card({
     Key? key,
     required this.icon_Data,
     required this.titel,
+    required this.UserData,
   }) : super(key: key);
 
   @override
@@ -77,11 +97,8 @@ class Grid_Card extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const PostAd(
-                Name: "Name",
-                Email: "Email",
-                PhoneNo: "PhoneNo",
-                UID: "UID",
+              builder: (context) =>  PostAd(
+UserData: UserData
               ),
             ),
           );
@@ -91,11 +108,8 @@ class Grid_Card extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const Deposit(
-                Name: "Name",
-                Email: "Email",
-                PhoneNo: "PhoneNo",
-                UID: "UID",
+              builder: (context) => Deposit(
+UserData: UserData
               ),
             ),
           );
@@ -105,11 +119,8 @@ class Grid_Card extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const Withdraw(
-                Name: "Name",
-                Email: "Email",
-                PhoneNo: "PhoneNo",
-                UID: "UID",
+              builder: (context) => Withdraw(
+UserData: UserData
               ),
             ),
           );
@@ -120,10 +131,7 @@ class Grid_Card extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => Plan(
-                Name: "Name",
-                Email: "Email",
-                PhoneNo: "PhoneNo",
-                UID: "UID",
+UserData: UserData,
                 Admin: false,
               ),
             ),
@@ -134,13 +142,7 @@ class Grid_Card extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const Referral(
-                Name: "Name",
-                Email: "Email",
-                PhoneNo: "PhoneNo",
-                UID: "UID",
-              ),
-            ),
+                builder: (context) => Referral(UserData: UserData)),
           );
         }
         if (titel == "ADS View") {
@@ -148,11 +150,8 @@ class Grid_Card extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const ViewAd(
-                Name: "Name",
-                Email: "Email",
-                PhoneNo: "PhoneNo",
-                UID: "UID",
+              builder: (context) => ViewAd(
+UserData: UserData
               ),
             ),
           );
