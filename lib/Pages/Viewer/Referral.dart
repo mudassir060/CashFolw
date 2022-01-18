@@ -1,13 +1,13 @@
 // ignore_for_file: non_constant_identifier_names, prefer_const_literals_to_create_immutables
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Widget/Cards.dart';
 
 class Referral extends StatefulWidget {
   final Map UserData;
-  const Referral({Key? key, required this.UserData})
-      : super(key: key);
+  const Referral({Key? key, required this.UserData}) : super(key: key);
 
   @override
   _ReferralState createState() => _ReferralState();
@@ -17,10 +17,7 @@ class _ReferralState extends State<Referral> {
   @override
   Widget build(BuildContext context) {
     if (kDebugMode) {
-      print({
-        "Referral Page",
-        "${widget.UserData}"
-      });
+      print({"Referral Page", "${widget.UserData}"});
     }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -44,9 +41,17 @@ class _ReferralState extends State<Referral> {
                 const Text(
                   "Check your downline team",
                 ),
-                const RefCard(LevelNo: "Level 1 Direct Referral"),
-                SizedBox(height: 9,),
-                const RefCard(LevelNo: "Level 2 IN Direct Referral"),
+                RefCard(
+                  LevelNo: "Level 1 Direct Referral",
+                  UserData: widget.UserData,
+                ),
+                SizedBox(
+                  height: 9,
+                ),
+                RefCard(
+                  LevelNo: "Level 2 IN Direct Referral",
+                  UserData: widget.UserData,
+                ),
               ],
             ),
           ),
@@ -58,11 +63,19 @@ class _ReferralState extends State<Referral> {
 
 class RefCard extends StatefulWidget {
   final String LevelNo;
-  const RefCard({Key? key, required this.LevelNo}) : super(key: key);
+  final Map UserData;
+
+  const RefCard({Key? key, required this.LevelNo, required this.UserData})
+      : super(key: key);
 
   @override
   _RefCardState createState() => _RefCardState();
 }
+
+final Stream<QuerySnapshot> _PlanStream = FirebaseFirestore.instance
+    .collection('Plans')
+    .orderBy('_Price', descending: false)
+    .snapshots();
 
 class _RefCardState extends State<RefCard> {
   @override
@@ -107,7 +120,7 @@ class _RefCardState extends State<RefCard> {
                     children: [
                       Container(
                         width: 30,
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             "#",
                             style: TextStyle(
@@ -119,9 +132,9 @@ class _RefCardState extends State<RefCard> {
                       ),
                       Container(
                         width: 50,
-                        child: Center(
+                        child: const Center(
                           child: Text(
-                            "ID",
+                            "Referral",
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -131,8 +144,8 @@ class _RefCardState extends State<RefCard> {
                       ),
                       Container(
                         width: 150,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
                           child: Text(
                             "Name",
                             style: TextStyle(
@@ -143,7 +156,7 @@ class _RefCardState extends State<RefCard> {
                         ),
                       ),
                       Container(
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             "Phone",
                             style: TextStyle(
@@ -157,35 +170,53 @@ class _RefCardState extends State<RefCard> {
                   ),
                 ),
                 // // // // // // // // // List Row  // // // // // // // // //
-                RefRow(
-                  No: 1,
-                  ID: "12345",
-                  Name: "Mudassir Mukhtar",
-                  Number: "03454335400",
-                  vwidth: vwidth,
+                Center(
+                  child: StreamBuilder<QuerySnapshot>(
+                    stream: _PlanStream,
+                    builder: (BuildContext context,
+                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.hasError) {
+                        return Text('Something went wrong');
+                      }
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      var vwidth = MediaQuery.of(context).size.width;
+                      var vhight = MediaQuery.of(context).size.height;
+                      return SizedBox(
+                        height: vhight - 120,
+                        child: ListView(
+                          physics: const BouncingScrollPhysics(
+                              parent: AlwaysScrollableScrollPhysics()),
+                          controller: ScrollController(),
+                          children: snapshot.data!.docs
+                              .map((DocumentSnapshot document) {
+                            Map<String, dynamic> data =
+                                document.data()! as Map<String, dynamic>;
+                            return RefRow(
+                              No: data.keys,
+                              ID: '${data['Referral']}',
+                              Name: '${data['username']}',
+                              Number: '${data['PhoneNo']}',
+                              vwidth: vwidth,
+                            );
+                          }).toList(),
+                        ),
+                      );
+                    },
+                  ),
                 ),
-                RefRow(
-                  No: 2,
-                  ID: "12345",
-                  Name: "Ali Ahmad",
-                  Number: "03154335443",
-                  vwidth: vwidth,
-                ),
-                RefRow(
-                  No: 3,
-                  ID: "12345",
-                  Name: "Azeem",
-                  Number: "0333354645",
-                  vwidth: vwidth,
-                ),
-                RefRow(
-                  No: 4,
-                  ID: "12345",
-                  Name: "Azeem",
-                  Number: "0333354645",
-                  vwidth: vwidth,
-                ),
-           
+
+                // RefRow(
+                //   No: 1,
+                //   ID: "12345",
+                //   Name: "Mudassir Mukhtar",
+                //   Number: "03454335400",
+                //   vwidth: vwidth,
+                // ),
+
                 SizedBox(height: 5)
               ],
             ),
