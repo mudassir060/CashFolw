@@ -72,14 +72,14 @@ class RefCard extends StatefulWidget {
   _RefCardState createState() => _RefCardState();
 }
 
-final Stream<QuerySnapshot> _PlanStream = FirebaseFirestore.instance
-    .collection('Plans')
-    .orderBy('_Price', descending: false)
-    .snapshots();
-
 class _RefCardState extends State<RefCard> {
   @override
   Widget build(BuildContext context) {
+    final Stream<QuerySnapshot> _PlanStream = FirebaseFirestore.instance
+        .collection('${widget.UserData['Referral']}')
+        .orderBy('Referral', descending: false)
+        .snapshots();
+
     var vwidth = MediaQuery.of(context).size.width;
     var vhight = MediaQuery.of(context).size.height;
     return Padding(
@@ -185,6 +185,7 @@ class _RefCardState extends State<RefCard> {
                       }
                       var vwidth = MediaQuery.of(context).size.width;
                       var vhight = MediaQuery.of(context).size.height;
+                      var Index = 0;
                       return SizedBox(
                         height: vhight - 120,
                         child: ListView(
@@ -195,8 +196,9 @@ class _RefCardState extends State<RefCard> {
                               .map((DocumentSnapshot document) {
                             Map<String, dynamic> data =
                                 document.data()! as Map<String, dynamic>;
+                            Index++;
                             return RefRow(
-                              No: data.keys,
+                              No: "${Index}",
                               ID: '${data['Referral']}',
                               Name: '${data['username']}',
                               Number: '${data['PhoneNo']}',
