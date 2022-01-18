@@ -35,6 +35,12 @@ git branch -M main
 git remote add origin https://github.com/aryasolutions/PK-BOOK.git
 git push -u origin main
 
+# Connect with flutter 
+cd C:\Users\mudas\AppData\Local\Android\Sdk\platforms
+adb tcpip 5555
+adb connect 10.75.46.123
+
+
 # Can we check the device to be smartphone or tablet in Flutter?
 # Here's the same than in other aswers, but returning an enum instead of a bool or a String. As it's more closed, it's easier to use it.
 import 'package:flutter/widgets.dart';

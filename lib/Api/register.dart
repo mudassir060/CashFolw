@@ -16,11 +16,17 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
-  final TextEditingController usernamecontroller = TextEditingController();
-  final TextEditingController useremailcontroller = TextEditingController();
-  final TextEditingController phonenocontroller = TextEditingController();
-  final TextEditingController otpcontroller = TextEditingController();
-  final TextEditingController userpasswordcontroller = TextEditingController();
+  final TextEditingController usernamecontroller =
+      TextEditingController(text: "Mudassir");
+  final TextEditingController useremailcontroller =
+      TextEditingController(text: "asd@gmail.com");
+  final TextEditingController phonenocontroller =
+      TextEditingController(text: "03454335400");
+  // final TextEditingController otpcontroller = TextEditingController();
+  final TextEditingController userpasswordcontroller =
+      TextEditingController(text: "qwerty");
+  final TextEditingController ReferralBycontroller =
+      TextEditingController(text: "102");
   String UID = '';
   bool isCheck = false;
   bool NoData = false;
@@ -36,6 +42,8 @@ class _RegistrationState extends State<Registration> {
       final String useremail = useremailcontroller.text;
       final String PhoneNo = phonenocontroller.text;
       final String userpassword = userpasswordcontroller.text;
+      final String ReferralBy = ReferralBycontroller.text;
+
       FirebaseAuth auth = FirebaseAuth.instance;
       FirebaseFirestore firestore = FirebaseFirestore.instance;
       try {
@@ -43,6 +51,22 @@ class _RegistrationState extends State<Registration> {
             useremail != null ||
             PhoneNo != null ||
             userpassword != null) {
+          var LastReferral = 0;
+          await firestore
+              .collection("users")
+              .get()
+              .then((snapshot) => snapshot.docs.forEach((element) {
+                    var fdata = element.data();
+                    if (fdata["Referral"] >= LastReferral) {
+                      setState(() {
+                        LastReferral = fdata["Referral"];
+                        LastReferral++;
+                      });
+                    }
+                  }));
+          print(
+              "++++++++++++++++++Firebase largeindex $LastReferral+++++++++++++++++++++");
+
           final UserCredential user = await auth.createUserWithEmailAndPassword(
               email: useremailcontroller.text,
               password: userpasswordcontroller.text);
@@ -61,7 +85,7 @@ class _RegistrationState extends State<Registration> {
             "Total Point": 0,
             "Total Click": 0,
             "Remain Today Click": 0,
-            
+            "Referral": '',
           });
           // Map UserData = {
           //   "UID": UID,
