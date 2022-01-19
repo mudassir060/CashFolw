@@ -37,71 +37,63 @@ class _DashboardState extends State<Dashboard> {
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: const Icon(
-                Icons.arrow_back,
-              )),
+        
         ),
 
-        body: SingleChildScrollView(
-          child: GridView.extent(
-          primary: false,
-          padding: const EdgeInsets.all(16),
-          crossAxisSpacing: 30,
-          mainAxisSpacing: 30,
-          maxCrossAxisExtent: 200.0,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  print("Available_Balance");
-                },
-                child: Cards(
-                    titel: "Available Balance",
-                    icon_Data: 'images/Icon/Available Balance.png',
-                    No: "${widget.UserData["Available_Balance"]}"),
-              ),
-              GestureDetector(
-                onTap: () {
-                  print("TOTAL EARN POINT");
-                },
-                child: Cards(
-                    titel: "TOTAL EARN POINT",
-                    icon_Data: 'images/Icon/earn point.png',
-                    No: "${widget.UserData["Total Point"]}"),
-              ),
-              GestureDetector(
-                onTap: () {
-                  print("Panding Balance");
-                },
-                child: Cards(
-                    titel: "Panding Balance",
-                    icon_Data: 'images/Icon/Panding Balance.png',
-                    No: "${widget.UserData["Panding Balance"]}"),
-              ),
-              GestureDetector(
-                onTap: () {
-                  print("TOTAL CLICK");
-                },
-                child: Cards(
-                    titel: "TOTAL CLICK",
-                    icon_Data: "images/Icon/total clicks.png",
-                    No: "${widget.UserData["Total Click"]}"),
-              ),
-              GestureDetector(
-                onTap: () {
-                  print("REMAIN TODAY CLICK");
-                },
-                child: Cards(
-                    titel: "REMAIN TODAY CLICK",
-                    icon_Data: 'images/Icon/remaining point.png',
-                    No: "${widget.UserData["Remain Today Click"]}"),
-              ),
-              _space
-            ],
-          ),
+        body: GridView.extent(
+        primary: false,
+        padding: const EdgeInsets.all(16),
+        crossAxisSpacing: 30,
+        mainAxisSpacing: 30,
+        maxCrossAxisExtent: 200.0,
+          children: [
+            GestureDetector(
+              onTap: () {
+                print("Available_Balance");
+              },
+              child: Cards(
+                  titel: "Available Balance",
+                  icon_Data: 'images/Icon/Available Balance.png',
+                  No: "${widget.UserData["Available_Balance"]}"),
+            ),
+            GestureDetector(
+              onTap: () {
+                print("TOTAL EARN POINT");
+              },
+              child: Cards(
+                  titel: "TOTAL EARN POINT",
+                  icon_Data: 'images/Icon/earn point.png',
+                  No: "${widget.UserData["Total Point"]}"),
+            ),
+            GestureDetector(
+              onTap: () {
+                print("Panding Balance");
+              },
+              child: Cards(
+                  titel: "Panding Balance",
+                  icon_Data: 'images/Icon/Panding Balance.png',
+                  No: "${widget.UserData["Panding Balance"]}"),
+            ),
+            GestureDetector(
+              onTap: () {
+                print("TOTAL CLICK");
+              },
+              child: Cards(
+                  titel: "TOTAL CLICK",
+                  icon_Data: "images/Icon/total clicks.png",
+                  No: "${widget.UserData["Total Click"]}"),
+            ),
+            GestureDetector(
+              onTap: () {
+                print("REMAIN TODAY CLICK");
+              },
+              child: Cards(
+                  titel: "REMAIN TODAY CLICK",
+                  icon_Data: 'images/Icon/remaining point.png',
+                  No: "${widget.UserData["Remain Today Click"]}"),
+            ),
+            _space
+          ],
         ),
       ),
     );

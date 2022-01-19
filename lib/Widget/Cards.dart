@@ -32,22 +32,29 @@ class _CardsState extends State<Cards> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 // IconButton(onPressed: (){}, icon: const Icon(Icons.icecream_outlined)),
-              //   Container(
-              //   height: 70,
-              //   width: 70,
-              //   decoration: BoxDecoration(
-              //     image: DecorationImage(
-              //       image: AssetImage(widget.icon_Data),
-              //       fit: BoxFit.fill,
-              //     ),
-              //     borderRadius: BorderRadius.circular(10),
-              //     shape: BoxShape.rectangle,
-              //   ),
-              // ),
+                Container(
+                  height: 70,
+                  width: 70,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(widget.icon_Data),
+                      fit: BoxFit.fill,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                    shape: BoxShape.rectangle,
+                  ),
+                ),
                 Text(
-                  "${widget.titel} : ${widget.No}",
+                  " ${widget.No}",
                   style: const TextStyle(
                       fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                Center(
+                  child: Text(
+                    "${widget.titel}",
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ],
             ),
@@ -71,4 +78,3 @@ class _CardsState extends State<Cards> {
     );
   }
 }
-

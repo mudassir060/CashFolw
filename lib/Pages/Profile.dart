@@ -29,13 +29,6 @@ class _ProfilePageState extends State<ProfilePage> {
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: const Icon(
-                Icons.arrow_back,
-              )),
         ),
         body: SingleChildScrollView(
             child: Padding(

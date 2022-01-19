@@ -40,13 +40,6 @@ class _HomePageState extends State<HomePage> {
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: const Icon(
-                Icons.arrow_back,
-              )),
         ),
         body: GridView.extent(
           primary: false,
@@ -172,8 +165,8 @@ class Grid_Card extends StatelessWidget {
             children: [
               // IconButton(onPressed: (){}, icon: const Icon(Icons.icecream_outlined)),
               Container(
-                height: 70,
-                width: 70,
+                height: 80,
+                width: 80,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(icon_Data),
