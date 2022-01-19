@@ -25,6 +25,20 @@ class _ReferralState extends State<Referral> {
         primarySwatch: Colors.lightBlue,
       ),
       home: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            "Referral",
+            style: TextStyle(color: Colors.white),
+          ),
+          centerTitle: true,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(
+                Icons.arrow_back,
+              )),
+        ),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(8.0),

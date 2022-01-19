@@ -92,8 +92,8 @@ class _BottomBarState extends State<BottomBar> {
     super.dispose();
   }
 
-  String Titel = "";
-  final appBarBloc = AppBarBloc();
+  // String Titel = "";
+  // final appBarBloc = AppBarBloc();
   @override
   Widget build(BuildContext context) {
     List<Widget> tabPages = [
@@ -101,15 +101,15 @@ class _BottomBarState extends State<BottomBar> {
       Dashboard(UserData: widget.UserData),
       ProfilePage(UserData: widget.UserData),
     ];
-    if (_pageIndex == 0) {
-      appBarBloc.eventSink.add(AppBarAction.PayPerClick);
-    }
-    if (_pageIndex == 1) {
-      appBarBloc.eventSink.add(AppBarAction.Dashboard);
-    }
-    if (_pageIndex == 2) {
-      appBarBloc.eventSink.add(AppBarAction.Profile);
-    }
+    // if (_pageIndex == 0) {
+    //   appBarBloc.eventSink.add(AppBarAction.PayPerClick);
+    // }
+    // if (_pageIndex == 1) {
+    //   appBarBloc.eventSink.add(AppBarAction.Dashboard);
+    // }
+    // if (_pageIndex == 2) {
+    //   appBarBloc.eventSink.add(AppBarAction.Profile);
+    // }
     if (kDebugMode) {
       print({"Bottom Bar", widget.UserData});
     }
@@ -121,33 +121,33 @@ class _BottomBarState extends State<BottomBar> {
           primarySwatch: Colors.lightBlue,
         ),
         home: Scaffold(
-          appBar: AppBar(
-            title: StreamBuilder(
-              stream: appBarBloc.TitelStream,
-              initialData: 0,
-              builder: (context, snapshot) {
-                //  return Text("$_counter");
-                return Text(
-                  "${snapshot.data}",
-                  style: const TextStyle(color: Colors.white),
-                );
-              },
-            ),
-            centerTitle: true,
-            leading: IconButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          BottomBar(UserData: widget.UserData),
-                    ),
-                  );
-                },
-                icon: const Icon(
-                  Icons.arrow_back,
-                )),
-          ),
+          // appBar: AppBar(
+          //   title: StreamBuilder(
+          //     stream: appBarBloc.TitelStream,
+          //     initialData: 0,
+          //     builder: (context, snapshot) {
+          //       //  return Text("$_counter");
+          //       return Text(
+          //         "${snapshot.data}",
+          //         style: const TextStyle(color: Colors.white),
+          //       );
+          //     },
+          //   ),
+          //   centerTitle: true,
+          //   leading: IconButton(
+          //       onPressed: () {
+          //         Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //             builder: (context) =>
+          //                 BottomBar(UserData: widget.UserData),
+          //           ),
+          //         );
+          //       },
+          //       icon: const Icon(
+          //         Icons.arrow_back,
+          //       )),
+          // ),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: _pageIndex,
             onTap: onTabTapped,

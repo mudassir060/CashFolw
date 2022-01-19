@@ -42,6 +42,20 @@ class _ViewAdState extends State<ViewAd> {
       });
     }
     return Scaffold(
+                       appBar: AppBar(
+            title: const Text(
+                  "View Ad",
+                  style: TextStyle(color: Colors.white),
+                ),
+            centerTitle: true,
+            leading: IconButton(
+                onPressed: () {
+                 Navigator.of(context).pop();
+                },
+                icon: const Icon(
+                  Icons.arrow_back,
+                )),
+          ),
         body: Stack(
           children: [
             Expanded(

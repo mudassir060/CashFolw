@@ -38,6 +38,20 @@ class _WithdrawState extends State<Withdraw> {
         primarySwatch: Colors.lightBlue,
       ),
       home: Scaffold(
+                         appBar: AppBar(
+            title: const Text(
+                  "Withdraw",
+                  style: TextStyle(color: Colors.white),
+                ),
+            centerTitle: true,
+            leading: IconButton(
+                onPressed: () {
+                 Navigator.of(context).pop();
+                },
+                icon: const Icon(
+                  Icons.arrow_back,
+                )),
+          ),
         body: Center(
           child: Container(
             width: vwidth - 50,

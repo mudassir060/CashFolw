@@ -40,6 +40,20 @@ class _PlanState extends State<Plan> {
         primarySwatch: Colors.lightBlue,
       ),
       home: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            "Plan",
+            style: TextStyle(color: Colors.white),
+          ),
+          centerTitle: true,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(
+                Icons.arrow_back,
+              )),
+        ),
         body: SingleChildScrollView(
           child: Center(
             child: StreamBuilder<QuerySnapshot>(

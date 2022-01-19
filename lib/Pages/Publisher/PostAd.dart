@@ -36,6 +36,20 @@ class _PostAdState extends State<PostAd> {
         primarySwatch: Colors.lightBlue,
       ),
       home: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            "Place Ad",
+            style: TextStyle(color: Colors.white),
+          ),
+          centerTitle: true,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(
+                Icons.arrow_back,
+              )),
+        ),
         body: Center(
           child: Container(
               width: 320,
@@ -49,7 +63,7 @@ class _PostAdState extends State<PostAd> {
                     style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
-                        color: Colors.red),
+                        color: Colors.black),
                   ),
                   _space,
                   Container(
@@ -71,12 +85,15 @@ class _PostAdState extends State<PostAd> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            const Text(
-                              "Video URL",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                            const Padding(
+                              padding: EdgeInsets.only(left: 15),
+                              child: Text(
+                                "Video URL",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ),
                             TextField(
                               controller: PostAdController,
@@ -86,45 +103,52 @@ class _PostAdState extends State<PostAd> {
                                   border: OutlineInputBorder(),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(35.7),
+                                    borderRadius: BorderRadius.circular(25.7),
                                   ),
                                   enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(35.7),
+                                    borderRadius: BorderRadius.circular(25.7),
                                   ),
                                   hintText: "https://www.abc.com"),
                             ),
                             _space,
-                            const Text(
-                              "CPV-Cost Per View (Points)",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                            const Padding(
+                              padding: EdgeInsets.only(left: 15),
+                              child: Text(
+                                "CPV-Cost Per View (Points)",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ),
                             TextField(
                               controller: PostAdController,
                               decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  border: OutlineInputBorder(),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(35.7),
-                                  ),
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(35.7),
-                                  ),                                hintText: "2-10",
+                                filled: true,
+                                fillColor: Colors.white,
+                                border: OutlineInputBorder(),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.white),
+                                  borderRadius: BorderRadius.circular(25.7),
+                                ),
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.white),
+                                  borderRadius: BorderRadius.circular(25.7),
+                                ),
+                                hintText: "2-10",
                               ),
                             ),
                             _space,
-                            const Text(
-                              "Max Spend (Points)",
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
+                            const Padding(
+                              padding: EdgeInsets.only(left: 15),
+                              child: Text(
+                                "Max Spend (Points)",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                             TextField(
@@ -134,27 +158,35 @@ class _PostAdState extends State<PostAd> {
                                   fillColor: Colors.white,
                                   border: OutlineInputBorder(),
                                   focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(35.7),
+                                    borderSide:
+                                        const BorderSide(color: Colors.white),
+                                    borderRadius: BorderRadius.circular(25.7),
                                   ),
                                   enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(35.7),
-                                  ),                                  hintText: "2-5000"),
+                                    borderSide:
+                                        const BorderSide(color: Colors.white),
+                                    borderRadius: BorderRadius.circular(25.7),
+                                  ),
+                                  hintText: "2-5000"),
                             ),
                             _space,
                             Center(
                               child: ElevatedButton(
-                                child: const Text(
-                                  'Place ad',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15,
+                                  child: const Text(
+                                    'Place ad',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                    ),
                                   ),
-                                ),
-                                onPressed: () {},
-                              ),
+                                  onPressed: () {},
+                                  style: ButtonStyle(
+                                      shape: MaterialStateProperty.all<
+                                              RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                  )))),
                             ),
                           ],
                         ),
@@ -170,8 +202,8 @@ class _PostAdState extends State<PostAd> {
                         ],
                       ),
                       borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10)),
+                          bottomLeft: Radius.circular(20),
+                          bottomRight: Radius.circular(20)),
                     ),
                   ),
                 ],
@@ -179,10 +211,10 @@ class _PostAdState extends State<PostAd> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10)),
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20)),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.5),

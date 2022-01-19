@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:ppc/Api/login.dart';
 import 'package:ppc/Pages/Admin/Create_Plan.dart';
 import 'package:ppc/Pages/Publisher/Plan.dart';
-import 'package:ppc/Pages/Publisher/PostAd.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,8 +30,7 @@ class MyApp extends StatelessWidget {
 
             // Once complete, show your application
             if (snapshot.connectionState == ConnectionState.done) {
-              var UserData;
-              return PostAd(UserData: UserData);
+              return Login();
             }
 
             // Otherwise, show something whilst waiting for initialization to complete
