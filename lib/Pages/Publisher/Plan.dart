@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
+import 'package:ppc/Function/PopUp.dart';
 import 'package:ppc/Function/deletePlan.dart';
 import 'package:ppc/Pages/Admin/Create_Plan.dart';
 
@@ -30,10 +31,7 @@ class _PlanState extends State<Plan> {
   @override
   Widget build(BuildContext context) {
     if (kDebugMode) {
-      print({
-        "Plan Page",
-        "${widget.UserData}"
-      });
+      print({"Plan Page", "${widget.UserData}"});
     }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -91,11 +89,13 @@ class _PlanState extends State<Plan> {
                               document.data()! as Map<String, dynamic>;
                           return Card(
                             Price: '${data['_Price']}',
+                            Admin: widget.Admin,
                             titel: "${data['_Titel']}",
                             No: "${data['_Points']}",
                             Daily_Limit: '${data['_Daily_Limit']}',
                             Date: '${data['Date']}',
                             Validite: '${data['_Validite']}',
+                            UserData: widget.UserData,
                           );
                         }).toList(),
                       ),
@@ -112,7 +112,9 @@ class _PlanState extends State<Plan> {
 }
 
 class Card extends StatefulWidget {
+  final Map UserData;
   final String Price;
+  final bool Admin;
   final String titel;
   final String Daily_Limit;
   final String Validite;
@@ -126,7 +128,9 @@ class Card extends StatefulWidget {
       required this.Daily_Limit,
       required this.Validite,
       required this.Date,
-      required this.Price})
+      required this.Price,
+      required this.Admin,
+      required this.UserData})
       : super(key: key);
 
   @override
@@ -147,7 +151,7 @@ class _CardState extends State<Card> {
           Stack(
             children: [
               Container(
-                height: vhight / 3.5,
+                height: vhight / 4.5,
                 width: vwidth - 30,
                 decoration: const BoxDecoration(
                   color: Colors.lightBlue,
@@ -184,15 +188,17 @@ class _CardState extends State<Card> {
                   ],
                 ),
               ),
-              IconButton(
-                  onPressed: () {
-                    deletePlan(context, widget.Date);
-                  },
-                  icon: const Icon(
-                    Icons.delete,
-                    size: 34,
-                    color: Colors.red,
-                  )),
+              widget.Admin
+                  ? IconButton(
+                      onPressed: () {
+                        deletePlan(context, widget.Date);
+                      },
+                      icon: const Icon(
+                        Icons.delete,
+                        size: 34,
+                        color: Colors.red,
+                      ))
+                  : Center(),
             ],
           ),
           Container(
@@ -209,23 +215,57 @@ class _CardState extends State<Card> {
                 _Line,
                 Text("Points: ${widget.No}"),
                 _Line,
-                Container(
-                  height: vhight / 11,
-                  width: vwidth - 30,
-                  child: const Center(
-                    child: Text(
-                      "Subscribe",
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.white,
+                InkWell(
+                  onTap: () async {
+                    FirebaseFirestore firestore = FirebaseFirestore.instance;
+                    var Balance = widget.UserData["Available_Balance"] -
+                        int.parse(widget.Price);
+                    print("======Balance=====>>${Balance.runtimeType}");
+                    var Daily_Ads = widget.UserData["Daily Ads"] -
+                        int.parse(widget.Daily_Limit);
+                    print("=======Daily_Ads====>>${Daily_Ads.runtimeType}");
+                    print("=====UserData======>>${widget.UserData["Total Point"].runtimeType}");
+                    var Total_Point =
+                        widget.UserData["Total Point"] - int.parse(widget.No);
+                    print("=====Total_Point======>>${Total_Point.runtimeType}");
+                    // var Validity =
+                    //     widget.UserData["Total Point"] - int.parse(widget.Validite);
+                    if (widget.UserData["Available_Balance"] >
+                        int.parse(widget.Price)) {
+                      await firestore
+                          .collection("users")
+                          .doc("${widget.UserData["UID"]}")
+                          .update({
+                        "Available_Balance": Balance,
+                        "Panding Balance": 0,
+                        "Daily Ads": Daily_Ads,
+                        "Total Point": Total_Point,
+                        "Total Click": 0,
+                        "Validity": widget.No,
+                        "Remain Today Click": 0,
+                      });
+                    } else {
+                      PopUp(context, Error, "Account Balance is Low");
+                    }
+                  },
+                  child: Container(
+                    height: vhight / 11,
+                    width: vwidth - 30,
+                    child: const Center(
+                      child: Text(
+                        "Subscribe",
+                        style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                  ),
-                  decoration: const BoxDecoration(
-                    color: Colors.lightBlue,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10),
+                    decoration: const BoxDecoration(
+                      color: Colors.lightBlue,
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
                     ),
                   ),
                 )
