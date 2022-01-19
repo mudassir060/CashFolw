@@ -220,18 +220,16 @@ class _CardState extends State<Card> {
                     FirebaseFirestore firestore = FirebaseFirestore.instance;
                     var Balance = widget.UserData["Available_Balance"] -
                         int.parse(widget.Price);
-                    print("======Balance=====>>${Balance.runtimeType}");
-                    var Daily_Ads = widget.UserData["Daily Ads"] -
+                    var Daily_Ads = widget.UserData["Daily Ads"] +
                         int.parse(widget.Daily_Limit);
-                    print("=======Daily_Ads====>>${Daily_Ads.runtimeType}");
-                    print("=====UserData======>>${widget.UserData["Total Point"].runtimeType}");
+
                     var Total_Point =
-                        widget.UserData["Total Point"] - int.parse(widget.No);
-                    print("=====Total_Point======>>${Total_Point.runtimeType}");
+                        widget.UserData["Total Point"] + int.parse(widget.No);
                     // var Validity =
                     //     widget.UserData["Total Point"] - int.parse(widget.Validite);
-                    if (widget.UserData["Available_Balance"] >
-                        int.parse(widget.Price)) {
+                    var value1 = widget.UserData["Available_Balance"];
+                    var value2 = int.parse(widget.Price);
+                    if (value2 <= value1) {
                       await firestore
                           .collection("users")
                           .doc("${widget.UserData["UID"]}")
@@ -244,8 +242,9 @@ class _CardState extends State<Card> {
                         "Validity": widget.No,
                         "Remain Today Click": 0,
                       });
+                      PopUp(context, "", "Done");
                     } else {
-                      PopUp(context, Error, "Account Balance is Low");
+                      PopUp(context, "Error", "Account Balance is Low");
                     }
                   },
                   child: Container(

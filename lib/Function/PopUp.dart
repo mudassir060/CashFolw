@@ -10,10 +10,10 @@ PopUp(context, titel, message) {
   );
   AlertDialog alert = AlertDialog(
     title: Center(child: Text(titel)),
-    content: Text("$message"),
-    actions: [
-      okButton,
-    ],
+    content: Center(child: Text("$message")),
+    // actions: [
+    //   okButton,
+    // ],
   );
   showDialog(
     context: context,
