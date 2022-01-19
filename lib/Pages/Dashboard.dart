@@ -31,30 +31,36 @@ class _DashboardState extends State<Dashboard> {
         primarySwatch: Colors.lightBlue,
       ),
       home: Scaffold(
-        // appBar: AppBar(
-        //   title: const Text(
-        //     "Dashboard",
-        //   ),
-        //   centerTitle: true,
-        //   leading: IconButton(
-        //       onPressed: () {
-        //         Navigator.of(context).pop();
-        //       },
-        //       icon: const Icon(
-        //         Icons.arrow_back,
-        //       )),
-        // ),
+        appBar: AppBar(
+          title: const Text(
+            "Dashboard",
+            style: TextStyle(color: Colors.white),
+          ),
+          centerTitle: true,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(
+                Icons.arrow_back,
+              )),
+        ),
 
         body: SingleChildScrollView(
-          child: Column(
+          child: GridView.extent(
+          primary: false,
+          padding: const EdgeInsets.all(16),
+          crossAxisSpacing: 30,
+          mainAxisSpacing: 30,
+          maxCrossAxisExtent: 200.0,
             children: [
               GestureDetector(
                 onTap: () {
                   print("Available_Balance");
                 },
                 child: Cards(
-                    titel: "Available_Balance",
-                    icon_Data: Icons.account_balance_outlined,
+                    titel: "Available Balance",
+                    icon_Data: 'images/Icon/Available Balance.png',
                     No: "${widget.UserData["Available_Balance"]}"),
               ),
               GestureDetector(
@@ -63,7 +69,7 @@ class _DashboardState extends State<Dashboard> {
                 },
                 child: Cards(
                     titel: "TOTAL EARN POINT",
-                    icon_Data: Icons.price_change,
+                    icon_Data: 'images/Icon/earn point.png',
                     No: "${widget.UserData["Total Point"]}"),
               ),
               GestureDetector(
@@ -72,7 +78,7 @@ class _DashboardState extends State<Dashboard> {
                 },
                 child: Cards(
                     titel: "Panding Balance",
-                    icon_Data: Icons.account_balance,
+                    icon_Data: 'images/Icon/Panding Balance.png',
                     No: "${widget.UserData["Panding Balance"]}"),
               ),
               GestureDetector(
@@ -81,7 +87,7 @@ class _DashboardState extends State<Dashboard> {
                 },
                 child: Cards(
                     titel: "TOTAL CLICK",
-                    icon_Data: Icons.collections_bookmark,
+                    icon_Data: "images/Icon/total clicks.png",
                     No: "${widget.UserData["Total Click"]}"),
               ),
               GestureDetector(
@@ -90,7 +96,7 @@ class _DashboardState extends State<Dashboard> {
                 },
                 child: Cards(
                     titel: "REMAIN TODAY CLICK",
-                    icon_Data: Icons.price_change,
+                    icon_Data: 'images/Icon/remaining point.png',
                     No: "${widget.UserData["Remain Today Click"]}"),
               ),
               _space

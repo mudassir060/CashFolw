@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Cards extends StatefulWidget {
-  final IconData icon_Data;
+  final String icon_Data;
   final String titel;
   final String No;
 
@@ -32,11 +32,18 @@ class _CardsState extends State<Cards> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 // IconButton(onPressed: (){}, icon: const Icon(Icons.icecream_outlined)),
-                Icon(
-                  widget.icon_Data,
-                  color: Colors.blueAccent.shade200,
-                  size: vwidth / 3,
-                ),
+              //   Container(
+              //   height: 70,
+              //   width: 70,
+              //   decoration: BoxDecoration(
+              //     image: DecorationImage(
+              //       image: AssetImage(widget.icon_Data),
+              //       fit: BoxFit.fill,
+              //     ),
+              //     borderRadius: BorderRadius.circular(10),
+              //     shape: BoxShape.rectangle,
+              //   ),
+              // ),
                 Text(
                   "${widget.titel} : ${widget.No}",
                   style: const TextStyle(

@@ -34,40 +34,54 @@ class _HomePageState extends State<HomePage> {
       //   primarySwatch: Colors.lightBlue,
       // ),
       home: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            "Home Page",
+            style: TextStyle(color: Colors.white),
+          ),
+          centerTitle: true,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(
+                Icons.arrow_back,
+              )),
+        ),
         body: GridView.extent(
           primary: false,
           padding: const EdgeInsets.all(16),
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 20,
+          crossAxisSpacing: 30,
+          mainAxisSpacing: 30,
           maxCrossAxisExtent: 200.0,
           children: [
             Grid_Card(
                 UserData: widget.UserData,
-                icon_Data: Icons.add_box,
+                icon_Data: "images/Icon/post ads.png",
                 titel: "Place ad"),
             Grid_Card(
                 UserData: widget.UserData,
-                icon_Data: Icons.payment,
+                icon_Data: "images/Icon/deposit.png",
                 titel: "Deposit"),
             Grid_Card(
                 UserData: widget.UserData,
-                icon_Data: Icons.money,
+                icon_Data: "images/Icon/withdrawal.png",
                 titel: "Withdraw"),
             Grid_Card(
                 UserData: widget.UserData,
-                icon_Data: Icons.help,
+                icon_Data: "images/Icon/plans.png",
                 titel: "Plan"),
             Grid_Card(
                 UserData: widget.UserData,
-                icon_Data: Icons.refresh,
+                icon_Data: "images/Icon/referals.png",
                 titel: "Referral"),
+            // Grid_Card(
+            //     UserData: widget.UserData,
+            //     icon_Data: '',
+            //     titel: "Transaction"),
             Grid_Card(
                 UserData: widget.UserData,
-                icon_Data: Icons.dashboard,
-                titel: "Transaction"),
-            Grid_Card(
-                UserData: widget.UserData,
-                icon_Data: Icons.ad_units,
+                icon_Data: "images/Icon/view ads.png",
                 titel: "ADS View"),
           ],
         ),
@@ -78,7 +92,7 @@ class _HomePageState extends State<HomePage> {
 
 class Grid_Card extends StatelessWidget {
   final Map UserData;
-  final IconData icon_Data;
+  final String icon_Data;
   final String titel;
   const Grid_Card({
     Key? key,
@@ -97,9 +111,7 @@ class Grid_Card extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>  PostAd(
-UserData: UserData
-              ),
+              builder: (context) => PostAd(UserData: UserData),
             ),
           );
         }
@@ -108,9 +120,7 @@ UserData: UserData
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => Deposit(
-UserData: UserData
-              ),
+              builder: (context) => Deposit(UserData: UserData),
             ),
           );
         }
@@ -119,9 +129,7 @@ UserData: UserData
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => Withdraw(
-UserData: UserData
-              ),
+              builder: (context) => Withdraw(UserData: UserData),
             ),
           );
         }
@@ -131,7 +139,7 @@ UserData: UserData
             context,
             MaterialPageRoute(
               builder: (context) => Plan(
-UserData: UserData,
+                UserData: UserData,
                 Admin: false,
               ),
             ),
@@ -150,9 +158,7 @@ UserData: UserData,
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ViewAd(
-UserData: UserData
-              ),
+              builder: (context) => ViewAd(UserData: UserData),
             ),
           );
         }
@@ -165,10 +171,17 @@ UserData: UserData
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               // IconButton(onPressed: (){}, icon: const Icon(Icons.icecream_outlined)),
-              Icon(
-                icon_Data,
-                size: 100,
-                color: Colors.blueAccent.shade200,
+              Container(
+                height: 70,
+                width: 70,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(icon_Data),
+                    fit: BoxFit.fill,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                  shape: BoxShape.rectangle,
+                ),
               ),
               Text(
                 titel,
