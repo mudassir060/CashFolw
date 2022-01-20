@@ -189,16 +189,24 @@ class _LoginState extends State<Login> {
                               ],
                             ),
                             // SizedBox(height: 10),
-                            ElevatedButton(
-                              child: const Padding(
-                                padding: EdgeInsets.only(left: 60, right: 60),
-                                child: Text(
-                                  'LogIn',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              onPressed: register,
-                            ),
+                              ElevatedButton(
+                  child: const Text(
+                    'LogIn',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                    ),
+                  ),
+                  onPressed: register,
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                      ),
+                    ),
+                  ),
+                ),
                             const SizedBox(height: 20),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,

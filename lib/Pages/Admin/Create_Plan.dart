@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:ppc/Function/PopUp.dart';
 
 class Create_Plan extends StatefulWidget {
-
   @override
   _Create_PlanState createState() => _Create_PlanState();
 }
@@ -59,10 +58,10 @@ class _Create_PlanState extends State<Create_Plan> {
           // Navigator.of(context).pop();
         } catch (e) {
           print("Error ==============>$e");
-          PopUp(context,'Error', e);
+          PopUp(context, 'Error', e);
         }
       } else {
-        PopUp(context, "Error",'Please fill all requirement');
+        PopUp(context, "Error", 'Please fill all requirement');
       }
       // print([username, useremail, userpassword]);
     }
@@ -176,14 +175,23 @@ class _Create_PlanState extends State<Create_Plan> {
                       _space,
                       Center(
                         child: ElevatedButton(
-                          child: const Padding(
-                            padding: EdgeInsets.only(left: 40, right: 40),
-                            child: Text(
-                              'Create Plan',
-                              // style: TextStyle(fontSize: 10.0),
+                          child: const Text(
+                            'Create Plan',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
                             ),
                           ),
                           onPressed: CreatePlan,
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ],

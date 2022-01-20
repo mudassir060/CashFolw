@@ -6,6 +6,7 @@ import 'package:ppc/Bloc/AppBar.dart';
 import 'package:ppc/Pages/Publisher/Deposit.dart';
 import 'package:ppc/Pages/Publisher/Plan.dart';
 import 'package:ppc/Pages/Publisher/PostAd.dart';
+import 'package:ppc/Pages/Viewer/InviteFriend.dart';
 import 'package:ppc/Pages/Viewer/Referral.dart';
 import 'package:ppc/Pages/Viewer/ViewAd.dart';
 import 'package:ppc/Pages/Viewer/Withdraw.dart';
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primarySwatch: kToDark,
+        primarySwatch: kToDark,
       ),
       home: Scaffold(
         appBar: AppBar(
@@ -45,7 +46,7 @@ class _HomePageState extends State<HomePage> {
         body: GridView.count(
           primary: false,
           crossAxisCount: 3,
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(6),
           childAspectRatio: (1 / 1.3),
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
@@ -72,12 +73,12 @@ class _HomePageState extends State<HomePage> {
                 titel: "Referral"),
             Grid_Card(
                 UserData: widget.UserData,
-                icon_Data: 'images/Icon/add-friend.png',
-                titel: "Invite Friend"),
-            Grid_Card(
-                UserData: widget.UserData,
                 icon_Data: "images/Icon/view ads.png",
                 titel: "ADS View"),
+            Grid_Card(
+                UserData: widget.UserData,
+                icon_Data: 'images/Icon/add-friend.png',
+                titel: "Invite Friend"),
           ],
         ),
       ),
@@ -98,11 +99,9 @@ class Grid_Card extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appBarBloc = AppBarBloc();
     return GestureDetector(
       onTap: () {
         if (titel == "Place ad") {
-          appBarBloc.eventSink.add(AppBarAction.PostADS);
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -111,7 +110,6 @@ class Grid_Card extends StatelessWidget {
           );
         }
         if (titel == "Deposit") {
-          appBarBloc.eventSink.add(AppBarAction.Deposit);
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -120,7 +118,6 @@ class Grid_Card extends StatelessWidget {
           );
         }
         if (titel == "Withdraw") {
-          appBarBloc.eventSink.add(AppBarAction.Withdraw);
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -129,7 +126,6 @@ class Grid_Card extends StatelessWidget {
           );
         }
         if (titel == "Plan") {
-          appBarBloc.eventSink.add(AppBarAction.Plan);
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -141,7 +137,6 @@ class Grid_Card extends StatelessWidget {
           );
         }
         if (titel == "Referral") {
-          appBarBloc.eventSink.add(AppBarAction.Referral);
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -149,11 +144,18 @@ class Grid_Card extends StatelessWidget {
           );
         }
         if (titel == "ADS View") {
-          appBarBloc.eventSink.add(AppBarAction.ADSView);
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => ViewAd(UserData: UserData),
+            ),
+          );
+        }
+        if (titel == "Invite Friend") {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>const InviteFriend(),
             ),
           );
         }

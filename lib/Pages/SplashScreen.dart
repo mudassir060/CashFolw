@@ -32,16 +32,19 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Image.asset('images/Logo.png'),
           ),
           // ignore: avoid_unnecessary_containers
-          Container(
-              child: const CircularProgressIndicator(
-            color: Color.fromRGBO(117, 48, 251, 1.0),
-          )),
+          Padding(
+            padding: const EdgeInsets.all(28.0),
+            child: Container(
+                child: const CircularProgressIndicator(
+              color: Color.fromRGBO(117, 48, 251, 1.0),
+            )),
+          ),
           // ignore: avoid_unnecessary_containers
           Container(
               child: const Text(
             "Cash Flow Click Is Loading",
             style: TextStyle(
-              fontSize: 10.0,
+              fontSize: 12.0,
               color: Colors.black,
               fontWeight: FontWeight.bold,
             ),

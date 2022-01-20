@@ -215,16 +215,24 @@ class _RegistrationState extends State<Registration> {
                               : Container(),
                           const SizedBox(height: 10),
 
-                          ElevatedButton(
-                            child: const Padding(
-                              padding: EdgeInsets.only(left: 50, right: 50),
-                              child: Text(
-                                'Registration',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            onPressed: register,
-                          ),
+                            ElevatedButton(
+                  child: const Text(
+                    'Registration',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                    ),
+                  ),
+                  onPressed: register,
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                      ),
+                    ),
+                  ),
+                ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
