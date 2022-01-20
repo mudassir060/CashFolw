@@ -3,7 +3,6 @@
 import 'package:ppc/Api/register.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Pages/BottomBar.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -109,7 +108,8 @@ class _LoginState extends State<Login> {
       debugShowCheckedModeBanner: false,
       title: 'Sign in',
       theme: ThemeData(
-        primarySwatch: Colors.lightBlue,
+        // primarySwatch: Color.fromRGBO(117, 48, 251, 1.0),
+            fontFamily: 'Georgia',
       ),
       home: Scaffold(
         body: SingleChildScrollView(

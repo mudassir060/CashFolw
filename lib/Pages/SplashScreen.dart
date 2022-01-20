@@ -23,6 +23,8 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
         body: Container(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
             width: 400,
@@ -32,14 +34,14 @@ class _SplashScreenState extends State<SplashScreen> {
           // ignore: avoid_unnecessary_containers
           Container(
               child: const CircularProgressIndicator(
-            color: Colors.green,
+            color: Color.fromRGBO(117, 48, 251, 1.0),
           )),
           // ignore: avoid_unnecessary_containers
           Container(
               child: const Text(
             "Cash Flow Click Is Loading",
             style: TextStyle(
-              fontSize: 20.0,
+              fontSize: 10.0,
               color: Colors.black,
               fontWeight: FontWeight.bold,
             ),
