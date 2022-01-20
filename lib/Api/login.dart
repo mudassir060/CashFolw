@@ -133,12 +133,12 @@ class _LoginState extends State<Login> {
                         child: Column(
                           children: [
                             Container(
-                              height: 150,
+                              height: 190,
                               width: 220,
                               decoration: BoxDecoration(
                                 image: const DecorationImage(
                                   image: AssetImage('images/Logo.png'),
-                                  fit: BoxFit.fill,
+                                  fit: BoxFit.fitWidth,
                                 ),
                                 borderRadius: BorderRadius.circular(10),
                                 shape: BoxShape.rectangle,

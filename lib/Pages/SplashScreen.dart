@@ -31,21 +31,19 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           // ignore: avoid_unnecessary_containers
           Container(
+              child: const CircularProgressIndicator(
+            color: Colors.green,
+          )),
+          // ignore: avoid_unnecessary_containers
+          Container(
               child: const Text(
-            "Cash Flow Is Loading",
+            "Cash Flow Click Is Loading",
             style: TextStyle(
               fontSize: 20.0,
               color: Colors.black,
               fontWeight: FontWeight.bold,
             ),
           )),
-          // ignore: avoid_unnecessary_containers
-        Container(
-      decoration: const BoxDecoration(
-          shape: BoxShape.circle, color: Colors.blue),
-      height: 10,
-      width: 10,
-    ),
         ],
       ),
     ));
