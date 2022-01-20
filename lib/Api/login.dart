@@ -3,8 +3,10 @@
 import 'package:ppc/Api/register.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Pages/BottomBar.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ppc/Widget/Color.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -108,8 +110,7 @@ class _LoginState extends State<Login> {
       debugShowCheckedModeBanner: false,
       title: 'Sign in',
       theme: ThemeData(
-        // primarySwatch: Color.fromRGBO(117, 48, 251, 1.0),
-            fontFamily: 'Georgia',
+          primarySwatch: kToDark,
       ),
       home: Scaffold(
         body: SingleChildScrollView(

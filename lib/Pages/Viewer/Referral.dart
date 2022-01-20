@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Widget/Cards.dart';
+import 'package:ppc/Widget/Color.dart';
 
 class Referral extends StatefulWidget {
   final Map UserData;
@@ -22,7 +23,7 @@ class _ReferralState extends State<Referral> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.lightBlue,
+          primarySwatch: kToDark,
       ),
       home: Scaffold(
         appBar: AppBar(

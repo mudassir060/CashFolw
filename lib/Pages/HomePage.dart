@@ -9,6 +9,7 @@ import 'package:ppc/Pages/Publisher/PostAd.dart';
 import 'package:ppc/Pages/Viewer/Referral.dart';
 import 'package:ppc/Pages/Viewer/ViewAd.dart';
 import 'package:ppc/Pages/Viewer/Withdraw.dart';
+import 'package:ppc/Widget/Color.dart';
 
 class HomePage extends StatefulWidget {
   final Map UserData;
@@ -30,9 +31,9 @@ class _HomePageState extends State<HomePage> {
     }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // theme: ThemeData(
-      //   primarySwatch: Colors.lightBlue,
-      // ),
+      theme: ThemeData(
+          primarySwatch: kToDark,
+      ),
       home: Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -69,10 +70,10 @@ class _HomePageState extends State<HomePage> {
                 UserData: widget.UserData,
                 icon_Data: "images/Icon/referals.png",
                 titel: "Referral"),
-            // Grid_Card(
-            //     UserData: widget.UserData,
-            //     icon_Data: '',
-            //     titel: "Transaction"),
+            Grid_Card(
+                UserData: widget.UserData,
+                icon_Data: 'images/Icon/add-friend.png',
+                titel: "Invite Friend"),
             Grid_Card(
                 UserData: widget.UserData,
                 icon_Data: "images/Icon/view ads.png",

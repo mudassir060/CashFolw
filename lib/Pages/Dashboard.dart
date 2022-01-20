@@ -3,6 +3,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Widget/Cards.dart';
+import 'package:ppc/Widget/Color.dart';
 
 class Dashboard extends StatefulWidget {
   final Map UserData;
@@ -28,7 +29,7 @@ class _DashboardState extends State<Dashboard> {
       debugShowCheckedModeBanner: false,
       title: "Dashboard",
       theme: ThemeData(
-        primarySwatch: Colors.lightBlue,
+          primarySwatch: kToDark,
       ),
       home: Scaffold(
         appBar: AppBar(

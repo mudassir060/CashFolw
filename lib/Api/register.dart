@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:ppc/Function/PopUp.dart';
 import 'package:ppc/Pages/HomePage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ppc/Widget/Color.dart';
 
 class Registration extends StatefulWidget {
   const Registration({Key? key}) : super(key: key);
@@ -126,7 +127,7 @@ class _RegistrationState extends State<Registration> {
       debugShowCheckedModeBanner: false,
       title: 'Sign Up',
       theme: ThemeData(
-        primarySwatch: Colors.lightBlue,
+          primarySwatch: kToDark,
       ),
       home: Scaffold(
         // appBar: AppBar(

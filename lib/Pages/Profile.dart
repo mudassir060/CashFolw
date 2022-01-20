@@ -2,6 +2,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:ppc/Widget/Color.dart';
 
 class ProfilePage extends StatefulWidget {
   final Map UserData;
@@ -22,6 +23,9 @@ class _ProfilePageState extends State<ProfilePage> {
     }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+           theme: ThemeData(
+          primarySwatch: kToDark,
+      ),
       home: Scaffold(
                 appBar: AppBar(
           title: const Text(

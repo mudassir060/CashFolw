@@ -68,6 +68,7 @@ import 'package:ppc/Bloc/AppBar.dart';
 import 'package:ppc/Pages/Dashboard.dart';
 import 'package:ppc/Pages/HomePage.dart';
 import 'package:ppc/Pages/Profile.dart';
+import 'package:ppc/Widget/Color.dart';
 
 class BottomBar extends StatefulWidget {
   final Map UserData;
@@ -118,7 +119,7 @@ class _BottomBarState extends State<BottomBar> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.lightBlue,
+          primarySwatch: kToDark,
         ),
         home: Scaffold(
           // appBar: AppBar(

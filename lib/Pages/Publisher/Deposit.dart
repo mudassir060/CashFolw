@@ -3,6 +3,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Widget/Cards.dart';
+import 'package:ppc/Widget/Color.dart';
 
 class Deposit extends StatefulWidget {
   final Map UserData;
@@ -27,7 +28,7 @@ class _DepositState extends State<Deposit> {
       debugShowCheckedModeBanner: false,
       title: "Deposit",
       theme: ThemeData(
-        primarySwatch: Colors.lightBlue,
+          primarySwatch: kToDark,
       ),
       home: Scaffold(
                          appBar: AppBar(

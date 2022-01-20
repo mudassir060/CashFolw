@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:ppc/Bloc/AppBar.dart';
+import 'package:ppc/Widget/Color.dart';
 
 class PostAd extends StatefulWidget {
   final Map UserData;
@@ -33,7 +34,7 @@ class _PostAdState extends State<PostAd> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.lightBlue,
+          primarySwatch: kToDark,
       ),
       home: Scaffold(
         appBar: AppBar(

@@ -7,6 +7,7 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:ppc/Function/PopUp.dart';
 import 'package:ppc/Function/deletePlan.dart';
 import 'package:ppc/Pages/Admin/Create_Plan.dart';
+import 'package:ppc/Widget/Color.dart';
 
 class Plan extends StatefulWidget {
   final Map UserData;
@@ -37,7 +38,7 @@ class _PlanState extends State<Plan> {
       debugShowCheckedModeBanner: false,
       title: "Plan",
       theme: ThemeData(
-        primarySwatch: Colors.lightBlue,
+          primarySwatch: kToDark,
       ),
       home: Scaffold(
         appBar: AppBar(
