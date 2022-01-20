@@ -40,12 +40,13 @@ class _DashboardState extends State<Dashboard> {
         
         ),
 
-        body: GridView.extent(
-        primary: false,
-        padding: const EdgeInsets.all(16),
-        crossAxisSpacing: 30,
-        mainAxisSpacing: 30,
-        maxCrossAxisExtent: 200.0,
+        body: GridView.count(
+          primary: false,
+          crossAxisCount: 3,
+          padding: const EdgeInsets.all(10),
+          childAspectRatio: (1 / 1.3),
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
           children: [
             GestureDetector(
               onTap: () {

@@ -41,12 +41,13 @@ class _HomePageState extends State<HomePage> {
           ),
           centerTitle: true,
         ),
-        body: GridView.extent(
+        body: GridView.count(
           primary: false,
-          padding: const EdgeInsets.all(16),
-          crossAxisSpacing: 30,
-          mainAxisSpacing: 30,
-          maxCrossAxisExtent: 200.0,
+          crossAxisCount: 3,
+          padding: const EdgeInsets.all(10),
+          childAspectRatio: (1 / 1.3),
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
           children: [
             Grid_Card(
                 UserData: widget.UserData,
@@ -165,8 +166,8 @@ class Grid_Card extends StatelessWidget {
             children: [
               // IconButton(onPressed: (){}, icon: const Icon(Icons.icecream_outlined)),
               Container(
-                height: 80,
-                width: 80,
+                width: 50,
+                height: 50,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(icon_Data),
@@ -178,8 +179,7 @@ class Grid_Card extends StatelessWidget {
               ),
               Text(
                 titel,
-                style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
             ],
           ),

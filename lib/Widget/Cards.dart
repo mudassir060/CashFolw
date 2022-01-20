@@ -33,8 +33,8 @@ class _CardsState extends State<Cards> {
               children: [
                 // IconButton(onPressed: (){}, icon: const Icon(Icons.icecream_outlined)),
                 Container(
-                  height: 70,
-                  width: 70,
+                  height: 50,
+                  width: 50,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(widget.icon_Data),
@@ -53,7 +53,7 @@ class _CardsState extends State<Cards> {
                   child: Text(
                     "${widget.titel}",
                     style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.bold),
+                        fontSize: 10, fontWeight: FontWeight.bold),
                   ),
                 ),
               ],
