@@ -16,23 +16,27 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     if (kDebugMode) {
-      print({
-        "Profile Page",
-        "${widget.UserData}"
-      });
+      print({"Profile Page", "${widget.UserData}"});
     }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-           theme: ThemeData(
-          primarySwatch: kToDark,
+      theme: ThemeData(
+        primarySwatch: kToDark,
       ),
       home: Scaffold(
-                appBar: AppBar(
+        appBar: AppBar(
           title: const Text(
             "Profile Page",
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: const Icon(
+                Icons.arrow_back,
+              )),
         ),
         body: SingleChildScrollView(
             child: Padding(
@@ -73,7 +77,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 titleText: "Phone No",
                 text: widget.UserData["PhoneNo"],
               ),
-                            UserDataField(
+              UserDataField(
                 icon: Icons.refresh_sharp,
                 titleText: "Referral No",
                 text: '${widget.UserData["Referral"]}',

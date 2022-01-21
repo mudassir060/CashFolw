@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ppc/Widget/Color.dart';
+import 'package:share_plus/share_plus.dart';
 
 class InviteFriend extends StatefulWidget {
-  const InviteFriend({Key? key}) : super(key: key);
+  final Map UserData;
+  const InviteFriend({Key? key, required this.UserData}) : super(key: key);
 
   @override
   _InviteFriendState createState() => _InviteFriendState();
 }
 
-InviteNow() {
-  print("invite");
-}
-
 class _InviteFriendState extends State<InviteFriend> {
   @override
   Widget build(BuildContext context) {
+InviteNow() {
+  Share.share(
+                          """Join Cash Flow With My Invite Code ${widget.UserData["Referral"]} immediately!
+ Invite your friends to watch Ads, you can earn for each friend! https://example.com""");
+                      // share;
+//                       Share.shareFiles(['${directory.path}/image.jpg'], text: 'Great picture');
+// Share.shareFiles(['${directory.path}/image1.jpg', '${directory.path}/image2.jpg']);
+}
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -82,7 +89,7 @@ class _InviteFriendState extends State<InviteFriend> {
                         fontSize: 15,
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: InviteNow,
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(

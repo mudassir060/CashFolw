@@ -3,6 +3,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Bloc/AppBar.dart';
+import 'package:ppc/Pages/Dashboard.dart';
+import 'package:ppc/Pages/Profile.dart';
 import 'package:ppc/Pages/Publisher/Deposit.dart';
 import 'package:ppc/Pages/Publisher/Plan.dart';
 import 'package:ppc/Pages/Publisher/PostAd.dart';
@@ -25,61 +27,73 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  
   @override
   Widget build(BuildContext context) {
     if (kDebugMode) {
       print({"Home Page", "${widget.UserData}"});
     }
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: kToDark,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "Home Page",
-            style: TextStyle(color: Colors.white),
-          ),
-          centerTitle: true,
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: kToDark,
         ),
-        body: GridView.count(
-          primary: false,
-          crossAxisCount: 3,
-          padding: const EdgeInsets.all(6),
-          childAspectRatio: (1 / 1.3),
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          children: [
-            Grid_Card(
-                UserData: widget.UserData,
-                icon_Data: "images/Icon/post ads.png",
-                titel: "Place ad"),
-            Grid_Card(
-                UserData: widget.UserData,
-                icon_Data: "images/Icon/deposit.png",
-                titel: "Deposit"),
-            Grid_Card(
-                UserData: widget.UserData,
-                icon_Data: "images/Icon/withdrawal.png",
-                titel: "Withdraw"),
-            Grid_Card(
-                UserData: widget.UserData,
-                icon_Data: "images/Icon/plans.png",
-                titel: "Plan"),
-            Grid_Card(
-                UserData: widget.UserData,
-                icon_Data: "images/Icon/referals.png",
-                titel: "Referral"),
-            Grid_Card(
-                UserData: widget.UserData,
-                icon_Data: "images/Icon/view ads.png",
-                titel: "ADS View"),
-            Grid_Card(
-                UserData: widget.UserData,
-                icon_Data: 'images/Icon/add-friend.png',
-                titel: "Invite Friend"),
-          ],
+        home: Scaffold(
+          appBar: AppBar(
+            title: const Text(
+              "Home Page",
+              style: TextStyle(color: Colors.white),
+            ),
+            centerTitle: true,
+          ),
+          body: GridView.count(
+            primary: false,
+            crossAxisCount: 3,
+            padding: const EdgeInsets.all(20),
+            childAspectRatio: (1 / 1.1),
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 20,
+            children: [
+              Grid_Card(
+                  UserData: widget.UserData,
+                  icon_Data: 'images/Icon/dashboard.png',
+                  titel: "Dashboard"),
+              Grid_Card(
+                  UserData: widget.UserData,
+                  icon_Data: "images/Icon/post ads.png",
+                  titel: "Place ad"),
+              Grid_Card(
+                  UserData: widget.UserData,
+                  icon_Data: "images/Icon/deposit.png",
+                  titel: "Deposit"),
+              Grid_Card(
+                  UserData: widget.UserData,
+                  icon_Data: "images/Icon/withdrawal.png",
+                  titel: "Withdraw"),
+              Grid_Card(
+                  UserData: widget.UserData,
+                  icon_Data: "images/Icon/plans.png",
+                  titel: "Plan"),
+              Grid_Card(
+                  UserData: widget.UserData,
+                  icon_Data: "images/Icon/referals.png",
+                  titel: "Referral"),
+              Grid_Card(
+                  UserData: widget.UserData,
+                  icon_Data: "images/Icon/view ads.png",
+                  titel: "ADS View"),
+              Grid_Card(
+                  UserData: widget.UserData,
+                  icon_Data: 'images/Icon/profile.png',
+                  titel: "Profile"),
+              Grid_Card(
+                  UserData: widget.UserData,
+                  icon_Data: 'images/Icon/add-friend.png',
+                  titel: "Invite Friend"),
+            ],
+          ),
         ),
       ),
     );
@@ -101,6 +115,14 @@ class Grid_Card extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        if (titel == "Dashboard") {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Dashboard(UserData: UserData),
+            ),
+          );
+        }
         if (titel == "Place ad") {
           Navigator.push(
             context,
@@ -151,11 +173,19 @@ class Grid_Card extends StatelessWidget {
             ),
           );
         }
+        if (titel == "Profile") {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProfilePage(UserData: UserData),
+            ),
+          );
+        }
         if (titel == "Invite Friend") {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>const InviteFriend(),
+              builder: (context) => InviteFriend(UserData: UserData),
             ),
           );
         }
@@ -169,20 +199,21 @@ class Grid_Card extends StatelessWidget {
             children: [
               // IconButton(onPressed: (){}, icon: const Icon(Icons.icecream_outlined)),
               Container(
-                width: 50,
-                height: 50,
+                width: 30,
+                height: 30,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(icon_Data),
                     fit: BoxFit.fill,
                   ),
-                  borderRadius: BorderRadius.circular(10),
+                  // borderRadius: BorderRadius.circular(10),
                   shape: BoxShape.rectangle,
                 ),
               ),
               Text(
                 titel,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
               ),
             ],
           ),
