@@ -42,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
           // ignore: avoid_unnecessary_containers
           Container(
               child: const Text(
-            "Cash Flow Click Is Loading",
+            "Cash Flow Is Loading",
             style: TextStyle(
               fontSize: 12.0,
               color: Colors.black,

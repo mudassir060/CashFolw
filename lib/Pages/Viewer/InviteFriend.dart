@@ -9,6 +9,10 @@ class InviteFriend extends StatefulWidget {
   _InviteFriendState createState() => _InviteFriendState();
 }
 
+InviteNow() {
+  print("invite");
+}
+
 class _InviteFriendState extends State<InviteFriend> {
   @override
   Widget build(BuildContext context) {
@@ -39,20 +43,19 @@ class _InviteFriendState extends State<InviteFriend> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 18),
-                  child: const Text(
+                const Padding(
+                  padding: EdgeInsets.only(left: 18),
+                  child: Text(
                     "Share With Friends",
                     style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff7530fb)
-                    ),
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xff7530fb)),
                   ),
                 ),
-              const  Padding(
-                  padding:  EdgeInsets.all(8.0),
-                  child:  Text(
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
                     "Invite Friends and Earn money",
                   ),
                 ),

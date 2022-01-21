@@ -63,7 +63,7 @@ class _WithdrawState extends State<Withdraw> {
                   style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
-                      color: Colors.red),
+                      ),
                 ),
                 _space,
                 Container(
@@ -76,7 +76,7 @@ class _WithdrawState extends State<Withdraw> {
                           const Text(
                             "Get Your Fund To your account",
                             style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
+                                fontSize: 15, fontWeight: FontWeight.bold,color: Colors.white),
                           ),
                           _space,
                           Column(
