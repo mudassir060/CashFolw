@@ -6,6 +6,7 @@ import 'package:ppc/Pages/BottomBar.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ppc/Pages/HomePage.dart';
 import 'package:ppc/Widget/Color.dart';
 
 class Login extends StatefulWidget {
@@ -56,7 +57,7 @@ class _LoginState extends State<Login> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => BottomBar(UserData: UserData,)
+          builder: (context) => HomePage(UserData: UserData,)
         ),
       );
       setState(() {

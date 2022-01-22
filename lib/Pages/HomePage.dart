@@ -3,7 +3,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:ppc/Bloc/AppBar.dart';
+import 'package:ppc/Function/AdMobe.dart';
 import 'package:ppc/Pages/Dashboard.dart';
 import 'package:ppc/Pages/Profile.dart';
 import 'package:ppc/Pages/Publisher/Deposit.dart';
@@ -28,6 +30,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void dispose() {
+    myBanner.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    myBanner.load();
+    super.initState();
+  }
+
   var Num = 0;
   var UserData = {};
   @override
@@ -52,7 +66,7 @@ class _HomePageState extends State<HomePage> {
       print("==========2============>$Num");
     }
     if (kDebugMode) {
-      print({"Home Page", "${ UserData}"});
+      print({"Home Page", "${UserData}"});
     }
     return WillPopScope(
       onWillPop: () async => false,
@@ -69,6 +83,11 @@ class _HomePageState extends State<HomePage> {
             ),
             centerTitle: true,
           ),
+          bottomNavigationBar: Container(
+            height: 50,
+            color: Colors.transparent,
+            child: AdWidget(ad: myBanner),
+          ),
           body: GridView.count(
             primary: false,
             crossAxisCount: 3,
@@ -78,39 +97,39 @@ class _HomePageState extends State<HomePage> {
             mainAxisSpacing: 20,
             children: [
               Grid_Card(
-                  UserData:  UserData,
+                  UserData: UserData,
                   icon_Data: 'images/Icon/dashboard.png',
                   titel: "Dashboard"),
               Grid_Card(
-                  UserData:  UserData,
+                  UserData: UserData,
                   icon_Data: "images/Icon/post ads.png",
                   titel: "Place ad"),
               Grid_Card(
-                  UserData:  UserData,
+                  UserData: UserData,
                   icon_Data: "images/Icon/deposit.png",
                   titel: "Deposit"),
               Grid_Card(
-                  UserData:  UserData,
+                  UserData: UserData,
                   icon_Data: "images/Icon/withdrawal.png",
                   titel: "Withdraw"),
               Grid_Card(
-                  UserData:  UserData,
+                  UserData: UserData,
                   icon_Data: "images/Icon/plans.png",
                   titel: "Plan"),
               Grid_Card(
-                  UserData:  UserData,
+                  UserData: UserData,
                   icon_Data: "images/Icon/referals.png",
                   titel: "Referral"),
               Grid_Card(
-                  UserData:  UserData,
+                  UserData: UserData,
                   icon_Data: "images/Icon/view ads.png",
                   titel: "ADS View"),
               Grid_Card(
-                  UserData:  UserData,
+                  UserData: UserData,
                   icon_Data: 'images/Icon/profile.png',
                   titel: "Profile"),
               Grid_Card(
-                  UserData:  UserData,
+                  UserData: UserData,
                   icon_Data: 'images/Icon/add-friend.png',
                   titel: "Invite Friend"),
             ],

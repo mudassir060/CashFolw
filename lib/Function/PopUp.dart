@@ -18,7 +18,7 @@ PopUp(context, titel, message) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
-      return alert;
+      return SizedBox(height: 200, child: alert);
     },
   );
 }
