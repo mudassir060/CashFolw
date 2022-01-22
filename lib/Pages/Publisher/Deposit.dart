@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, prefer_const_literals_to_create_immutables
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Widget/Cards.dart';
@@ -14,14 +15,32 @@ class Deposit extends StatefulWidget {
   @override
   _DepositState createState() => _DepositState();
 }
-
+var Num = 0;
+  var UserData = {};
 class _DepositState extends State<Deposit> {
   @override
   Widget build(BuildContext context) {
+        getdata() async {
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+      final DocumentSnapshot snapshot =
+          await firestore.collection("users").doc(widget.UserData['UID']).get();
+      final data = snapshot.data();
+      setState(() {
+        UserData = data;
+      });
+    }
+
+    if (Num == 0) {
+      getdata();
+      setState(() {
+        Num = 1;
+      });
+    }
     if (kDebugMode) {
       print({
         "Deposit Page",
-        "${widget.UserData}"
+        "${ UserData}"
       });
     }
     return MaterialApp(

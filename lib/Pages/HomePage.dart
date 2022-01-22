@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, camel_case_types
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Bloc/AppBar.dart';
@@ -27,11 +28,31 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
+  var Num = 0;
+  var UserData = {};
   @override
   Widget build(BuildContext context) {
+    getdata() async {
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+      final DocumentSnapshot snapshot =
+          await firestore.collection("users").doc(widget.UserData['UID']).get();
+      final data = snapshot.data();
+      setState(() {
+        UserData = data;
+      });
+    }
+
+    print("==========1============>$Num");
+    if (Num == 0) {
+      getdata();
+      setState(() {
+        Num = 1;
+      });
+      print("==========2============>$Num");
+    }
     if (kDebugMode) {
-      print({"Home Page", "${widget.UserData}"});
+      print({"Home Page", "${ UserData}"});
     }
     return WillPopScope(
       onWillPop: () async => false,
@@ -57,39 +78,39 @@ class _HomePageState extends State<HomePage> {
             mainAxisSpacing: 20,
             children: [
               Grid_Card(
-                  UserData: widget.UserData,
+                  UserData:  UserData,
                   icon_Data: 'images/Icon/dashboard.png',
                   titel: "Dashboard"),
               Grid_Card(
-                  UserData: widget.UserData,
+                  UserData:  UserData,
                   icon_Data: "images/Icon/post ads.png",
                   titel: "Place ad"),
               Grid_Card(
-                  UserData: widget.UserData,
+                  UserData:  UserData,
                   icon_Data: "images/Icon/deposit.png",
                   titel: "Deposit"),
               Grid_Card(
-                  UserData: widget.UserData,
+                  UserData:  UserData,
                   icon_Data: "images/Icon/withdrawal.png",
                   titel: "Withdraw"),
               Grid_Card(
-                  UserData: widget.UserData,
+                  UserData:  UserData,
                   icon_Data: "images/Icon/plans.png",
                   titel: "Plan"),
               Grid_Card(
-                  UserData: widget.UserData,
+                  UserData:  UserData,
                   icon_Data: "images/Icon/referals.png",
                   titel: "Referral"),
               Grid_Card(
-                  UserData: widget.UserData,
+                  UserData:  UserData,
                   icon_Data: "images/Icon/view ads.png",
                   titel: "ADS View"),
               Grid_Card(
-                  UserData: widget.UserData,
+                  UserData:  UserData,
                   icon_Data: 'images/Icon/profile.png',
                   titel: "Profile"),
               Grid_Card(
-                  UserData: widget.UserData,
+                  UserData:  UserData,
                   icon_Data: 'images/Icon/add-friend.png',
                   titel: "Invite Friend"),
             ],

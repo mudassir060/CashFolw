@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, prefer_const_literals_to_create_immutables
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
@@ -20,14 +21,32 @@ class Withdraw extends StatefulWidget {
 final TextEditingController AmountController = TextEditingController();
 final TextEditingController EmailController = TextEditingController();
 final TextEditingController PinController = TextEditingController();
-
+var Num = 0;
+  var UserData = {};
 class _WithdrawState extends State<Withdraw> {
   @override
   Widget build(BuildContext context) {
     var vwidth = MediaQuery.of(context).size.width;
     var vhight = MediaQuery.of(context).size.height;
+        getdata() async {
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+      final DocumentSnapshot snapshot =
+          await firestore.collection("users").doc(widget.UserData['UID']).get();
+      final data = snapshot.data();
+      setState(() {
+        UserData = data;
+      });
+    }
+
+    if (Num == 0) {
+      getdata();
+      setState(() {
+        Num = 1;
+      });
+    }
     if (kDebugMode) {
-      print({"Withdraw Page", "${widget.UserData}"});
+      print({"Withdraw Page", "${ UserData}"});
     }
  
     return MaterialApp(

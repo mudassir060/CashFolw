@@ -18,6 +18,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+var Num = 0;
   var UserData = {};
   @override
   Widget build(BuildContext context) {
@@ -31,13 +32,16 @@ class _DashboardState extends State<Dashboard> {
         UserData = data;
       });
     }
-
-    // if (Num == "0") {
-    //   getdata();
-    //   Num = '1' as Type;
-    // }
+      print("==========1============>$Num");
+    if (Num == 0) {
+      getdata();
+      setState(() {
+        Num = 1;
+      });
+      print("==========2============>$Num");
+    }
     if (kDebugMode) {
-      print({"Dashboard Page", "${widget.UserData}"});
+      print({"Dashboard Page", "${ UserData}"});
     }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -75,7 +79,7 @@ class _DashboardState extends State<Dashboard> {
               child: Cards(
                   titel: "Available Balance",
                   icon_Data: 'images/Icon/Available Balance.png',
-                  No: "${widget.UserData["Available_Balance"]}"),
+                  No: "${ UserData["Available_Balance"]}"),
             ),
             GestureDetector(
               onTap: () {
@@ -84,7 +88,7 @@ class _DashboardState extends State<Dashboard> {
               child: Cards(
                   titel: "TOTAL EARN POINT",
                   icon_Data: 'images/Icon/earn point.png',
-                  No: "${widget.UserData["Total Point"]}"),
+                  No: "${ UserData["Total Point"]}"),
             ),
             GestureDetector(
               onTap: () {
@@ -93,7 +97,7 @@ class _DashboardState extends State<Dashboard> {
               child: Cards(
                   titel: "Panding Balance",
                   icon_Data: 'images/Icon/Panding Balance.png',
-                  No: "${widget.UserData["Panding Balance"]}"),
+                  No: "${ UserData["Panding Balance"]}"),
             ),
             GestureDetector(
               onTap: () {
@@ -102,7 +106,7 @@ class _DashboardState extends State<Dashboard> {
               child: Cards(
                   titel: "TOTAL CLICK",
                   icon_Data: "images/Icon/total clicks.png",
-                  No: "${widget.UserData["Total Click"]}"),
+                  No: "${ UserData["Total Click"]}"),
             ),
             GestureDetector(
               onTap: () {
@@ -111,7 +115,7 @@ class _DashboardState extends State<Dashboard> {
               child: Cards(
                   titel: "REMAIN TODAY CLICK",
                   icon_Data: 'images/Icon/remaining point.png',
-                  No: "${widget.UserData["Remain Today Click"]}"),
+                  No: "${ UserData["Remain Today Click"]}"),
             ),
             _space
           ],

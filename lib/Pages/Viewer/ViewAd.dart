@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -33,13 +34,31 @@ class _ViewAdState extends State<ViewAd> {
       });
     
   }
-
+var Num = 0;
+  var UserData = {};
   @override
   Widget build(BuildContext context) {
+        getdata() async {
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+      final DocumentSnapshot snapshot =
+          await firestore.collection("users").doc(widget.UserData['UID']).get();
+      final data = snapshot.data();
+      setState(() {
+        UserData = data;
+      });
+    }
+
+    if (Num == 0) {
+      getdata();
+      setState(() {
+        Num = 1;
+      });
+    }
         if (kDebugMode) {
       print({
         "ViewAd Page",
-        "${widget.UserData}"
+        "${ UserData}"
       });
     }
     return MaterialApp(

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ppc/Widget/Color.dart';
@@ -12,11 +13,30 @@ class InviteFriend extends StatefulWidget {
 }
 
 class _InviteFriendState extends State<InviteFriend> {
+  var Num = 0;
+  var UserData = {};
   @override
   Widget build(BuildContext context) {
+        getdata() async {
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+      final DocumentSnapshot snapshot =
+          await firestore.collection("users").doc(widget.UserData['UID']).get();
+      final data = snapshot.data();
+      setState(() {
+        UserData = data;
+      });
+    }
+
+    if (Num == 0) {
+      getdata();
+      setState(() {
+        Num = 1;
+      });
+    }
 InviteNow() {
   Share.share(
-                          """Join Cash Flow With My Invite Code ${widget.UserData["Referral"]} immediately!
+                          """Join Cash Flow With My Invite Code ${ UserData["Referral"]} immediately!
  Invite your friends to watch Ads, you can earn for each friend! https://example.com""");
                       // share;
 //                       Share.shareFiles(['${directory.path}/image.jpg'], text: 'Great picture');

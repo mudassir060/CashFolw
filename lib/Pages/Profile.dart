@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, file_names, must_be_immutable
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Widget/Color.dart';
@@ -13,10 +14,29 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  var Num = 0;
+  var UserData = {};
   @override
   Widget build(BuildContext context) {
+        getdata() async {
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+      final DocumentSnapshot snapshot =
+          await firestore.collection("users").doc(widget.UserData['UID']).get();
+      final data = snapshot.data();
+      setState(() {
+        UserData = data;
+      });
+    }
+
+    if (Num == 0) {
+      getdata();
+      setState(() {
+        Num = 1;
+      });
+    }
     if (kDebugMode) {
-      print({"Profile Page", "${widget.UserData}"});
+      print({"Profile Page", "${ UserData}"});
     }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -65,22 +85,22 @@ class _ProfilePageState extends State<ProfilePage> {
               UserDataField(
                 icon: Icons.account_circle_outlined,
                 titleText: "User Name",
-                text: widget.UserData["username"],
+                text:  UserData["username"],
               ),
               UserDataField(
                 icon: Icons.email_outlined,
                 titleText: "Email",
-                text: widget.UserData["email"],
+                text:  UserData["email"],
               ),
               UserDataField(
                 icon: Icons.phone,
                 titleText: "Phone No",
-                text: widget.UserData["PhoneNo"],
+                text:  UserData["PhoneNo"],
               ),
               UserDataField(
                 icon: Icons.refresh_sharp,
                 titleText: "Referral No",
-                text: '${widget.UserData["Referral"]}',
+                text: '${ UserData["Referral"]}',
               ),
             ],
           ),

@@ -15,10 +15,29 @@ class Referral extends StatefulWidget {
 }
 
 class _ReferralState extends State<Referral> {
+  var Num = 0;
+  var UserData = {};
   @override
   Widget build(BuildContext context) {
+        getdata() async {
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+      final DocumentSnapshot snapshot =
+          await firestore.collection("users").doc(widget.UserData['UID']).get();
+      final data = snapshot.data();
+      setState(() {
+        UserData = data;
+      });
+    }
+
+    if (Num == 0) {
+      getdata();
+      setState(() {
+        Num = 1;
+      });
+    }
     if (kDebugMode) {
-      print({"Referral Page", "${widget.UserData}"});
+      print({"Referral Page", "${ UserData}"});
     }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -58,14 +77,14 @@ class _ReferralState extends State<Referral> {
                 ),
                 RefCard(
                   LevelNo: "Level 1 Direct Referral",
-                  UserData: widget.UserData,
+                  UserData:  UserData,
                 ),
                 SizedBox(
                   height: 9,
                 ),
                 RefCard(
                   LevelNo: "Level 2 IN Direct Referral",
-                  UserData: widget.UserData,
+                  UserData:  UserData,
                 ),
               ],
             ),

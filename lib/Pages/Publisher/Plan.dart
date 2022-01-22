@@ -28,11 +28,29 @@ class _PlanState extends State<Plan> {
       .collection('Plans')
       .orderBy('_Price', descending: false)
       .snapshots();
-
+var Num = 0;
+  var UserData = {};
   @override
   Widget build(BuildContext context) {
+        getdata() async {
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+      final DocumentSnapshot snapshot =
+          await firestore.collection("users").doc(widget.UserData['UID']).get();
+      final data = snapshot.data();
+      setState(() {
+        UserData = data;
+      });
+    }
+
+    if (Num == 0) {
+      getdata();
+      setState(() {
+        Num = 1;
+      });
+    }
     if (kDebugMode) {
-      print({"Plan Page", "${widget.UserData}"});
+      print({"Plan Page", "${ UserData}"});
     }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -110,7 +128,7 @@ class _PlanState extends State<Plan> {
                             Daily_Limit: '${data['_Daily_Limit']}',
                             Date: '${data['Date']}',
                             Validite: '${data['_Validite']}',
-                            UserData: widget.UserData,
+                            UserData:  UserData,
                           );
                         }).toList(),
                       ),
