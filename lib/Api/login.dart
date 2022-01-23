@@ -46,13 +46,6 @@ class _LoginState extends State<Login> {
       print("Name =====> ${UserData["username"]}");
       print("Email =====> ${UserData["email"]}");
       print("Phone No =====> ${UserData["PhoneNo"]}");
-      // setState(() {
-      //   Name = UserData!["username"];
-      //   Email = UserData!["email"];
-      //   PhoneNo = UserData!["PhoneNo"];
-      //   UID = UserData!["UID"];
-      // });
-      // print({Name, Email, PhoneNo, userpassword});
 
       Navigator.push(
         context,

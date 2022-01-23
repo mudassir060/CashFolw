@@ -88,6 +88,7 @@ class _RegistrationState extends State<Registration> {
             "Total Click": 0,
             "Remain Today Click": 0,
             "Referral": LastReferral,
+            "Referral By": ReferralBy,
           });
 
           await firestore.collection(ReferralBy).doc(UID).set({
@@ -97,6 +98,33 @@ class _RegistrationState extends State<Registration> {
             "password": userpassword,
             "Referral": LastReferral,
           });
+          await firestore.collection("ReferralUID").doc("$LastReferral").set({
+            "UID": UID,
+          });
+          final DocumentSnapshot snapshot =
+              await firestore.collection("ReferralUID").doc(ReferralBy).get();
+          final ReferralUID = snapshot.data();
+          print(
+              "++++++++++++++++++ReferralUID++++++++++++$ReferralBy++++++++>${ReferralUID["UID"]}");
+          await firestore
+              .collection("users")
+              .doc('${ReferralUID["UID"]}')
+              .get();
+          final data = snapshot.data();
+          print(
+              "++++++++++++++++++Available_Balance++++++++++++++++++++>${data["Available_Balance"]}");
+
+          var Balance = data["Available_Balance"] + 5;
+          print(
+              "++++++++++++++++++Balance++++++++++++++++++++>${ReferralUID["Balance"]}");
+
+          await firestore
+              .collection("users")
+              .doc(ReferralUID["ReferralUID"])
+              .update({
+            "Available_Balance": Balance,
+          });
+
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -127,7 +155,7 @@ class _RegistrationState extends State<Registration> {
       debugShowCheckedModeBanner: false,
       title: 'Sign Up',
       theme: ThemeData(
-          primarySwatch: kToDark,
+        primarySwatch: kToDark,
       ),
       home: Scaffold(
         // appBar: AppBar(
@@ -215,24 +243,25 @@ class _RegistrationState extends State<Registration> {
                               : Container(),
                           const SizedBox(height: 10),
 
-                            ElevatedButton(
-                  child: const Text(
-                    'Registration',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
-                  ),
-                  onPressed: register,
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                      ),
-                    ),
-                  ),
-                ),
+                          ElevatedButton(
+                            child: const Text(
+                              'Registration',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                              ),
+                            ),
+                            onPressed: register,
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                ),
+                              ),
+                            ),
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [

@@ -69,180 +69,186 @@ class _WithdrawState extends State<Withdraw> {
                 Icons.arrow_back,
               )),
         ),
-        body: Center(
+        body: SingleChildScrollView(
           child: Container(
-            width: 320,
-            height: 410,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                const Text(
-                  "Fund Withdrawal",
-                  style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      ),
-                ),
-                _space,
-                Container(
-                  width: 400,
-                  height: 350,
-                  child: Padding(
-                      padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                      child: Column(
-                        children: [
-                          const Text(
-                            "Get Your Fund To your account",
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold,color: Colors.white),
+            height: vhight,
+            width: vwidth,
+            child: Center(
+              child: Container(
+                width: 320,
+                height: 410,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    const Text(
+                      "Fund Withdrawal",
+                      style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
                           ),
-                          _space,
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
+                    ),
+                    _space,
+                    Container(
+                      width: 400,
+                      height: 350,
+                      child: Padding(
+                          padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                          child: Column(
                             children: [
-                              const Padding(
-                                padding: EdgeInsets.only(left: 15),
-                                child: Text(
-                                  "Enter Withdraw Amount",
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              TextField(
-                                controller: AmountController,
-                                decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                    border: OutlineInputBorder(),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.white),
-                                      borderRadius: BorderRadius.circular(25.7),
-                                    ),
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.white),
-                                      borderRadius: BorderRadius.circular(25.7),
-                                    ),
-                                    hintText:
-                                        "Enter amount that you want withdraw"),
+                              const Text(
+                                "Get Your Fund To your account",
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold,color: Colors.white),
                               ),
                               _space,
-                              const Padding(
-                                padding: EdgeInsets.only(left: 15),
-                                child: Text(
-                                  "Email ID",
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              TextField(
-                                controller: EmailController,
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  border: OutlineInputBorder(),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(25.7),
-                                  ),
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(25.7),
-                                  ),
-                                  hintText: "abc@gmail.com",
-                                ),
-                              ),
-                              _space,
-                              const Padding(
-                                padding: EdgeInsets.only(left: 15),
-                                child: Text(
-                                  "Account 4 digit PIN",
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              TextField(
-                                controller: PinController,
-                                decoration: InputDecoration(
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                    border: OutlineInputBorder(),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide:
-                                          const BorderSide(color: Colors.white),
-                                      borderRadius: BorderRadius.circular(25.7),
-                                    ),
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide:
-                                          const BorderSide(color: Colors.white),
-                                      borderRadius: BorderRadius.circular(25.7),
-                                    ),
-                                    hintText: "200-5000"),
-                              ),
-                              _space,
-                              Center(
-                                child: ElevatedButton(
-                                    child: const Text(
-                                      'Withdraw Now!',
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.only(left: 15),
+                                    child: Text(
+                                      "Enter Withdraw Amount",
                                       style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15,
-                                      ),
+                                          fontSize: 15,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                    onPressed: () {},
-                                    style: ButtonStyle(
-                                        shape: MaterialStateProperty.all<
-                                                RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(18.0),
-                                    )))),
+                                  ),
+                                  TextField(
+                                    controller: AmountController,
+                                    decoration: InputDecoration(
+                                        filled: true,
+                                        fillColor: Colors.white,
+                                        border: OutlineInputBorder(),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.white),
+                                          borderRadius: BorderRadius.circular(25.7),
+                                        ),
+                                        enabledBorder: UnderlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.white),
+                                          borderRadius: BorderRadius.circular(25.7),
+                                        ),
+                                        hintText:
+                                            "Enter amount that you want withdraw"),
+                                  ),
+                                  _space,
+                                  const Padding(
+                                    padding: EdgeInsets.only(left: 15),
+                                    child: Text(
+                                      "Email ID",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  TextField(
+                                    controller: EmailController,
+                                    decoration: InputDecoration(
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                      border: OutlineInputBorder(),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(color: Colors.white),
+                                        borderRadius: BorderRadius.circular(25.7),
+                                      ),
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(color: Colors.white),
+                                        borderRadius: BorderRadius.circular(25.7),
+                                      ),
+                                      hintText: "abc@gmail.com",
+                                    ),
+                                  ),
+                                  _space,
+                                  const Padding(
+                                    padding: EdgeInsets.only(left: 15),
+                                    child: Text(
+                                      "Account 4 digit PIN",
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  TextField(
+                                    controller: PinController,
+                                    decoration: InputDecoration(
+                                        filled: true,
+                                        fillColor: Colors.white,
+                                        border: OutlineInputBorder(),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide:
+                                              const BorderSide(color: Colors.white),
+                                          borderRadius: BorderRadius.circular(25.7),
+                                        ),
+                                        enabledBorder: UnderlineInputBorder(
+                                          borderSide:
+                                              const BorderSide(color: Colors.white),
+                                          borderRadius: BorderRadius.circular(25.7),
+                                        ),
+                                        hintText: "200-5000"),
+                                  ),
+                                  _space,
+                                  Center(
+                                    child: ElevatedButton(
+                                        child: const Text(
+                                          'Withdraw Now!',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15,
+                                          ),
+                                        ),
+                                        onPressed: () {},
+                                        style: ButtonStyle(
+                                            shape: MaterialStateProperty.all<
+                                                    RoundedRectangleBorder>(
+                                                RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(18.0),
+                                        )))),
+                                  ),
+                                ],
                               ),
                             ],
-                          ),
-                        ],
-                      )),
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Colors.blue,
-                        Colors.purple,
-                      ],
-                    ),
-                    borderRadius: BorderRadius.only(
+                          )),
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Colors.blue,
+                            Colors.purple,
+                          ],
+                        ),
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20)),
+                      ),
+                    )
+                  ],
+                ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
                         bottomLeft: Radius.circular(20),
                         bottomRight: Radius.circular(20)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: const Offset(0, 3), // changes position of shadow
+                      ),
+                    ],
                   ),
-                )
-              ],
-            ),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: const Offset(0, 3), // changes position of shadow
-                  ),
-                ],
               ),
+            ),
           ),
         ),
       ),

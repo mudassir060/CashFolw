@@ -5,7 +5,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:ppc/Bloc/AppBar.dart';
+import 'package:ppc/Function/PopUp.dart';
+import 'package:ppc/Function/PostAd.dart';
 import 'package:ppc/Widget/Color.dart';
+import 'package:intl/intl.dart';
 
 class PostAd extends StatefulWidget {
   final Map UserData;
@@ -19,7 +22,9 @@ class PostAd extends StatefulWidget {
   _PostAdState createState() => _PostAdState();
 }
 
-final TextEditingController PostAdController = TextEditingController();
+final TextEditingController URLController = TextEditingController();
+final TextEditingController PointsController = TextEditingController();
+final TextEditingController TotelPointController = TextEditingController();
 var Num = 0;
 var UserData = {};
 
@@ -46,7 +51,7 @@ class _PostAdState extends State<PostAd> {
       });
     }
     if (kDebugMode) {
-      print({"PostAd Page", "${ UserData}"});
+      print({"PostAd Page", "${UserData}"});
     }
     final appBarBloc = AppBarBloc();
     appBarBloc.eventSink.add(AppBarAction.PostADS);
@@ -71,180 +76,229 @@ class _PostAdState extends State<PostAd> {
                 Icons.arrow_back,
               )),
         ),
-        body: Center(
-          child: Container(
-              width: 320,
-              height: 410,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  const Text(
-                    "Promote Your Business",
-                    style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black),
-                  ),
-                  _space,
-                  Container(
-                    width: 400,
-                    height: 350,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                      child: Column(children: [
-                        _space,
-                        const Text(
-                          "Place ad for promote.",
-                          style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        _space,
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.only(left: 15),
-                              child: Text(
-                                "Video URL",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            TextField(
-                              controller: PostAdController,
-                              decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  border: OutlineInputBorder(),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(25.7),
-                                  ),
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(25.7),
-                                  ),
-                                  hintText: "https://www.abc.com"),
-                            ),
+        body: SingleChildScrollView(
+          child: SizedBox(
+            height: vhight,
+            width: vwidth,
+            child: Center(
+              child: Container(
+                  width: 320,
+                  height: 410,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const Text(
+                        "Promote Your Business",
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      ),
+                      _space,
+                      Container(
+                        width: 400,
+                        height: 350,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                          child: Column(children: [
                             _space,
-                            const Padding(
-                              padding: EdgeInsets.only(left: 15),
-                              child: Text(
-                                "CPV-Cost Per View (Points)",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            TextField(
-                              controller: PostAdController,
-                              decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.white),
-                                  borderRadius: BorderRadius.circular(25.7),
-                                ),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.white),
-                                  borderRadius: BorderRadius.circular(25.7),
-                                ),
-                                hintText: "2-10",
-                              ),
-                            ),
-                            _space,
-                            const Padding(
-                              padding: EdgeInsets.only(left: 15),
-                              child: Text(
-                                "Max Spend (Points)",
-                                style: TextStyle(
+                            const Text(
+                              "Place ad for promote.",
+                              style: TextStyle(
                                   fontSize: 15,
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            TextField(
-                              controller: PostAdController,
-                              decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  border: OutlineInputBorder(),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide:
-                                        const BorderSide(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(25.7),
-                                  ),
-                                  enabledBorder: UnderlineInputBorder(
-                                    borderSide:
-                                        const BorderSide(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(25.7),
-                                  ),
-                                  hintText: "2-5000"),
+                                  fontWeight: FontWeight.bold),
                             ),
                             _space,
-                            Center(
-                              child: ElevatedButton(
-                                  child: const Text(
-                                    'Place ad',
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Padding(
+                                  padding: EdgeInsets.only(left: 15),
+                                  child: Text(
+                                    "URL",
                                     style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                TextField(
+                                  controller: URLController,
+                                  decoration: InputDecoration(
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                      border: OutlineInputBorder(),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.white),
+                                        borderRadius: BorderRadius.circular(25.7),
+                                      ),
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.white),
+                                        borderRadius: BorderRadius.circular(25.7),
+                                      ),
+                                      hintText: "https://www.abc.com"),
+                                ),
+                                _space,
+                                const Padding(
+                                  padding: EdgeInsets.only(left: 15),
+                                  child: Text(
+                                    "CPV-Cost Per View (Points)",
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                TextField(
+                                  controller: PointsController,
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    border: OutlineInputBorder(),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.white),
+                                      borderRadius: BorderRadius.circular(25.7),
+                                    ),
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.white),
+                                      borderRadius: BorderRadius.circular(25.7),
+                                    ),
+                                    hintText: "2-10",
+                                  ),
+                                ),
+                                _space,
+                                const Padding(
+                                  padding: EdgeInsets.only(left: 15),
+                                  child: Text(
+                                    "Max Spend (Points)",
+                                    style: TextStyle(
+                                      fontSize: 15,
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 15,
                                     ),
                                   ),
-                                  onPressed: () {},
-                                  style: ButtonStyle(
-                                      shape: MaterialStateProperty.all<
-                                              RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                  )))),
+                                ),
+                                TextField(
+                                  controller: TotelPointController,
+                                  decoration: InputDecoration(
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                      border: OutlineInputBorder(),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide:
+                                            const BorderSide(color: Colors.white),
+                                        borderRadius: BorderRadius.circular(25.7),
+                                      ),
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            const BorderSide(color: Colors.white),
+                                        borderRadius: BorderRadius.circular(25.7),
+                                      ),
+                                      hintText: "2-5000"),
+                                ),
+                                _space,
+                                Center(
+                                  child: ElevatedButton(
+                                      child: const Text(
+                                        'Place ad',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                                      onPressed: () async {
+                                        var value1 = UserData["Total Point"];
+                                        print(
+                                            "---------value1----------->$value1");
+                                        var value2 =
+                                            int.parse(TotelPointController.text);
+                                        print(
+                                            "---------value2----------->$value2");
+                                        DateTime now = DateTime.now();
+                                                  String formattedDate = DateFormat('EEE d MMM kk:mm:ss').format(now);
+                                        print(
+                                            "---------DateTime----------->$formattedDate");
+                                        if (value2 <= value1) {
+                                          await firestore
+                                              .collection("Ads")
+                                              .doc(formattedDate)
+                                              .set({
+                                            "Url": URLController.text,
+                                            "Date": formattedDate,
+                                            "Ad Type": "Youtube"
+                                          });
+                                          var Total_Point =
+                                              UserData["Total Point"] -
+                                                  int.parse(
+                                                      TotelPointController.text);
+                                          print(
+                                              "--------- UserData----------->${UserData["Total Point"]}");
+                                          print(
+                                              "---------Total_Point----------->$Total_Point");
+                                          await firestore
+                                              .collection("users")
+                                              .doc("${widget.UserData["UID"]}")
+                                              .update({
+                                            "Total Point": Total_Point,
+                                          });
+                                          PopUp(context, "", "Done");
+                                          setState(() {});
+                                        } else {
+                                          PopUp(context, "Error",
+                                              "Account Balance is Low");
+                                        }
+                                      },
+                                      style: ButtonStyle(
+                                          shape: MaterialStateProperty.all<
+                                                  RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(18.0),
+                                      )))),
+                                ),
+                              ],
                             ),
-                          ],
+                          ]),
                         ),
-                      ]),
-                    ),
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Colors.blue,
-                          Colors.purple,
-                        ],
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Colors.blue,
+                              Colors.purple,
+                            ],
+                          ),
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(20),
+                              bottomRight: Radius.circular(20)),
+                        ),
                       ),
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(20),
-                          bottomRight: Radius.circular(20)),
-                    ),
+                    ],
                   ),
-                ],
-              ),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: const Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              )),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                        bottomLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: const Offset(0, 3), // changes position of shadow
+                      ),
+                    ],
+                  )),
+            ),
+          ),
         ),
       ),
     );

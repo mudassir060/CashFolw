@@ -3,8 +3,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:ppc/Bloc/AppBar.dart';
+// import 'package:google_mobile_ads/google_mobile_ads.dart';
+// import 'package:ppc/Bloc/AppBar.dart';
 import 'package:ppc/Function/AdMobe.dart';
 import 'package:ppc/Pages/Dashboard.dart';
 import 'package:ppc/Pages/Profile.dart';
@@ -31,16 +31,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
-  void dispose() {
-    myBanner.dispose();
-    super.dispose();
-  }
+  // void dispose() {
+  //   myBanner.dispose();
+  //   super.dispose();
+  // }
 
-  @override
-  void initState() {
-    myBanner.load();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   myBanner.load();
+  //   super.initState();
+  // }
 
   var Num = 0;
   var UserData = {};
@@ -83,11 +83,11 @@ class _HomePageState extends State<HomePage> {
             ),
             centerTitle: true,
           ),
-          bottomNavigationBar: Container(
-            height: 50,
-            color: Colors.transparent,
-            child: AdWidget(ad: myBanner),
-          ),
+          // bottomNavigationBar: Container(
+          //   height: 50,
+          //   color: Colors.transparent,
+          //   child: AdWidget(ad: myBanner),
+          // ),
           body: GridView.count(
             primary: false,
             crossAxisCount: 3,
