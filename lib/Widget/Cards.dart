@@ -4,13 +4,13 @@ class Cards extends StatefulWidget {
   final String icon_Data;
   final String titel;
   final String No;
-  final MaterialColor Color_s;
+  final Color Color_s;
+
   const Cards({
     Key? key,
     required this.titel,
     required this.icon_Data,
-    required this.No,
-    required this.Color_s,
+    required this.No, required this.Color_s,
   }) : super(key: key);
 
   @override
@@ -26,7 +26,6 @@ class _CardsState extends State<Cards> {
       padding: const EdgeInsets.only(top: 10),
       child: Center(
         child: Container(
-            color: widget.Color_s,
             width: vwidth - 20,
             height: 130,
             child: Column(
@@ -57,12 +56,12 @@ class _CardsState extends State<Cards> {
                 Text(
                   " ${widget.No}",
                   style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold),
+                      fontSize: 25, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: widget.Color_s,
               borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(10),
                   topRight: Radius.circular(10),

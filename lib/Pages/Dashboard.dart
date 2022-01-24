@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Widget/Cards.dart';
 import 'package:ppc/Widget/Color.dart';
+import 'package:ppc/Widget/PieChart.dart';
 
 class Dashboard extends StatefulWidget {
   final Map UserData;
@@ -18,7 +19,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-var Num = 0;
+  var Num = 0;
   var UserData = {};
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,8 @@ var Num = 0;
         UserData = data;
       });
     }
-      print("==========1============>$Num");
+
+    print("==========1============>$Num");
     if (Num == 0) {
       getdata();
       setState(() {
@@ -41,7 +43,7 @@ var Num = 0;
       print("==========2============>$Num");
     }
     if (kDebugMode) {
-      print({"Dashboard Page", "${ UserData}"});
+      print({"Dashboard Page", "${UserData}"});
     }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -67,25 +69,31 @@ var Num = 0;
         body: SingleChildScrollView(
           child: Column(
             children: [
-              GestureDetector(
-                onTap: () {
-                  print("Available_Balance");
-                },
-                child: Cards(
-                    titel: "Available Balance",
-                    Color_s : Colors.blue,
-                    icon_Data: 'images/Icon/Available Balance.png',
-                    No: "${ UserData["Available_Balance"]}"),
-              ),
+                 Pie_Chart(
+                  AvailableBalance: "${UserData["Available_Balance"]}",
+                  TOTALEARNPOINT: "${UserData["Total Point"]}",
+                  PandingBalance: "${UserData["Panding Balance"]}",
+                  TOTALCLICK: "${UserData["Total Click"]}",
+                  REMAINTODAYCLICK: "${UserData["Remain Today Click"]}"),
+              // GestureDetector(
+              //   onTap: () {
+              //     print("Available_Balance");
+              //   },
+              //   child: Cards(
+              //       titel: "Available Balance",
+              //       Color_s: Colors.blue,
+              //       icon_Data: 'images/Icon/Available Balance.png',
+              //       No: "${UserData["Available_Balance"]}"),
+              // ),
               // GestureDetector(
               //   onTap: () {
               //     print("TOTAL EARN POINT");
               //   },
               //   child: Cards(
               //       titel: "TOTAL EARN POINT",
-              //                           Color_s : Colors.yellow,
+              //       Color_s: Colors.orange,
               //       icon_Data: 'images/Icon/earn point.png',
-              //       No: "${ UserData["Total Point"]}"),
+              //       No: "${UserData["Total Point"]}"),
               // ),
               // GestureDetector(
               //   onTap: () {
@@ -93,10 +101,9 @@ var Num = 0;
               //   },
               //   child: Cards(
               //       titel: "Panding Balance",
-              //                           Color_s : Colors.purple,
-
+              //       Color_s: Colors.pink,
               //       icon_Data: 'images/Icon/Panding Balance.png',
-              //       No: "${ UserData["Panding Balance"]}"),
+              //       No: "${UserData["Panding Balance"]}"),
               // ),
               // GestureDetector(
               //   onTap: () {
@@ -104,9 +111,9 @@ var Num = 0;
               //   },
               //   child: Cards(
               //       titel: "TOTAL CLICK",
-              //                           Color_s : Colors.green,
+              //       Color_s: Colors.indigo,
               //       icon_Data: "images/Icon/total clicks.png",
-              //       No: "${ UserData["Total Click"]}"),
+              //       No: "${UserData["Total Click"]}"),
               // ),
               // GestureDetector(
               //   onTap: () {
@@ -114,9 +121,9 @@ var Num = 0;
               //   },
               //   child: Cards(
               //       titel: "REMAIN TODAY CLICK",
-              //                           Color_s : Colors.amber,
+              //       Color_s: Colors.teal,
               //       icon_Data: 'images/Icon/remaining point.png',
-              //       No: "${ UserData["Remain Today Click"]}"),
+              //       No: "${UserData["Remain Today Click"]}"),
               // ),
               // _space
             ],
@@ -129,4 +136,4 @@ var Num = 0;
 
 Widget get _space => const SizedBox(
       height: 10,
-    );
+);
