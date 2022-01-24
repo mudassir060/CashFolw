@@ -44,7 +44,6 @@ class _LoginState extends State<Login> {
       DateTime now = DateTime.now();
       String formattedDate = DateFormat('EEE d MMM').format(now);
       if (formattedDate != data["Last Login"]) {
-        print("++++++++++++++++++++++New Day ");
         await firestore.collection("users").doc(user.user.uid).update({
           "Last Login": formattedDate,
           "Daily Ads": 50,

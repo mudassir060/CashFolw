@@ -92,6 +92,7 @@ class _RegistrationState extends State<Registration> {
             "Referral": LastReferral,
             "Referral By": ReferralBy,
             "Last Login": formattedDate,
+            "Last Add View" : 0
           });
 
           await firestore.collection(ReferralBy).doc(UID).set({

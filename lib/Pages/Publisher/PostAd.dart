@@ -100,7 +100,8 @@ class _PostAdState extends State<PostAd> {
                         width: 400,
                         height: 350,
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                          padding:
+                              const EdgeInsets.only(left: 20.0, right: 20.0),
                           child: Column(children: [
                             _space,
                             const Text(
@@ -134,12 +135,14 @@ class _PostAdState extends State<PostAd> {
                                       focusedBorder: OutlineInputBorder(
                                         borderSide:
                                             BorderSide(color: Colors.white),
-                                        borderRadius: BorderRadius.circular(25.7),
+                                        borderRadius:
+                                            BorderRadius.circular(25.7),
                                       ),
                                       enabledBorder: UnderlineInputBorder(
                                         borderSide:
                                             BorderSide(color: Colors.white),
-                                        borderRadius: BorderRadius.circular(25.7),
+                                        borderRadius:
+                                            BorderRadius.circular(25.7),
                                       ),
                                       hintText: "https://www.abc.com"),
                                 ),
@@ -161,11 +164,13 @@ class _PostAdState extends State<PostAd> {
                                     fillColor: Colors.white,
                                     border: OutlineInputBorder(),
                                     focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.white),
+                                      borderSide:
+                                          BorderSide(color: Colors.white),
                                       borderRadius: BorderRadius.circular(25.7),
                                     ),
                                     enabledBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.white),
+                                      borderSide:
+                                          BorderSide(color: Colors.white),
                                       borderRadius: BorderRadius.circular(25.7),
                                     ),
                                     hintText: "2-10",
@@ -190,14 +195,16 @@ class _PostAdState extends State<PostAd> {
                                       fillColor: Colors.white,
                                       border: OutlineInputBorder(),
                                       focusedBorder: OutlineInputBorder(
-                                        borderSide:
-                                            const BorderSide(color: Colors.white),
-                                        borderRadius: BorderRadius.circular(25.7),
+                                        borderSide: const BorderSide(
+                                            color: Colors.white),
+                                        borderRadius:
+                                            BorderRadius.circular(25.7),
                                       ),
                                       enabledBorder: UnderlineInputBorder(
-                                        borderSide:
-                                            const BorderSide(color: Colors.white),
-                                        borderRadius: BorderRadius.circular(25.7),
+                                        borderSide: const BorderSide(
+                                            color: Colors.white),
+                                        borderRadius:
+                                            BorderRadius.circular(25.7),
                                       ),
                                       hintText: "2-5000"),
                                 ),
@@ -213,30 +220,52 @@ class _PostAdState extends State<PostAd> {
                                         ),
                                       ),
                                       onPressed: () async {
+                                        var LastAd = 0;
+                                        await firestore
+                                            .collection("Ads")
+                                            .get()
+                                            .then((snapshot) => snapshot.docs
+                                                    .forEach((element) {
+                                                  var fdata = element.data();
+                                                  if (fdata["LastAd"] >=
+                                                      LastAd) {
+                                                    setState(() {
+                                                      LastAd =
+                                                          fdata["LastAd"];
+                                                      LastAd++;
+                                                    });
+                                                  }
+                          
+                                                }));
+                                        print(
+                                            "++++++++++++++++++Firebase largeindex $LastAd+++++++++++++++++++++");
                                         var value1 = UserData["Total Point"];
                                         print(
                                             "---------value1----------->$value1");
-                                        var value2 =
-                                            int.parse(TotelPointController.text);
+                                        var value2 = int.parse(
+                                            TotelPointController.text);
                                         print(
                                             "---------value2----------->$value2");
                                         DateTime now = DateTime.now();
-                                                  String formattedDate = DateFormat('EEE d MMM kk:mm:ss').format(now);
+                                        String formattedDate =
+                                            DateFormat('EEE d MMM kk:mm:ss')
+                                                .format(now);
                                         print(
                                             "---------DateTime----------->$formattedDate");
                                         if (value2 <= value1) {
                                           await firestore
                                               .collection("Ads")
-                                              .doc(formattedDate)
+                                              .doc("$LastAd")
                                               .set({
                                             "Url": URLController.text,
-                                            "Date": formattedDate,
-                                            "Ad Type": "Youtube"
+                                            "UID": widget.UserData["UID"],
+                                            "Ad Type": "Youtube",
+                                            "LastAd": LastAd,
                                           });
                                           var Total_Point =
                                               UserData["Total Point"] -
-                                                  int.parse(
-                                                      TotelPointController.text);
+                                                  int.parse(TotelPointController
+                                                      .text);
                                           print(
                                               "--------- UserData----------->${UserData["Total Point"]}");
                                           print(
@@ -258,7 +287,8 @@ class _PostAdState extends State<PostAd> {
                                           shape: MaterialStateProperty.all<
                                                   RoundedRectangleBorder>(
                                               RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(18.0),
+                                        borderRadius:
+                                            BorderRadius.circular(18.0),
                                       )))),
                                 ),
                               ],
@@ -293,7 +323,8 @@ class _PostAdState extends State<PostAd> {
                         color: Colors.grey.withOpacity(0.5),
                         spreadRadius: 5,
                         blurRadius: 7,
-                        offset: const Offset(0, 3), // changes position of shadow
+                        offset:
+                            const Offset(0, 3), // changes position of shadow
                       ),
                     ],
                   )),

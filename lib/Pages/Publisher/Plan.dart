@@ -298,12 +298,9 @@ class _CardState extends State<Card> {
                             .doc("${widget.UserData["UID"]}")
                             .update({
                           "Available_Balance": Balance,
-                          "Panding Balance": 0,
-                          "Daily Ads": Daily_Ads,
+                          // "Daily Ads": Daily_Ads,
                           "Total Point": Total_Point,
-                          "Total Click": 0,
                           "Validity": widget.No,
-                          "Remain Today Click": 0,
                         });
                         PopUp(context, "", "Done");
                       } else {
