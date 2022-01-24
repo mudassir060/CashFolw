@@ -109,6 +109,8 @@ class _RegistrationState extends State<Registration> {
             "Total Click": 0,
             "Remain Today Click": 0,
             "Referral": LastReferral,
+            "Old Login" : "",
+            "new Login" : "",
           });
 
           // await firestore.collection("users").doc(UID).set({

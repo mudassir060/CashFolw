@@ -3,7 +3,7 @@
 import 'package:ppc/Api/register.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Pages/BottomBar.dart';
-
+import 'package:intl/intl.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ppc/Pages/HomePage.dart';
@@ -41,6 +41,15 @@ class _LoginState extends State<Login> {
       setState(() {
         UserData = data;
       });
+      DateTime now = DateTime.now();
+      String formattedDate = DateFormat('EEE d MMM').format(now);
+      if (formattedDate != data["Last Login"]) {
+        print("++++++++++++++++++++++New Day ");
+        await firestore.collection("users").doc(user.user.uid).update({
+          "Last Login": formattedDate,
+          "Daily Ads": 50,
+        });
+      }
       print(
           '=========================User is Login...=============================');
       print("Name =====> ${UserData["username"]}");
@@ -50,8 +59,9 @@ class _LoginState extends State<Login> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => HomePage(UserData: UserData,)
-        ),
+            builder: (context) => HomePage(
+                  UserData: UserData,
+                )),
       );
       setState(() {
         looding = false;
@@ -104,7 +114,7 @@ class _LoginState extends State<Login> {
       debugShowCheckedModeBanner: false,
       title: 'Sign in',
       theme: ThemeData(
-          primarySwatch: kToDark,
+        primarySwatch: kToDark,
       ),
       home: Scaffold(
         body: SingleChildScrollView(
@@ -183,24 +193,25 @@ class _LoginState extends State<Login> {
                               ],
                             ),
                             // SizedBox(height: 10),
-                              ElevatedButton(
-                  child: const Text(
-                    'LogIn',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
-                  ),
-                  onPressed: register,
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                      ),
-                    ),
-                  ),
-                ),
+                            ElevatedButton(
+                              child: const Text(
+                                'LogIn',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                ),
+                              ),
+                              onPressed: register,
+                              style: ButtonStyle(
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                  ),
+                                ),
+                              ),
+                            ),
                             const SizedBox(height: 20),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,

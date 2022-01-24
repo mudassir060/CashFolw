@@ -9,6 +9,7 @@ import 'package:ppc/Function/PopUp.dart';
 import 'package:ppc/Pages/HomePage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ppc/Widget/Color.dart';
+import 'package:intl/intl.dart';
 
 class Registration extends StatefulWidget {
   const Registration({Key? key}) : super(key: key);
@@ -68,7 +69,8 @@ class _RegistrationState extends State<Registration> {
                   }));
           print(
               "++++++++++++++++++Firebase largeindex $LastReferral+++++++++++++++++++++");
-
+          DateTime now = DateTime.now();
+          String formattedDate = DateFormat('EEE d MMM').format(now);
           final UserCredential user = await auth.createUserWithEmailAndPassword(
               email: useremailcontroller.text,
               password: userpasswordcontroller.text);
@@ -89,6 +91,7 @@ class _RegistrationState extends State<Registration> {
             "Remain Today Click": 0,
             "Referral": LastReferral,
             "Referral By": ReferralBy,
+            "Last Login": formattedDate,
           });
 
           await firestore.collection(ReferralBy).doc(UID).set({
@@ -102,7 +105,7 @@ class _RegistrationState extends State<Registration> {
           await firestore.collection("ReferralUID").doc("$LastReferral").set({
             "UID": UID,
           });
-          
+
           final DocumentSnapshot snapshot =
               await firestore.collection("ReferralUID").doc(ReferralBy).get();
           final ReferralUID = snapshot.data();
@@ -114,7 +117,7 @@ class _RegistrationState extends State<Registration> {
           final DocumentSnapshot snapshh =
               await firestore.collection("SetValue").doc('Referral').get();
           final ReferB = snapshh.data();
-          
+
           var Balance = ReferBY["Available_Balance"] + ReferB['Level 1'];
           await firestore.collection("users").doc(ReferralUID["UID"]).update({
             "Available_Balance": Balance,

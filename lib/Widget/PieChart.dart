@@ -97,7 +97,7 @@ class _Pie_ChartState extends State<Pie_Chart> {
               children: const <Widget>[
                 Indicator(
                   color: Color(0xff0293ee),
-                  text: 'Available Balance',
+                  text: 'Available_Balance',
                 ),
                 SizedBox(
                   height: 4,
@@ -225,7 +225,9 @@ class Indicator extends StatelessWidget {
           height: 10,
           width: 20,
         ),
-        SizedBox(width: 3,),
+        const SizedBox(
+          width: 3,
+        ),
         Text(text)
       ],
     );
