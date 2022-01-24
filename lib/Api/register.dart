@@ -21,14 +21,14 @@ class _RegistrationState extends State<Registration> {
   final TextEditingController usernamecontroller =
       TextEditingController(text: "Mudassir");
   final TextEditingController useremailcontroller =
-      TextEditingController(text: "asd@gmail.com");
+      TextEditingController(text: "abc@email.com");
   final TextEditingController phonenocontroller =
       TextEditingController(text: "03454335400");
   // final TextEditingController otpcontroller = TextEditingController();
   final TextEditingController userpasswordcontroller =
       TextEditingController(text: "qwerty");
   final TextEditingController ReferralBycontroller =
-      TextEditingController(text: "102");
+      TextEditingController(text: "115");
   String UID = '';
   bool isCheck = false;
   bool NoData = false;
@@ -98,30 +98,25 @@ class _RegistrationState extends State<Registration> {
             "password": userpassword,
             "Referral": LastReferral,
           });
+
           await firestore.collection("ReferralUID").doc("$LastReferral").set({
             "UID": UID,
           });
+          
           final DocumentSnapshot snapshot =
               await firestore.collection("ReferralUID").doc(ReferralBy).get();
           final ReferralUID = snapshot.data();
-          print(
-              "++++++++++++++++++ReferralUID++++++++++++$ReferralBy++++++++>${ReferralUID["UID"]}");
-          await firestore
-              .collection("users")
-              .doc('${ReferralUID["UID"]}')
-              .get();
-          final data = snapshot.data();
-          print(
-              "++++++++++++++++++Available_Balance++++++++++++++++++++>${data["Available_Balance"]}");
 
-          var Balance = data["Available_Balance"] + 5;
-          print(
-              "++++++++++++++++++Balance++++++++++++++++++++>${ReferralUID["Balance"]}");
+          final DocumentSnapshot snapshhot =
+              await firestore.collection("users").doc(ReferralUID["UID"]).get();
+          final ReferBY = snapshhot.data();
 
-          await firestore
-              .collection("users")
-              .doc(ReferralUID["ReferralUID"])
-              .update({
+          final DocumentSnapshot snapshh =
+              await firestore.collection("SetValue").doc('Referral').get();
+          final ReferB = snapshh.data();
+          
+          var Balance = ReferBY["Available_Balance"] + ReferB['Level 1'];
+          await firestore.collection("users").doc(ReferralUID["UID"]).update({
             "Available_Balance": Balance,
           });
 

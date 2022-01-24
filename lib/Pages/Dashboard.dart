@@ -64,61 +64,63 @@ var Num = 0;
                 Icons.arrow_back,
               )),
         ),
-        body: GridView.count(
-          primary: false,
-          crossAxisCount: 3,
-          padding: const EdgeInsets.all(10),
-          childAspectRatio: (1 / 1.3),
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          children: [
-            GestureDetector(
-              onTap: () {
-                print("Available_Balance");
-              },
-              child: Cards(
-                  titel: "Available Balance",
-                  icon_Data: 'images/Icon/Available Balance.png',
-                  No: "${ UserData["Available_Balance"]}"),
-            ),
-            GestureDetector(
-              onTap: () {
-                print("TOTAL EARN POINT");
-              },
-              child: Cards(
-                  titel: "TOTAL EARN POINT",
-                  icon_Data: 'images/Icon/earn point.png',
-                  No: "${ UserData["Total Point"]}"),
-            ),
-            GestureDetector(
-              onTap: () {
-                print("Panding Balance");
-              },
-              child: Cards(
-                  titel: "Panding Balance",
-                  icon_Data: 'images/Icon/Panding Balance.png',
-                  No: "${ UserData["Panding Balance"]}"),
-            ),
-            GestureDetector(
-              onTap: () {
-                print("TOTAL CLICK");
-              },
-              child: Cards(
-                  titel: "TOTAL CLICK",
-                  icon_Data: "images/Icon/total clicks.png",
-                  No: "${ UserData["Total Click"]}"),
-            ),
-            GestureDetector(
-              onTap: () {
-                print("REMAIN TODAY CLICK");
-              },
-              child: Cards(
-                  titel: "REMAIN TODAY CLICK",
-                  icon_Data: 'images/Icon/remaining point.png',
-                  No: "${ UserData["Remain Today Click"]}"),
-            ),
-            _space
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  print("Available_Balance");
+                },
+                child: Cards(
+                    titel: "Available Balance",
+                    Color_s : Colors.blue,
+                    icon_Data: 'images/Icon/Available Balance.png',
+                    No: "${ UserData["Available_Balance"]}"),
+              ),
+              // GestureDetector(
+              //   onTap: () {
+              //     print("TOTAL EARN POINT");
+              //   },
+              //   child: Cards(
+              //       titel: "TOTAL EARN POINT",
+              //                           Color_s : Colors.yellow,
+              //       icon_Data: 'images/Icon/earn point.png',
+              //       No: "${ UserData["Total Point"]}"),
+              // ),
+              // GestureDetector(
+              //   onTap: () {
+              //     print("Panding Balance");
+              //   },
+              //   child: Cards(
+              //       titel: "Panding Balance",
+              //                           Color_s : Colors.purple,
+
+              //       icon_Data: 'images/Icon/Panding Balance.png',
+              //       No: "${ UserData["Panding Balance"]}"),
+              // ),
+              // GestureDetector(
+              //   onTap: () {
+              //     print("TOTAL CLICK");
+              //   },
+              //   child: Cards(
+              //       titel: "TOTAL CLICK",
+              //                           Color_s : Colors.green,
+              //       icon_Data: "images/Icon/total clicks.png",
+              //       No: "${ UserData["Total Click"]}"),
+              // ),
+              // GestureDetector(
+              //   onTap: () {
+              //     print("REMAIN TODAY CLICK");
+              //   },
+              //   child: Cards(
+              //       titel: "REMAIN TODAY CLICK",
+              //                           Color_s : Colors.amber,
+              //       icon_Data: 'images/Icon/remaining point.png',
+              //       No: "${ UserData["Remain Today Click"]}"),
+              // ),
+              // _space
+            ],
+          ),
         ),
       ),
     );
