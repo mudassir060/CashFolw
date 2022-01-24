@@ -22,14 +22,38 @@ class Pie_Chart extends StatefulWidget {
 
 class _Pie_ChartState extends State<Pie_Chart> {
   int touchedIndex = -1;
+  var Totel;
+  var value1;
+  var value2;
+  var value3;
+  var value4;
+  var value5;
   @override
   Widget build(BuildContext context) {
-    var AvailableBalance = int.parse(widget.AvailableBalance) ;
+    var AvailableBalance = int.parse(widget.AvailableBalance);
     var TOTALEARNPOINT = int.parse(widget.TOTALEARNPOINT);
     var PandingBalance = int.parse(widget.PandingBalance);
     var TOTALCLICK = int.parse(widget.TOTALCLICK);
     var REMAINTODAYCLICK = int.parse(widget.REMAINTODAYCLICK);
-    // Totel =
+    setState(() {
+      Totel = AvailableBalance +
+          TOTALEARNPOINT +
+          PandingBalance +
+          TOTALCLICK +
+          REMAINTODAYCLICK;
+      value1 = (AvailableBalance / Totel) * 100;
+      value2 = (TOTALEARNPOINT / Totel) * 100;
+      value3 = (PandingBalance / Totel) * 100;
+      value4 = (TOTALCLICK / Totel) * 100;
+      value5 = (REMAINTODAYCLICK / Totel) * 100;
+    });
+    print("======================>$Totel");
+    print("===========value1===========>${value1}");
+    print("===========value2===========>$value2");
+    print("===========value3===========>$value3");
+    print("===========value4===========>$value4");
+    print("===========value5===========>$value5");
+
     return AspectRatio(
       aspectRatio: 1.3,
       child: Card(
@@ -73,7 +97,7 @@ class _Pie_ChartState extends State<Pie_Chart> {
               children: const <Widget>[
                 Indicator(
                   color: Color(0xff0293ee),
-                  text: 'Available_Balance',
+                  text: 'Available Balance',
                 ),
                 SizedBox(
                   height: 4,
@@ -100,7 +124,7 @@ class _Pie_ChartState extends State<Pie_Chart> {
                   height: 4,
                 ),
                 Indicator(
-                  color: Color(0xff13d38e),
+                  color: Color(0xe170558e),
                   text: 'Remain Today Click',
                 ),
                 SizedBox(
@@ -119,7 +143,7 @@ class _Pie_ChartState extends State<Pie_Chart> {
 
   List<PieChartSectionData> showingSections() {
     var abc = 0;
-    return List.generate(6, (i) {
+    return List.generate(5, (i) {
       final isTouched = i == touchedIndex;
       final fontSize = isTouched ? 25.0 : 16.0;
       final radius = isTouched ? 60.0 : 50.0;
@@ -127,8 +151,8 @@ class _Pie_ChartState extends State<Pie_Chart> {
         case 0:
           return PieChartSectionData(
             color: const Color(0xff0293ee),
-            value: 40,
-            title: '$abc%',
+            value: value1,
+            title: '${value1.toString().split(".")[0]}%',
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -138,8 +162,8 @@ class _Pie_ChartState extends State<Pie_Chart> {
         case 1:
           return PieChartSectionData(
             color: const Color(0xfff8b250),
-            value: 30,
-            title: '30%',
+            value: value2,
+            title: '${value2.toString().split(".")[0]}%',
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -149,8 +173,8 @@ class _Pie_ChartState extends State<Pie_Chart> {
         case 2:
           return PieChartSectionData(
             color: const Color(0xff845bef),
-            value: 15,
-            title: '15%',
+            value: value3,
+            title: '${value3.toString().split(".")[0]}%',
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -160,8 +184,8 @@ class _Pie_ChartState extends State<Pie_Chart> {
         case 3:
           return PieChartSectionData(
             color: const Color(0xff13d38e),
-            value: 15,
-            title: '15%',
+            value: value4,
+            title: '${value4.toString().split(".")[0]}%',
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -170,20 +194,9 @@ class _Pie_ChartState extends State<Pie_Chart> {
           );
         case 4:
           return PieChartSectionData(
-            color: const Color(0xff13d38e),
-            value: 15,
-            title: '15%',
-            radius: radius,
-            titleStyle: TextStyle(
-                fontSize: fontSize,
-                fontWeight: FontWeight.bold,
-                color: const Color(0xffffffff)),
-          );
-        case 5:
-          return PieChartSectionData(
-            color: const Color(0xff13d38e),
-            value: 15,
-            title: '15%',
+            color: const Color(0xe170558e),
+            value: value5,
+            title: '${value5.toString().split(".")[0]}%',
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -209,9 +222,10 @@ class Indicator extends StatelessWidget {
       children: [
         Container(
           color: color,
-          height: 5,
-          width: 10,
+          height: 10,
+          width: 20,
         ),
+        SizedBox(width: 3,),
         Text(text)
       ],
     );

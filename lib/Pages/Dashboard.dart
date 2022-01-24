@@ -70,7 +70,7 @@ class _DashboardState extends State<Dashboard> {
           child: Column(
             children: [
                  Pie_Chart(
-                  AvailableBalance: "${UserData["Available_Balance"]}",
+                  AvailableBalance: "${UserData["Available Balance"]}",
                   TOTALEARNPOINT: "${UserData["Total Point"]}",
                   PandingBalance: "${UserData["Panding Balance"]}",
                   TOTALCLICK: "${UserData["Total Click"]}",
