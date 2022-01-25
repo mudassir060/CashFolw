@@ -26,7 +26,7 @@ class _ViewAdState extends State<ViewAd> {
   final _key = UniqueKey();
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 10), () {
+    Future.delayed(const Duration(seconds: 0), () {
       print('===========>>>> $Delay');
       setState(() {
         Delay = true;
@@ -113,7 +113,7 @@ class _ViewAdState extends State<ViewAd> {
                   Expanded(
                     child: WebView(
                       key: _key,
-                      initialUrl: "${AdData["Url"]}",
+                      initialUrl: "https://www.youtube.com/watch?v=pMW7Ed2cKHg",
                       javascriptMode: JavascriptMode.unrestricted,
                     ),
                   ),

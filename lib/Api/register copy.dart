@@ -162,7 +162,7 @@ class _RegistrationState extends State<Registration> {
         setState(() {
           looding = false;
         });
-        PopUp(context, "Error", e);
+        // PopUp(context, "Error", e);
       }
     }
 

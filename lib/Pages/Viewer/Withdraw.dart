@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:ppc/Widget/Color.dart';
+import 'package:intl/intl.dart';
 
 class Withdraw extends StatefulWidget {
   final Map UserData;
@@ -22,13 +23,14 @@ final TextEditingController AmountController = TextEditingController();
 final TextEditingController EmailController = TextEditingController();
 final TextEditingController PinController = TextEditingController();
 var Num = 0;
-  var UserData = {};
+var UserData = {};
+
 class _WithdrawState extends State<Withdraw> {
   @override
   Widget build(BuildContext context) {
     var vwidth = MediaQuery.of(context).size.width;
     var vhight = MediaQuery.of(context).size.height;
-        getdata() async {
+    getdata() async {
       FirebaseFirestore firestore = FirebaseFirestore.instance;
 
       final DocumentSnapshot snapshot =
@@ -46,13 +48,26 @@ class _WithdrawState extends State<Withdraw> {
       });
     }
     if (kDebugMode) {
-      print({"Withdraw Page", "${ UserData}"});
+      print({"Withdraw Page", "${UserData}"});
     }
- 
+    Withdraw() async {
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+      DateTime now = DateTime.now();
+      String formattedDate = DateFormat('EEE d MMM').format(now);
+      await firestore.collection("Panding Withdraw").doc().set({
+        "username": UserData["username"],
+        "email": EmailController.text,
+        "PhoneNo": UserData["PhoneNo"],
+        "Available_Balance": 0,
+        "Date": formattedDate,
+        "Amount": int.parse(AmountController.text),
+      });
+    }
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primarySwatch: kToDark,
+        primarySwatch: kToDark,
       ),
       home: Scaffold(
         appBar: AppBar(
@@ -84,22 +99,25 @@ class _WithdrawState extends State<Withdraw> {
                     const Text(
                       "Fund Withdrawal",
                       style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          ),
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     _space,
                     Container(
                       width: 400,
                       height: 350,
                       child: Padding(
-                          padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                          padding:
+                              const EdgeInsets.only(left: 20.0, right: 20.0),
                           child: Column(
                             children: [
                               const Text(
                                 "Get Your Fund To your account",
                                 style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold,color: Colors.white),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
                               ),
                               _space,
                               Column(
@@ -125,12 +143,14 @@ class _WithdrawState extends State<Withdraw> {
                                         focusedBorder: OutlineInputBorder(
                                           borderSide:
                                               BorderSide(color: Colors.white),
-                                          borderRadius: BorderRadius.circular(25.7),
+                                          borderRadius:
+                                              BorderRadius.circular(25.7),
                                         ),
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide:
                                               BorderSide(color: Colors.white),
-                                          borderRadius: BorderRadius.circular(25.7),
+                                          borderRadius:
+                                              BorderRadius.circular(25.7),
                                         ),
                                         hintText:
                                             "Enter amount that you want withdraw"),
@@ -153,12 +173,16 @@ class _WithdrawState extends State<Withdraw> {
                                       fillColor: Colors.white,
                                       border: OutlineInputBorder(),
                                       focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(color: Colors.white),
-                                        borderRadius: BorderRadius.circular(25.7),
+                                        borderSide:
+                                            BorderSide(color: Colors.white),
+                                        borderRadius:
+                                            BorderRadius.circular(25.7),
                                       ),
                                       enabledBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(color: Colors.white),
-                                        borderRadius: BorderRadius.circular(25.7),
+                                        borderSide:
+                                            BorderSide(color: Colors.white),
+                                        borderRadius:
+                                            BorderRadius.circular(25.7),
                                       ),
                                       hintText: "abc@gmail.com",
                                     ),
@@ -181,14 +205,16 @@ class _WithdrawState extends State<Withdraw> {
                                         fillColor: Colors.white,
                                         border: OutlineInputBorder(),
                                         focusedBorder: OutlineInputBorder(
-                                          borderSide:
-                                              const BorderSide(color: Colors.white),
-                                          borderRadius: BorderRadius.circular(25.7),
+                                          borderSide: const BorderSide(
+                                              color: Colors.white),
+                                          borderRadius:
+                                              BorderRadius.circular(25.7),
                                         ),
                                         enabledBorder: UnderlineInputBorder(
-                                          borderSide:
-                                              const BorderSide(color: Colors.white),
-                                          borderRadius: BorderRadius.circular(25.7),
+                                          borderSide: const BorderSide(
+                                              color: Colors.white),
+                                          borderRadius:
+                                              BorderRadius.circular(25.7),
                                         ),
                                         hintText: "200-5000"),
                                   ),
@@ -203,12 +229,13 @@ class _WithdrawState extends State<Withdraw> {
                                             fontSize: 15,
                                           ),
                                         ),
-                                        onPressed: () {},
+                                        onPressed: Withdraw,
                                         style: ButtonStyle(
                                             shape: MaterialStateProperty.all<
                                                     RoundedRectangleBorder>(
                                                 RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(18.0),
+                                          borderRadius:
+                                              BorderRadius.circular(18.0),
                                         )))),
                                   ),
                                 ],
@@ -231,22 +258,22 @@ class _WithdrawState extends State<Withdraw> {
                     )
                   ],
                 ),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                        bottomLeft: Radius.circular(20),
-                        bottomRight: Radius.circular(20)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: const Offset(0, 3), // changes position of shadow
-                      ),
-                    ],
-                  ),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                      bottomLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

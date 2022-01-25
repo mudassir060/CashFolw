@@ -302,9 +302,47 @@ class _CardState extends State<Card> {
                           "Total Point": Total_Point,
                           "Validity": widget.No,
                         });
-                        PopUp(context, "", "Done");
+                          Widget okButton = TextButton(
+        child: Text("OK"),
+        onPressed: () {
+          Navigator.of(context).pop(); // dismiss dialog
+        },
+      );
+      AlertDialog alert = AlertDialog(
+        // title: Center(child: Text("Error")),
+        content: Text("Done"),
+        actions: [
+          okButton,
+        ],
+      );
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+   
                       } else {
-                        PopUp(context, "Error", "Account Balance is Low");
+                          Widget okButton = TextButton(
+        child: Text("OK"),
+        onPressed: () {
+          Navigator.of(context).pop(); // dismiss dialog
+        },
+      );
+      AlertDialog alert = AlertDialog(
+        title: Center(child: Text("Error")),
+        content: Text("Account Balance is Low"),
+        actions: [
+          okButton,
+        ],
+      );
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+   
                       }
                     },
                     child: Container(

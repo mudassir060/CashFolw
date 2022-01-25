@@ -54,14 +54,71 @@ class _Create_PlanState extends State<Create_Plan> {
           //   ),
           // );
           setState(() {});
-          PopUp(context, '', 'Create Plan Successfully');
+            Widget okButton = TextButton(
+        child: Text("OK"),
+        onPressed: () {
+          Navigator.of(context).pop(); // dismiss dialog
+        },
+      );
+      AlertDialog alert = AlertDialog(
+        // title: Center(child: Text("Error")),
+        content: Text("Create Plan Successfully"),
+        actions: [
+          okButton,
+        ],
+      );
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+   
           // Navigator.of(context).pop();
         } catch (e) {
           print("Error ==============>$e");
-          PopUp(context, 'Error', e);
+            Widget okButton = TextButton(
+        child: Text("OK"),
+        onPressed: () {
+          Navigator.of(context).pop(); // dismiss dialog
+        },
+      );
+      AlertDialog alert = AlertDialog(
+        title: Center(child: Text("Error")),
+        content: Text("${e.toString()}"),
+        actions: [
+          okButton,
+        ],
+      );
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+   
         }
       } else {
-        PopUp(context, "Error", 'Please fill all requirement');
+          Widget okButton = TextButton(
+        child: Text("OK"),
+        onPressed: () {
+          Navigator.of(context).pop(); // dismiss dialog
+        },
+      );
+      AlertDialog alert = AlertDialog(
+        title: Center(child: Text("Error")),
+        content: Text("Please fill all requirement"),
+        actions: [
+          okButton,
+        ],
+      );
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+   
       }
       // print([username, useremail, userpassword]);
     }

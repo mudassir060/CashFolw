@@ -85,7 +85,7 @@ class _RegistrationState extends State<Registration> {
             "UID": user.user.uid,
             "Available_Balance": 0,
             "Panding Balance": 0,
-            "Daily Ads": 0,
+            "Daily Ads": 50,
             "Total Point": 0,
             "Total Click": 0,
             "Remain Today Click": 0,
@@ -144,7 +144,26 @@ class _RegistrationState extends State<Registration> {
         setState(() {
           looding = false;
         });
-        PopUp(context, "Error", e);
+          Widget okButton = TextButton(
+        child: Text("OK"),
+        onPressed: () {
+          Navigator.of(context).pop(); // dismiss dialog
+        },
+      );
+      AlertDialog alert = AlertDialog(
+        title: Center(child: Text("Error")),
+        content: Text("${e.toString()}"),
+        actions: [
+          okButton,
+        ],
+      );
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+   
       }
     }
 
@@ -170,6 +189,8 @@ class _RegistrationState extends State<Registration> {
                   children: [
                     looding
                         ? const Positioned(
+                          top: 300,
+                          left: 150,
                             child: Center(child: CircularProgressIndicator()))
                         : Center(),
                     Container(

@@ -230,12 +230,10 @@ class _PostAdState extends State<PostAd> {
                                                   if (fdata["LastAd"] >=
                                                       LastAd) {
                                                     setState(() {
-                                                      LastAd =
-                                                          fdata["LastAd"];
+                                                      LastAd = fdata["LastAd"];
                                                       LastAd++;
                                                     });
                                                   }
-                          
                                                 }));
                                         print(
                                             "++++++++++++++++++Firebase largeindex $LastAd+++++++++++++++++++++");
@@ -276,11 +274,50 @@ class _PostAdState extends State<PostAd> {
                                               .update({
                                             "Total Point": Total_Point,
                                           });
-                                          PopUp(context, "", "Done");
+                                          Widget okButton = TextButton(
+                                            child: Text("OK"),
+                                            onPressed: () {
+                                              Navigator.of(context)
+                                                  .pop(); // dismiss dialog
+                                            },
+                                          );
+                                          AlertDialog alert = AlertDialog(
+                                            title: Center(child: Text("Error")),
+                                            content: Text("Done"),
+                                            actions: [
+                                              okButton,
+                                            ],
+                                          );
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return alert;
+                                            },
+                                          );
+
                                           setState(() {});
                                         } else {
-                                          PopUp(context, "Error",
-                                              "Account Balance is Low");
+                                         
+                                                Widget okButton = TextButton(
+        child: Text("OK"),
+        onPressed: () {
+          Navigator.of(context).pop(); // dismiss dialog
+        },
+      );
+      AlertDialog alert = AlertDialog(
+        title: Center(child: Text("Error")),
+        content: Text("Faild"),
+        actions: [
+          okButton,
+        ],
+      );
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+   
                                         }
                                       },
                                       style: ButtonStyle(

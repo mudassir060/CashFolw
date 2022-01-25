@@ -69,63 +69,64 @@ class _DashboardState extends State<Dashboard> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-                 Pie_Chart(
+               
+              GestureDetector(
+                onTap: () {
+                  print("Available_Balance");
+                },
+                child: Cards(
+                    titel: "Available Balance",
+                    Color_s: Colors.blue,
+                    icon_Data: 'images/Icon/Available Balance.png',
+                    No: "${UserData["Available_Balance"]}"),
+              ),
+              GestureDetector(
+                onTap: () {
+                  print("TOTAL EARN POINT");
+                },
+                child: Cards(
+                    titel: "TOTAL EARN POINT",
+                    Color_s: Colors.orange,
+                    icon_Data: 'images/Icon/earn point.png',
+                    No: "${UserData["Total Point"]}"),
+              ),
+              GestureDetector(
+                onTap: () {
+                  print("Panding Balance");
+                },
+                child: Cards(
+                    titel: "Panding Balance",
+                    Color_s: Colors.pink,
+                    icon_Data: 'images/Icon/Panding Balance.png',
+                    No: "${UserData["Panding Balance"]}"),
+              ),
+              GestureDetector(
+                onTap: () {
+                  print("TOTAL CLICK");
+                },
+                child: Cards(
+                    titel: "TOTAL CLICK",
+                    Color_s: Colors.indigo,
+                    icon_Data: "images/Icon/total clicks.png",
+                    No: "${UserData["Total Click"]}"),
+              ),
+              GestureDetector(
+                onTap: () {
+                  print("REMAIN TODAY CLICK");
+                },
+                child: Cards(
+                    titel: "REMAIN TODAY CLICK",
+                    Color_s: Colors.teal,
+                    icon_Data: 'images/Icon/remaining point.png',
+                    No: "${UserData["Remain Today Click"]}"),
+              ),
+              _space,
+                Pie_Chart(
                   AvailableBalance: "${UserData["Available_Balance"]}",
                   TOTALEARNPOINT: "${UserData["Total Point"]}",
                   PandingBalance: "${UserData["Panding Balance"]}",
                   TOTALCLICK: "${UserData["Total Click"]}",
                   REMAINTODAYCLICK: "${UserData["Remain Today Click"]}"),
-              // GestureDetector(
-              //   onTap: () {
-              //     print("Available_Balance");
-              //   },
-              //   child: Cards(
-              //       titel: "Available Balance",
-              //       Color_s: Colors.blue,
-              //       icon_Data: 'images/Icon/Available Balance.png',
-              //       No: "${UserData["Available_Balance"]}"),
-              // ),
-              // GestureDetector(
-              //   onTap: () {
-              //     print("TOTAL EARN POINT");
-              //   },
-              //   child: Cards(
-              //       titel: "TOTAL EARN POINT",
-              //       Color_s: Colors.orange,
-              //       icon_Data: 'images/Icon/earn point.png',
-              //       No: "${UserData["Total Point"]}"),
-              // ),
-              // GestureDetector(
-              //   onTap: () {
-              //     print("Panding Balance");
-              //   },
-              //   child: Cards(
-              //       titel: "Panding Balance",
-              //       Color_s: Colors.pink,
-              //       icon_Data: 'images/Icon/Panding Balance.png',
-              //       No: "${UserData["Panding Balance"]}"),
-              // ),
-              // GestureDetector(
-              //   onTap: () {
-              //     print("TOTAL CLICK");
-              //   },
-              //   child: Cards(
-              //       titel: "TOTAL CLICK",
-              //       Color_s: Colors.indigo,
-              //       icon_Data: "images/Icon/total clicks.png",
-              //       No: "${UserData["Total Click"]}"),
-              // ),
-              // GestureDetector(
-              //   onTap: () {
-              //     print("REMAIN TODAY CLICK");
-              //   },
-              //   child: Cards(
-              //       titel: "REMAIN TODAY CLICK",
-              //       Color_s: Colors.teal,
-              //       icon_Data: 'images/Icon/remaining point.png',
-              //       No: "${UserData["Remain Today Click"]}"),
-              // ),
-              // _space
             ],
           ),
         ),
