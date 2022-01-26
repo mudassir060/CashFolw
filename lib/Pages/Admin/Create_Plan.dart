@@ -150,7 +150,7 @@ class _Create_PlanState extends State<Create_Plan> {
                     style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
-                        color: Colors.red),
+                        color: Color(0xff7530fb)),
                   ),
                   _space,
                   Column(

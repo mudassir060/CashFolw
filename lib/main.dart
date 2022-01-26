@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Api/login.dart';
 import 'package:ppc/Pages/Admin/Create_Plan.dart';
+import 'package:ppc/Pages/BottomBar.dart';
 import 'package:ppc/Pages/Publisher/Plan.dart';
 import 'package:ppc/Pages/SplashScreen.dart';
 
@@ -31,7 +32,8 @@ class MyApp extends StatelessWidget {
 
             // Once complete, show your application
             if (snapshot.connectionState == ConnectionState.done) {
-              return SplashScreen();
+              Map UserData = {};
+              return BottomBar(UserData: UserData);
             }
 
             // Otherwise, show something whilst waiting for initialization to complete

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ppc/Pages/Admin/Create_Plan.dart';
 import 'package:ppc/Pages/Admin/PlanList.dart';
 import 'package:ppc/Pages/Admin/UserList.dart';
+import 'package:ppc/Pages/Admin/WithdrwList.dart';
 
 class SideNavigation extends StatefulWidget {
   const SideNavigation({Key? key}) : super(key: key);
@@ -79,17 +80,17 @@ class _SideNavigationState extends State<SideNavigation> {
                   ],
                 )
               : VerticalDivider(thickness: 1, width: 1),
-          VerticalDivider(thickness: 1, width: 1),
+          const VerticalDivider(thickness: 0.2, width: 1),
           // This is the main content.
           Expanded(
               child: _selectedIndex == 0
-                  ? PlanList()
+                  ? WithdrawList()
                   : _selectedIndex == 1
                       ? UserList()
-                      : _selectedIndex == 1
-                          ? Create_Plan()
-                          : _selectedIndex == 1
-                              ? Create_Plan()
+                      : _selectedIndex == 2
+                          ? PlanList()
+                          : _selectedIndex == 3
+                              ? WithdrawList()
                               : Create_Plan()
               // Center(
               //   child: Text('selectedIndex: $_selectedIndex'),

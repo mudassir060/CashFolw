@@ -64,7 +64,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ppc/Bloc/AppBar.dart';
+import 'package:ppc/Home.dart';
 import 'package:ppc/Pages/Dashboard.dart';
 import 'package:ppc/Pages/HomePage.dart';
 import 'package:ppc/Pages/Profile.dart';
@@ -74,7 +74,7 @@ class BottomBar extends StatefulWidget {
   final Map UserData;
   const BottomBar({Key? key, required this.UserData}) : super(key: key);
   @override
-  _BottomBarState createState() => new _BottomBarState();
+  _BottomBarState createState() => _BottomBarState();
 }
 
 class _BottomBarState extends State<BottomBar> {
@@ -98,7 +98,8 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     List<Widget> tabPages = [
-      HomePage(UserData: widget.UserData),
+      Home(),
+      // HomePage(UserData: widget.UserData),
       Dashboard(UserData: widget.UserData),
       ProfilePage(UserData: widget.UserData),
     ];
@@ -155,11 +156,28 @@ class _BottomBarState extends State<BottomBar> {
             backgroundColor: Colors.white,
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                  icon: Icon(Icons.home), title: Text("Home")),
+                  icon: Icon(Icons.home, color: Color(0xff7530fb)),
+                  title: Text(
+                    "Home",
+                  )),
+              // BottomNavigationBarItem(
+              //     icon: Icon(Icons.dashboard, color: Color(0xff7530fb)),
+              //     title: Text(
+              //       "Invest Plan",
+              //       style: TextStyle(color: Color(0xff7530fb)),
+              //     )),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.dashboard), title: Text("Dashboard")),
+                  icon: Icon(Icons.dashboard, color: Color(0xff7530fb)),
+                  title: Text(
+                    "My Invest",
+                    style: TextStyle(color: Color(0xff7530fb)),
+                  )),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.person), title: Text("Profile")),
+                  icon: Icon(Icons.person, color: Color(0xff7530fb)),
+                  title: Text(
+                    "Dashboard",
+                    style: TextStyle(color: Color(0xff7530fb)),
+                  )),
             ],
           ),
           body: PageView(

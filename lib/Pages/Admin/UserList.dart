@@ -65,7 +65,7 @@ class _UserListState extends State<UserList> {
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: Colors.red,
+                              color: Color(0xff7530fb),
                             ),
                           ),
                         ),
@@ -247,7 +247,7 @@ class RefRow extends StatelessWidget {
                         icon: const Icon(
                           Icons.delete,
                           size: 24,
-                          color: Colors.red,
+                          color: Color(0xff7530fb),
                         ))
           ],
         ),

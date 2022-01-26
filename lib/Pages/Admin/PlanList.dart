@@ -64,7 +64,7 @@ class _PlanListState extends State<PlanList> {
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: Colors.red,
+                              color: Color(0xff7530fb),
                             ),
                           ),
                         ),
@@ -80,7 +80,7 @@ class _PlanListState extends State<PlanList> {
                       Container(
                         width: vwidth - 15,
                         child: Row(
-                            children: [
+                          children: [
                             Container(
                               width: 100,
                               child: const Center(
@@ -107,7 +107,8 @@ class _PlanListState extends State<PlanList> {
                                   ),
                                 ),
                               ),
-                            ),                            Container(
+                            ),
+                            Container(
                               width: 50,
                               child: const Center(
                                 child: Padding(
@@ -134,7 +135,7 @@ class _PlanListState extends State<PlanList> {
                               ),
                             ),
                           ],
-                         ),
+                        ),
                       ),
                       // // // // // // // // // List Row  // // // // // // // // //
                       Center(
@@ -230,9 +231,8 @@ class RefRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
-      color: Colors.black12 ,
+      color: Colors.black12,
       width: vwidth - 15,
       child: Padding(
         padding: const EdgeInsets.only(left: 2),
@@ -259,7 +259,8 @@ class RefRow extends StatelessWidget {
                   "$Daily_Limit",
                 ),
               ),
-            ),            SizedBox(
+            ),
+            SizedBox(
               width: 50,
               child: Center(
                 child: Text(
@@ -274,7 +275,7 @@ class RefRow extends StatelessWidget {
                 icon: const Icon(
                   Icons.delete,
                   size: 24,
-                  color: Colors.red,
+                  color: Color(0xff7530fb),
                 ))
           ],
         ),
@@ -282,6 +283,7 @@ class RefRow extends StatelessWidget {
     );
   }
 }
+
 CollectionReference Plans = FirebaseFirestore.instance.collection('Plans');
 Future<void> deletePlan(context, _doc) {
   return Plans.doc(_doc).delete().then((values) {

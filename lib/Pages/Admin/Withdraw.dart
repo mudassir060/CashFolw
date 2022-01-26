@@ -1,4 +1,3 @@
-// ignore_for_file: non_constant_identifier_names, prefer_const_literals_to_create_immutables
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
