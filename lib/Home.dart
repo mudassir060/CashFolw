@@ -10,16 +10,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-    void dispose() {
-    myBanner.dispose();
-    super.dispose();
-  }
+  //   void dispose() {
+  //   myBanner.dispose();
+  //   super.dispose();
+  // }
 
-  @override
-  void initState() {
-    myBanner.load();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   myBanner.load();
+  //   super.initState();
+  // }
   @override
   Widget build(BuildContext context) {
     var vwidth = MediaQuery.of(context).size.width;
@@ -131,14 +131,14 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                  height: 50,
-                  color: Colors.transparent,
-                  child: AdWidget(ad: myBanner),
-              ),
-                ),
+              //   Padding(
+              //     padding: const EdgeInsets.all(8.0),
+              //     child: Container(
+              //     height: 50,
+              //     color: Colors.transparent,
+              //     child: AdWidget(ad: myBanner),
+              // ),
+              //   ),
             ],
           ),
         ),

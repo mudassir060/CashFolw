@@ -51,19 +51,63 @@ class _DepositState extends State<Deposit> {
       print({"Deposit Page", "${UserData}"});
     }
     Deposit() async {
-      FirebaseFirestore firestore = FirebaseFirestore.instance;
+try {
+        FirebaseFirestore firestore = FirebaseFirestore.instance;
       DateTime now = DateTime.now();
       String formattedDate = DateFormat('EEE d MMM').format(now);
       await firestore.collection("Panding Deposit").doc().set({
         "username": UserData["username"],
         "email": EmailController.text,
+        "UID": UserData["UID"],
         "PhoneNo": UserData["PhoneNo"],
         "Available_Balance": 0,
         "Date": formattedDate,
+        "Payment ID": formattedDate,
         "Amount": int.parse(AmountController.text),
       });
+           Widget okButton = TextButton(
+        child: Text("OK"),
+        onPressed: () {
+          Navigator.of(context).pop(); // dismiss dialog
+        },
+      );
+      AlertDialog alert = AlertDialog(
+        title: Center(child: Text("Done")),
+        // content: Text("Done"),
+        // actions: [
+        //   okButton,
+        // ],
+      );
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+    
+} catch (e) {
+       Widget okButton = TextButton(
+        child: Text("OK"),
+        onPressed: () {
+          Navigator.of(context).pop(); // dismiss dialog
+        },
+      );
+      AlertDialog alert = AlertDialog(
+        title: Center(child: Text("Error")),
+        content: Text("${e.toString()}"),
+        actions: [
+          okButton,
+        ],
+      );
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+    
+}
     }
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -191,7 +235,7 @@ class _DepositState extends State<Deposit> {
                                   const Padding(
                                     padding: EdgeInsets.only(left: 15),
                                     child: Text(
-                                      "Account 4 digit PIN",
+                                      "Paymet ID",
                                       style: TextStyle(
                                           fontSize: 15,
                                           color: Colors.white,
@@ -216,7 +260,7 @@ class _DepositState extends State<Deposit> {
                                           borderRadius:
                                               BorderRadius.circular(25.7),
                                         ),
-                                        hintText: "200-5000"),
+                                        hintText: "TID"),
                                   ),
                                   _space,
                                   Center(

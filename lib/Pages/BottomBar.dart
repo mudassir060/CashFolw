@@ -99,19 +99,10 @@ class _BottomBarState extends State<BottomBar> {
   Widget build(BuildContext context) {
     List<Widget> tabPages = [
       Home(),
-      // HomePage(UserData: widget.UserData),
+      HomePage(UserData: widget.UserData),
       Dashboard(UserData: widget.UserData),
       ProfilePage(UserData: widget.UserData),
     ];
-    // if (_pageIndex == 0) {
-    //   appBarBloc.eventSink.add(AppBarAction.PayPerClick);
-    // }
-    // if (_pageIndex == 1) {
-    //   appBarBloc.eventSink.add(AppBarAction.Dashboard);
-    // }
-    // if (_pageIndex == 2) {
-    //   appBarBloc.eventSink.add(AppBarAction.Profile);
-    // }
     if (kDebugMode) {
       print({"Bottom Bar", widget.UserData});
     }
@@ -153,30 +144,33 @@ class _BottomBarState extends State<BottomBar> {
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: _pageIndex,
             onTap: onTabTapped,
-            backgroundColor: Colors.white,
+              type: BottomNavigationBarType.fixed, // Fixed 
+  backgroundColor: Colors.white, // <-- This works for fixed
+  selectedItemColor: Colors.purple,
+  unselectedItemColor: Color(0xff7530fb),
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                  icon: Icon(Icons.home, color: Color(0xff7530fb)),
+                  icon: Icon(Icons.home,  ),
                   title: Text(
                     "Home",
                   )),
-              // BottomNavigationBarItem(
-              //     icon: Icon(Icons.dashboard, color: Color(0xff7530fb)),
-              //     title: Text(
-              //       "Invest Plan",
-              //       style: TextStyle(color: Color(0xff7530fb)),
-              //     )),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.dashboard, color: Color(0xff7530fb)),
+                  icon: Icon(Icons.dashboard,  ),
                   title: Text(
-                    "My Invest",
-                    style: TextStyle(color: Color(0xff7530fb)),
+                    "Invest Plan",
+                    style: TextStyle( ),
                   )),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.person, color: Color(0xff7530fb)),
+                  icon: Icon(Icons.dashboard,  ),
+                  title: Text(
+                    "My Invest",
+                    style: TextStyle( ),
+                  )),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.person,  ),
                   title: Text(
                     "Dashboard",
-                    style: TextStyle(color: Color(0xff7530fb)),
+                    style: TextStyle( ),
                   )),
             ],
           ),
