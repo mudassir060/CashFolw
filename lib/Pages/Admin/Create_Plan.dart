@@ -137,123 +137,126 @@ class _Create_PlanState extends State<Create_Plan> {
         //       )),
         // ),
         body: SingleChildScrollView(
-          child: Center(
+                          scrollDirection: Axis.horizontal,
+          child: SingleChildScrollView(
             child: Container(
               width: vwidth - 50,
               height: vhight,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    "Create New Plan",
-                    style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xff7530fb)),
-                  ),
-                  _space,
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 12),
-                        child: Text(
-                          "Titel:",
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      TextField(
-                        controller: titelcontroller,
-                        decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: "Basic Plan"),
-                      ),
-                      _space,
-                      const Padding(
-                        padding: EdgeInsets.only(left: 12),
-                        child: Text(
-                          "Price:",
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      TextField(
-                        controller: pricecontroller,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: "0-1000",
-                        ),
-                      ),
-                      _space,
-                      const Padding(
-                        padding: EdgeInsets.only(left: 12),
-                        child: Text(
-                          "Daily Limit:",
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      TextField(
-                        controller: daily_limitcontroller,
-                        decoration: const InputDecoration(
-                            border: OutlineInputBorder(), hintText: "1-5000"),
-                      ),
-                      _space,
-                      const Padding(
-                        padding: EdgeInsets.only(left: 12),
-                        child: Text(
-                          "Validite:",
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      TextField(
-                        controller: Validitecontroller,
-                        decoration: const InputDecoration(
-                            border: OutlineInputBorder(), hintText: "0-30"),
-                      ),
-                      _space,
-                      const Padding(
-                        padding: EdgeInsets.only(left: 12),
-                        child: Text(
-                          "Points:",
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      TextField(
-                        controller: pointscontroller,
-                        decoration: const InputDecoration(
-                            border: OutlineInputBorder(), hintText: "0-5000"),
-                      ),
-                      _space,
-                      Center(
-                        child: ElevatedButton(
-                          child: const Text(
-                            'Create Plan',
+              child: Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Create New Plan",
+                      style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xff7530fb)),
+                    ),
+                    _space,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 12),
+                          child: Text(
+                            "Titel:",
                             style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                            ),
+                                fontSize: 15, fontWeight: FontWeight.bold),
                           ),
-                          onPressed: CreatePlan,
-                          style: ButtonStyle(
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
+                        ),
+                        TextField(
+                          controller: titelcontroller,
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: "Basic Plan"),
+                        ),
+                        _space,
+                        const Padding(
+                          padding: EdgeInsets.only(left: 12),
+                          child: Text(
+                            "Price:",
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        TextField(
+                          controller: pricecontroller,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: "0-1000",
+                          ),
+                        ),
+                        _space,
+                        const Padding(
+                          padding: EdgeInsets.only(left: 12),
+                          child: Text(
+                            "Daily Limit:",
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        TextField(
+                          controller: daily_limitcontroller,
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder(), hintText: "1-5000"),
+                        ),
+                        _space,
+                        const Padding(
+                          padding: EdgeInsets.only(left: 12),
+                          child: Text(
+                            "Validite:",
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        TextField(
+                          controller: Validitecontroller,
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder(), hintText: "0-30"),
+                        ),
+                        _space,
+                        const Padding(
+                          padding: EdgeInsets.only(left: 12),
+                          child: Text(
+                            "Points:",
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        TextField(
+                          controller: pointscontroller,
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder(), hintText: "0-5000"),
+                        ),
+                        _space,
+                        Center(
+                          child: ElevatedButton(
+                            child: const Text(
+                              'Create Plan',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                              ),
+                            ),
+                            onPressed: CreatePlan,
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

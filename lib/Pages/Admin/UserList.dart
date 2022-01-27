@@ -43,61 +43,49 @@ class _UserListState extends State<UserList> {
         //       )),
         // ),
         body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Center(
-              child: Container(
-                  width: vwidth - 15,
-                  // height: vwidth / 2,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Container(
-                        width: vwidth - 15,
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            "Users List",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff7530fb),
-                            ),
-                          ),
-                        ),
-                        decoration: const BoxDecoration(
-                          color: Colors.black26,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10),
-                          ),
-                        ),
-                      ),
-                      // // // // // // // // // heading Row  // // // // // // // // //
-                      Container(
-                        width: vwidth - 15,
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 30,
-                              child: const Center(
-                                child: Text(
-                                  "#",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+                          scrollDirection: Axis.horizontal,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Center(
+                child: Container(
+                    width: vwidth - 15,
+                    // height: vwidth / 2,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          width: vwidth - 15,
+                          child: const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              "Users List",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xff7530fb),
                               ),
                             ),
-                            Container(
-                              width: 120,
-                              child: const Center(
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
+                          ),
+                          decoration: const BoxDecoration(
+                            color: Colors.black26,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                            ),
+                          ),
+                        ),
+                        // // // // // // // // // heading Row  // // // // // // // // //
+                        Container(
+                          width: vwidth - 15,
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 30,
+                                child: const Center(
                                   child: Text(
-                                    "Name",
+                                    "#",
                                     style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
@@ -105,82 +93,97 @@ class _UserListState extends State<UserList> {
                                   ),
                                 ),
                               ),
-                            ),
-                            Container(
-                              child: const Center(
-                                child: Text(
-                                  "Phone",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
+                              Container(
+                                width: 120,
+                                child: const Center(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "Name",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      // // // // // // // // // List Row  // // // // // // // // //
-                      Center(
-                        child: StreamBuilder<QuerySnapshot>(
-                          stream: _PlanStream,
-                          builder: (BuildContext context,
-                              AsyncSnapshot<QuerySnapshot> snapshot) {
-                            if (snapshot.hasError) {
-                              return const Text('Something went wrong');
-                            }
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return const Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            }
-                            var vwidth = MediaQuery.of(context).size.width;
-                            var vhight = MediaQuery.of(context).size.height;
-                            var Index = 0;
-                            return SizedBox(
-                              height: vhight,
-                              child: ListView(
-                                physics: const BouncingScrollPhysics(
-                                    parent: AlwaysScrollableScrollPhysics()),
-                                controller: ScrollController(),
-                                children: snapshot.data!.docs
-                                    .map((DocumentSnapshot document) {
-                                  Map<String, dynamic> data =
-                                      document.data()! as Map<String, dynamic>;
-                                  Index++;
-                                  return RefRow(
-                                    No: Index,
-                                    Data: data,
-                                  );
-                                }).toList(),
+                              Container(
+                                child: const Center(
+                                  child: Text(
+                                    "Phone",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
                               ),
-                            );
-                          },
+                            ],
+                          ),
                         ),
-                      ),
 
-                      const SizedBox(height: 5)
-                    ],
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset:
-                            const Offset(0, 3), // changes position of shadow
-                      ),
-                    ],
-                  )),
+                        // // // // // // // // // List Row  // // // // // // // // //
+                        Center(
+                          child: StreamBuilder<QuerySnapshot>(
+                            stream: _PlanStream,
+                            builder: (BuildContext context,
+                                AsyncSnapshot<QuerySnapshot> snapshot) {
+                              if (snapshot.hasError) {
+                                return const Text('Something went wrong');
+                              }
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                              var vwidth = MediaQuery.of(context).size.width;
+                              var vhight = MediaQuery.of(context).size.height;
+                              var Index = 0;
+                              return SizedBox(
+                                height: vhight,
+                                child: ListView(
+                                  physics: const BouncingScrollPhysics(
+                                      parent: AlwaysScrollableScrollPhysics()),
+                                  controller: ScrollController(),
+                                  children: snapshot.data!.docs
+                                      .map((DocumentSnapshot document) {
+                                    Map<String, dynamic> data =
+                                        document.data()! as Map<String, dynamic>;
+                                    Index++;
+                                    return RefRow(
+                                      No: Index,
+                                      Data: data,
+                                    );
+                                  }).toList(),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+
+                        const SizedBox(height: 5)
+                      ],
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset:
+                              const Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
+                    )),
+              ),
             ),
           ),
         ),
