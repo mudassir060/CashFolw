@@ -119,10 +119,7 @@ class _RegistrationState extends State<Registration> {
               await firestore.collection("SetValue").doc('Referral').get();
           final ReferB = snapshh.data();
 
-          var Balance = ReferBY["Available_Balance"] + ReferB['Level 1'];
-          await firestore.collection("users").doc(ReferralUID["UID"]).update({
-            "Available_Balance": Balance,
-          });
+
 
           Navigator.push(
             context,
