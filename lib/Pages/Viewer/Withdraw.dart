@@ -51,17 +51,65 @@ class _WithdrawState extends State<Withdraw> {
       print({"Withdraw Page", "${UserData}"});
     }
     Withdraw() async {
-      FirebaseFirestore firestore = FirebaseFirestore.instance;
-      DateTime now = DateTime.now();
-      String formattedDate = DateFormat('EEE d MMM').format(now);
-      await firestore.collection("Panding Withdraw").doc().set({
-        "username": UserData["username"],
-        "email": EmailController.text,
-        "PhoneNo": UserData["PhoneNo"],
-        "Available_Balance": 0,
-        "Date": formattedDate,
-        "Amount": int.parse(AmountController.text),
-      });
+      try {
+        FirebaseFirestore firestore = FirebaseFirestore.instance;
+        DateTime now = DateTime.now();
+        String formattedDate =
+            DateFormat('yyyyy.MMMMM.dd GGG hh:mm aaa').format(now);
+        await firestore
+            .collection("Panding Withdraw")
+            .doc(formattedDate + UserData["UID"])
+            .set({
+          "username": UserData["username"],
+          "email": EmailController.text,
+          "PhoneNo": UserData["PhoneNo"],
+          "Available_Balance": UserData["Available_Balance"],
+          "UID": UserData["UID"],
+          "Date": formattedDate,
+          "Payment ID": PinController.text,
+          "Del": formattedDate + UserData["UID"],
+          "Amount": int.parse(AmountController.text),
+        });
+        Widget okButton = TextButton(
+          child: Text("OK"),
+          onPressed: () {
+            Navigator.of(context).pop(); // dismiss dialog
+          },
+        );
+        AlertDialog alert = AlertDialog(
+          title: Center(child: Text("Done")),
+          // content: Text("Done"),
+          // actions: [
+          //   okButton,
+          // ],
+        );
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return alert;
+          },
+        );
+      } catch (e) {
+        Widget okButton = TextButton(
+          child: Text("OK"),
+          onPressed: () {
+            Navigator.of(context).pop(); // dismiss dialog
+          },
+        );
+        AlertDialog alert = AlertDialog(
+          title: Center(child: Text("Error")),
+          content: Text("${e.toString()}"),
+          // actions: [
+          //   okButton,
+          // ],
+        );
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return alert;
+          },
+        );
+      }
     }
 
     return MaterialApp(
@@ -191,7 +239,7 @@ class _WithdrawState extends State<Withdraw> {
                                   const Padding(
                                     padding: EdgeInsets.only(left: 15),
                                     child: Text(
-                                      "Account 4 digit PIN",
+                                      "Account Number",
                                       style: TextStyle(
                                           fontSize: 15,
                                           color: Colors.white,
@@ -216,7 +264,7 @@ class _WithdrawState extends State<Withdraw> {
                                           borderRadius:
                                               BorderRadius.circular(25.7),
                                         ),
-                                        hintText: "200-5000"),
+                                        hintText: "JazzCash No"),
                                   ),
                                   _space,
                                   Center(

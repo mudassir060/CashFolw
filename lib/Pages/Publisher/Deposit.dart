@@ -54,13 +54,13 @@ class _DepositState extends State<Deposit> {
       try {
         FirebaseFirestore firestore = FirebaseFirestore.instance;
         DateTime now = DateTime.now();
-        String formattedDate = DateFormat('EEE d MMM').format(now);
+        String formattedDate = DateFormat('yyyyy.MMMMM.dd GGG hh:mm aaa').format(now);
         await firestore.collection("Panding Deposit").doc(formattedDate+UserData["UID"]).set({
           "username": UserData["username"],
           "email": EmailController.text,
           "UID": UserData["UID"],
           "PhoneNo": UserData["PhoneNo"],
-          "Available_Balance": 0,
+          "Available_Balance": UserData["Available_Balance"],
           "Date": formattedDate,
           "Del": formattedDate + UserData["UID"],
           "Payment ID": PinController.text,

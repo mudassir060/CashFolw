@@ -3,20 +3,20 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Widget/Color.dart';
 
-class P_DepositList extends StatefulWidget {
-  const P_DepositList({
+class P_WithdrawList extends StatefulWidget {
+  const P_WithdrawList({
     Key? key,
   }) : super(key: key);
 
   @override
-  _P_DepositListState createState() => _P_DepositListState();
+  _P_WithdrawListState createState() => _P_WithdrawListState();
 }
 
-class _P_DepositListState extends State<P_DepositList> {
+class _P_WithdrawListState extends State<P_WithdrawList> {
   @override
   Widget build(BuildContext context) {
     final Stream<QuerySnapshot> _PlanStream = FirebaseFirestore.instance
-        .collection('Panding Deposit')
+        .collection('Panding Withdraw')
         // .orderBy('_Price', descending: false)
         .snapshots();
 
@@ -58,7 +58,7 @@ class _P_DepositListState extends State<P_DepositList> {
                         child: const Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            "Panding Deposit",
+                            "Panding Withdraw",
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -351,7 +351,7 @@ class _RefRowState extends State<RefRow> {
 
 Future<void> CancelPayment(context, _doc) {
   CollectionReference Panding_Deposit =
-      FirebaseFirestore.instance.collection('Panding Deposit');
+      FirebaseFirestore.instance.collection('Panding Withdraw');
   return Panding_Deposit.doc(_doc).delete().then((values) {
     AlertDialog alert = const AlertDialog(
       title: Center(child: Text("Delete Successfully")),
@@ -392,11 +392,11 @@ Future<void> CancelPayment(context, _doc) {
 Aprove(context, Data) async {
   try {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
-    var Balance = Data["Available_Balance"] + Data['Amount'];
+    var Balance = Data["Available_Balance"] - Data['Amount'];
     await firestore.collection("users").doc(Data["UID"]).update({
       "Available_Balance": Balance,
     });
-    await firestore.collection("Deposit").doc().set({
+    await firestore.collection("Withdraw").doc().set({
       "username": Data["username"],
       "email": Data["email"],
       "UID": Data["UID"],
