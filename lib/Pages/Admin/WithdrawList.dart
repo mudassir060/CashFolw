@@ -3,20 +3,20 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Widget/Color.dart';
 
-class P_DepositList extends StatefulWidget {
-  const P_DepositList({
+class WithdrawList extends StatefulWidget {
+  const WithdrawList({
     Key? key,
   }) : super(key: key);
 
   @override
-  _P_DepositListState createState() => _P_DepositListState();
+  _WithdrawListState createState() => _WithdrawListState();
 }
 
-class _P_DepositListState extends State<P_DepositList> {
+class _WithdrawListState extends State<WithdrawList> {
   @override
   Widget build(BuildContext context) {
     final Stream<QuerySnapshot> _PlanStream = FirebaseFirestore.instance
-        .collection('Panding Deposit')
+        .collection('Withdraw')
         // .orderBy('_Price', descending: false)
         .snapshots();
 
@@ -58,7 +58,7 @@ class _P_DepositListState extends State<P_DepositList> {
                         child: const Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            "Panding Deposit",
+                            "Withdraw List",
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -271,72 +271,29 @@ class _RefRowState extends State<RefRow> {
                         ShowFull(
                             titel: "Payment ID",
                             DATA: widget.Data['Payment ID']),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            ElevatedButton(
-                              child: const Text(
-                                'Cancel',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                ),
-                              ),
-                              onPressed: () {
-                                CancelPayment(context, widget.Data['Del'], "Delete");
-                              },
-                              style: ButtonStyle(
-                                shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                  ),
-                                ),
+                        ElevatedButton(
+                          child: const Padding(
+                            padding:  EdgeInsets.only(left: 50,right: 50),
+                            child:  Text(
+                              'Delete',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
                               ),
                             ),
-                            // TextButton(
-                            //   onPressed: () {
-                            //     setState(() {
-                            //       Show_More = true;
-                            //     });
-                            //   },
-                            //   child: Column(
-                            //     children: const [
-                            //       Text(
-                            //         "Show More",
-                            //         style: TextStyle(color: Color(0xff7530fb)),
-                            //       ),
-                            //       Icon(
-                            //         Icons.arrow_drop_down,
-                            //         color: Color(0xff7530fb),
-                            //       )
-                            //     ],
-                            //   ),
-                            // ),
-
-                            ElevatedButton(
-                              child: const Text(
-                                'Approved',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                ),
-                              ),
-                              onPressed: () {
-                                Aprove(context, widget.Data);
-                              },
-                              style: ButtonStyle(
-                                shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                  ),
-                                ),
+                          ),
+                          onPressed: () {
+                            CancelPayment(context, widget.Data['Del']);
+                          },
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
                               ),
                             ),
-                          ],
+                          ),
                         ),
                       ],
                     )
@@ -349,12 +306,12 @@ class _RefRowState extends State<RefRow> {
   }
 }
 
-Future<void> CancelPayment(context, _doc, SMS) {
+Future<void> CancelPayment(context, _doc) {
   CollectionReference Panding_Deposit =
-      FirebaseFirestore.instance.collection('Panding Deposit');
+      FirebaseFirestore.instance.collection('Panding Withdraw');
   return Panding_Deposit.doc(_doc).delete().then((values) {
-    AlertDialog alert = AlertDialog(
-      title: Center(child: Text("$SMS Successfully")),
+    AlertDialog alert = const AlertDialog(
+      title: Center(child: Text("Delete Successfully")),
       // content: Text("Delete Successfully"),
       // actions: [
       //   okButton,
@@ -375,7 +332,7 @@ Future<void> CancelPayment(context, _doc, SMS) {
     );
     AlertDialog alert = AlertDialog(
       title: Center(child: Text("Error")),
-      content: Text("$error"),
+      content: Text("Failed to delete: $error"),
       // actions: [
       //   okButton,
       // ],
@@ -389,48 +346,6 @@ Future<void> CancelPayment(context, _doc, SMS) {
   });
 }
 
-Aprove(context, Data) async {
-  try {
-    FirebaseFirestore firestore = FirebaseFirestore.instance;
-    var Balance = Data["Available_Balance"] + Data['Amount'];
-    await firestore.collection("users").doc(Data["UID"]).update({
-      "Available_Balance": Balance,
-    });
-    await firestore.collection("Deposit").doc().set({
-      "username": Data["username"],
-      "email": Data["email"],
-      "UID": Data["UID"],
-      "PhoneNo": Data["PhoneNo"],
-      "Available_Balance": Data["Available_Balance"],
-      "Date": Data['Date'],
-      "Del": Data["Del"],
-      "Payment ID": Data['Payment ID'],
-      "Amount": Data["Amount"],
-    });
-    CancelPayment(context, Data['Del'], "Approve");
-    
-  } catch (e) {
-    Widget okButton = TextButton(
-      child: Text("OK"),
-      onPressed: () {
-        Navigator.of(context).pop(); // dismiss dialog
-      },
-    );
-    AlertDialog alert = AlertDialog(
-      title: Center(child: Text("Error")),
-      content: Text("${e.toString()}"),
-      // actions: [
-      //   okButton,
-      // ],
-    );
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
-  }
-}
 
 class ROW extends StatefulWidget {
   const ROW({Key? key}) : super(key: key);

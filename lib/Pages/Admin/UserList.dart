@@ -1,15 +1,12 @@
-// ignore_for_file: non_constant_identifier_names, prefer_const_literals_to_create_immutables
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Widget/Color.dart';
 
 class UserList extends StatefulWidget {
-
-
-  const UserList({Key? key,})
-      : super(key: key);
+  const UserList({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _UserListState createState() => _UserListState();
@@ -20,7 +17,7 @@ class _UserListState extends State<UserList> {
   Widget build(BuildContext context) {
     final Stream<QuerySnapshot> _PlanStream = FirebaseFirestore.instance
         .collection('users')
-        // .orderBy('Referral', descending: false)
+        // .orderBy('_Price', descending: false)
         .snapshots();
 
     var vwidth = MediaQuery.of(context).size.width;
@@ -28,7 +25,7 @@ class _UserListState extends State<UserList> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primarySwatch: kToDark,
+        primarySwatch: kToDark,
       ),
       home: Scaffold(
         // appBar: AppBar(
@@ -58,11 +55,11 @@ class _UserListState extends State<UserList> {
                     children: [
                       Container(
                         width: vwidth - 15,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
                           child: Text(
-                            "User List",
-                            style: const TextStyle(
+                            "Users List",
+                            style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: Color(0xff7530fb),
@@ -123,6 +120,7 @@ class _UserListState extends State<UserList> {
                           ],
                         ),
                       ),
+
                       // // // // // // // // // List Row  // // // // // // // // //
                       Center(
                         child: StreamBuilder<QuerySnapshot>(
@@ -132,7 +130,8 @@ class _UserListState extends State<UserList> {
                             if (snapshot.hasError) {
                               return const Text('Something went wrong');
                             }
-                            if (snapshot.connectionState == ConnectionState.waiting) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
                               return const Center(
                                 child: CircularProgressIndicator(),
                               );
@@ -153,10 +152,7 @@ class _UserListState extends State<UserList> {
                                   Index++;
                                   return RefRow(
                                     No: Index,
-                                    Name: '${data['username']}',
-                                    Number: '${data['PhoneNo']}',
-                                    UID: '${data['UID']}',
-                                    vwidth: vwidth,
+                                    Data: data,
                                   );
                                 }).toList(),
                               ),
@@ -180,7 +176,8 @@ class _UserListState extends State<UserList> {
                         color: Colors.grey.withOpacity(0.5),
                         spreadRadius: 5,
                         blurRadius: 7,
-                        offset: const Offset(0, 3), // changes position of shadow
+                        offset:
+                            const Offset(0, 3), // changes position of shadow
                       ),
                     ],
                   )),
@@ -192,88 +189,139 @@ class _UserListState extends State<UserList> {
   }
 }
 
-class RefRow extends StatelessWidget {
+class RefRow extends StatefulWidget {
   var No;
-  final String Name;
-  final String Number;
-  final String UID;
-  var vwidth;
-  RefRow(
-      {Key? key,
-      required this.No,
-      required this.Name,
-      required this.Number,
-      required this.vwidth, required this.UID})
-      : super(key: key);
+  final Map Data;
+  RefRow({
+    required this.No,
+    Key? key,
+    required this.Data,
+  }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    var colr = No % 2;
+  _RefRowState createState() => _RefRowState();
+}
 
+class _RefRowState extends State<RefRow> {
+  bool Show_More = false;
+  @override
+  Widget build(BuildContext context) {
+    var vwidth = MediaQuery.of(context).size.width;
+    var vhight = MediaQuery.of(context).size.height;
+    var colr = widget.No % 2;
     return Container(
       color: colr == 1 ? Colors.black12 : Colors.black26,
       width: vwidth - 15,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 2),
-        child: Row(
-          children: [
-            SizedBox(
-              width: 30,
-              child: Center(
-                child: Text(
-                  "$No",
+      child: InkWell(
+        onTap: () {
+          if (Show_More == false) {
+            setState(() {
+              Show_More = true;
+            });
+          } else {
+            setState(() {
+              Show_More = false;
+            });
+          }
+        },
+        child: Padding(
+          padding: const EdgeInsets.only(left: 2),
+          child: Column(
+            children: [
+              Container(
+                color: Colors.white,
+                height: 4,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 30,
+                      child: Center(
+                        child: Text(
+                          "${widget.No}",
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 140,
+                      child: Text(
+                        "${widget.Data['username']}",
+                      ),
+                    ),
+                    SizedBox(
+                      child: Center(
+                        child: Text(
+                          "${widget.Data['PhoneNo']}",
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ),
-            SizedBox(
-              width: 150,
-              child: Center(
-                child: Text(
-                  Name,
-                ),
-              ),
-            ),
-            SizedBox(
-              child: Center(
-                child: Text(
-                  Number,
-                ),
-              ),
-            ),
-            IconButton(
-                        onPressed: () {
-                          deleteUser(context,UID );
-                        },
-                        icon: const Icon(
-                          Icons.delete,
-                          size: 24,
-                          color: Color(0xff7530fb),
-                        ))
-          ],
+              Show_More
+                  ? Column(
+                      children: [
+                        ShowFull(titel: "Email", DATA: widget.Data['email']),
+                        ShowFull(
+                            titel: "Phone NO", DATA: "${widget.Data['PhoneNo']}"),
+                        ShowFull(titel: "Panding Balance", DATA: "${widget.Data['Panding Balance']}"),
+                        ShowFull(titel: "Referral", DATA: "${widget.Data['Referral']}"),
+                        ShowFull(titel: "Total Point", DATA:"${ widget.Data['Total Point']}"),
+                        ShowFull(titel: "Total Click", DATA: "${widget.Data['Total Click']}"),
+                        ShowFull(titel: "Panding Balance", DATA: "${widget.Data['Panding Balance']}"),
+                        ShowFull(
+                            titel: "Available_Balance",
+                            DATA: "${widget.Data['Available_Balance']}"),
+                        ShowFull(
+                            titel: "Password",
+                            DATA: widget.Data['password']),
+                        ElevatedButton(
+                          child: const Padding(
+                            padding: EdgeInsets.only(left: 50, right: 50),
+                            child: Text(
+                              'Delete',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ),
+                          onPressed: () {
+                            CancelPayment(context, widget.Data['UID']);
+                          },
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  : const Center()
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-
-
-
-CollectionReference users = FirebaseFirestore.instance.collection('users');
-Future<void> deleteUser(context, _doc) {
-  return users.doc(_doc).delete().then((values) {
-    Widget okButton = TextButton(
-      child: Text("OK"),
-      onPressed: () {
-        Navigator.of(context).pop(); // dismiss dialog
-      },
-    );
-    AlertDialog alert = AlertDialog(
-      title: Center(child: Text("Error")),
-      content: Text("Delete Successfully"),
-      actions: [
-        okButton,
-      ],
+Future<void> CancelPayment(context, _doc) {
+  CollectionReference Panding_Deposit =
+      FirebaseFirestore.instance.collection('users');
+  return Panding_Deposit.doc(_doc).delete().then((values) {
+    AlertDialog alert = const AlertDialog(
+      title: Center(child: Text("Delete Successfully")),
+      // content: Text("Delete Successfully"),
+      // actions: [
+      //   okButton,
+      // ],
     );
     showDialog(
       context: context,
@@ -281,24 +329,58 @@ Future<void> deleteUser(context, _doc) {
         return alert;
       },
     );
-  }).catchError((error) {  Widget okButton = TextButton(
-        child: Text("OK"),
-        onPressed: () {
-          // Navigator.of(context).pop(); // dismiss dialog
-        },
-      );
-      AlertDialog alert = AlertDialog(
-        title: Center(child: Text("Error")),
-        content: Text("Failed to delete: $error"),
-        // actions: [
-        //   okButton,
-        // ],
-      );
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
-   } );
+  }).catchError((error) {
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {
+        // Navigator.of(context).pop(); // dismiss dialog
+      },
+    );
+    AlertDialog alert = AlertDialog(
+      title: Center(child: Text("Error")),
+      content: Text("Failed to delete: $error"),
+      // actions: [
+      //   okButton,
+      // ],
+    );
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  });
+}
+
+class ROW extends StatefulWidget {
+  const ROW({Key? key}) : super(key: key);
+
+  @override
+  _ROWState createState() => _ROWState();
+}
+
+class _ROWState extends State<ROW> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class ShowFull extends StatelessWidget {
+  final String titel;
+  final String DATA;
+
+  const ShowFull({Key? key, required this.titel, required this.DATA})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [Text(" $titel :    ${DATA}")],
+      ),
+    );
+  }
 }

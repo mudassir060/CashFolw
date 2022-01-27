@@ -1,24 +1,23 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Widget/Color.dart';
 
-class WithdrawList extends StatefulWidget {
-  const WithdrawList({
+class DepositList extends StatefulWidget {
+  const DepositList({
     Key? key,
   }) : super(key: key);
 
   @override
-  _WithdrawListState createState() => _WithdrawListState();
+  _DepositListState createState() => _DepositListState();
 }
 
-class _WithdrawListState extends State<WithdrawList> {
+class _DepositListState extends State<DepositList> {
   @override
   Widget build(BuildContext context) {
     final Stream<QuerySnapshot> _PlanStream = FirebaseFirestore.instance
-        .collection('Plans')
-        .orderBy('_Price', descending: false)
+        .collection('Deposit')
+        // .orderBy('_Price', descending: false)
         .snapshots();
 
     var vwidth = MediaQuery.of(context).size.width;
@@ -59,11 +58,11 @@ class _WithdrawListState extends State<WithdrawList> {
                         child: const Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            "Plans",
+                            "Deposit List",
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: Colors.red,
+                              color: Color(0xff7530fb),
                             ),
                           ),
                         ),
@@ -79,12 +78,12 @@ class _WithdrawListState extends State<WithdrawList> {
                       Container(
                         width: vwidth - 15,
                         child: Row(
-                            children: [
+                          children: [
                             Container(
-                              width: 100,
+                              width: 110,
                               child: const Center(
                                 child: Text(
-                                  "Titel",
+                                  "Name",
                                   style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
@@ -93,26 +92,12 @@ class _WithdrawListState extends State<WithdrawList> {
                               ),
                             ),
                             Container(
-                              width: 70,
+                              width: 130,
                               child: const Center(
                                 child: Padding(
                                   padding: EdgeInsets.all(8.0),
                                   child: Text(
-                                    "Price",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),                            Container(
-                              width: 50,
-                              child: const Center(
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Text(
-                                    "Day",
+                                    "Payment ID",
                                     style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
@@ -122,18 +107,22 @@ class _WithdrawListState extends State<WithdrawList> {
                               ),
                             ),
                             Container(
+                              width: 90,
                               child: const Center(
-                                child: Text(
-                                  "Points",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    "Amount",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ],
-                         ),
+                        ),
                       ),
                       // // // // // // // // // List Row  // // // // // // // // //
                       Center(
@@ -165,13 +154,7 @@ class _WithdrawListState extends State<WithdrawList> {
                                       document.data()! as Map<String, dynamic>;
                                   Index++;
                                   return RefRow(
-                                    Price: '${data['_Price']}',
-                                    titel: "${data['_Titel']}",
-                                    No: "${data['_Points']}",
-                                    Daily_Limit: '${data['_Daily_Limit']}',
-                                    Date: '${data['Date']}',
-                                    Validite: '${data['_Validite']}',
-                                    vwidth: vwidth,
+                                    Data: data,
                                   );
                                 }).toList(),
                               ),
@@ -208,94 +191,128 @@ class _WithdrawListState extends State<WithdrawList> {
   }
 }
 
-class RefRow extends StatelessWidget {
-  final String Price;
-  final String titel;
-  final String Daily_Limit;
-  final String Validite;
-  final String No;
-  final String Date;
-  var vwidth;
-  RefRow({
+class RefRow extends StatefulWidget {
+  final Map Data;
+  const RefRow({
     Key? key,
-    required this.No,
-    required this.vwidth,
-    required this.Price,
-    required this.titel,
-    required this.Daily_Limit,
-    required this.Validite,
-    required this.Date,
+    required this.Data,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  _RefRowState createState() => _RefRowState();
+}
 
+class _RefRowState extends State<RefRow> {
+  bool Show_More = false;
+  @override
+  Widget build(BuildContext context) {
+    var vwidth = MediaQuery.of(context).size.width;
+    var vhight = MediaQuery.of(context).size.height;
     return Container(
-      color: Colors.black12 ,
+      color: Colors.black12,
       width: vwidth - 15,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 2),
-        child: Row(
-          children: [
-            SizedBox(
-              width: 110,
-              child: Text(
-                titel,
-              ),
-            ),
-            SizedBox(
-              width: 50,
-              child: Center(
-                child: Text(
-                  "$Price",
+      child: InkWell(
+        onTap: () {
+            if (Show_More == false) {
+              setState(() {
+                Show_More = true;
+              });
+            }
+            else{
+              setState(() {
+                Show_More = false;
+              });
+            }
+        },
+        child: Padding(
+          padding: const EdgeInsets.only(left: 2),
+          child: Column(
+            children: [
+              Container(color: Colors.white, height: 4,),
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 110,
+                      child: Text(
+                        "${widget.Data['username']}",
+                      ),
+                    ),
+                    SizedBox(
+                      width: 130,
+                      child: Center(
+                        child: Text(
+                          "${widget.Data['Payment ID']}",
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 70,
+                      child: Center(
+                        child: Text(
+                          "${widget.Data['Amount']}",
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ),
-            SizedBox(
-              width: 50,
-              child: Center(
-                child: Text(
-                  "$Daily_Limit",
-                ),
-              ),
-            ),            SizedBox(
-              width: 50,
-              child: Center(
-                child: Text(
-                  "${No}",
-                ),
-              ),
-            ),
-            IconButton(
-                onPressed: () {
-                  deletePlan(context, Date);
-                },
-                icon: const Icon(
-                  Icons.delete,
-                  size: 24,
-                  color: Colors.red,
-                ))
-          ],
+              Show_More
+                  ? Column(
+                      children: [
+                        ShowFull(titel: "Email", DATA: widget.Data['email']),
+                        ShowFull(
+                            titel: "Phone NO", DATA: widget.Data['PhoneNo']),
+                        ShowFull(titel: "Date", DATA: widget.Data['Date']),
+                        ShowFull(
+                            titel: "Available_Balance",
+                            DATA: "${widget.Data['Available_Balance']}"),
+                        ShowFull(
+                            titel: "Payment ID",
+                            DATA: widget.Data['Payment ID']),
+                        ElevatedButton(
+                          child: const Text(
+                            'Delete',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
+                          ),
+                          onPressed: () {
+                            CancelPayment(context, widget.Data['Del'], "Delete");
+                          },
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  : const Center()
+            ],
+          ),
         ),
       ),
     );
   }
 }
-CollectionReference Plans = FirebaseFirestore.instance.collection('Plans');
-Future<void> deletePlan(context, _doc) {
-  return Plans.doc(_doc).delete().then((values) {
-    Widget okButton = TextButton(
-      child: Text("OK"),
-      onPressed: () {
-        Navigator.of(context).pop(); // dismiss dialog
-      },
-    );
+
+Future<void> CancelPayment(context, _doc, SMS) {
+  CollectionReference Panding_Deposit =
+      FirebaseFirestore.instance.collection('Panding Deposit');
+  return Panding_Deposit.doc(_doc).delete().then((values) {
     AlertDialog alert = AlertDialog(
-      title: Center(child: Text("Error")),
-      content: Text("Delete Successfully"),
-      actions: [
-        okButton,
-      ],
+      title: Center(child: Text("$SMS Successfully")),
+      // content: Text("Delete Successfully"),
+      // actions: [
+      //   okButton,
+      // ],
     );
     showDialog(
       context: context,
@@ -312,7 +329,7 @@ Future<void> deletePlan(context, _doc) {
     );
     AlertDialog alert = AlertDialog(
       title: Center(child: Text("Error")),
-      content: Text("Failed to delete: $error"),
+      content: Text("$error"),
       // actions: [
       //   okButton,
       // ],
@@ -324,4 +341,38 @@ Future<void> deletePlan(context, _doc) {
       },
     );
   });
+}
+
+
+class ROW extends StatefulWidget {
+  const ROW({Key? key}) : super(key: key);
+
+  @override
+  _ROWState createState() => _ROWState();
+}
+
+class _ROWState extends State<ROW> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class ShowFull extends StatelessWidget {
+  final String titel;
+  final String DATA;
+
+  const ShowFull({Key? key, required this.titel, required this.DATA})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [Text(" $titel :    ${DATA}")],
+      ),
+    );
+  }
 }
