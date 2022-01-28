@@ -12,11 +12,9 @@ import 'package:ppc/Widget/Color.dart';
 class Plan extends StatefulWidget {
   final Map UserData;
 
-  late bool Admin;
   Plan({
     Key? key,
     required this.UserData,
-    required this.Admin,
   }) : super(key: key);
 
   @override
@@ -91,25 +89,6 @@ var Num = 0;
                 var vhight = MediaQuery.of(context).size.height;
                 return Column(
                   children: [
-                    widget.Admin
-                        ? ElevatedButton(
-                            child: const Padding(
-                              padding: EdgeInsets.only(left: 50, right: 50),
-                              child: Text(
-                                'Create Plan',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Create_Plan(),
-                                ),
-                              );
-                            },
-                          )
-                        : Center(),
                     SizedBox(
                       height: vhight - 120,
                       child: ListView(
@@ -122,7 +101,6 @@ var Num = 0;
                               document.data()! as Map<String, dynamic>;
                           return Card(
                             Price: '${data['_Price']}',
-                            Admin: widget.Admin,
                             titel: "${data['_Titel']}",
                             No: "${data['_Points']}",
                             Daily_Limit: '${data['_Daily_Limit']}',
@@ -147,7 +125,6 @@ var Num = 0;
 class Card extends StatefulWidget {
   final Map UserData;
   final String Price;
-  final bool Admin;
   final String titel;
   final String Daily_Limit;
   final String Validite;
@@ -162,7 +139,6 @@ class Card extends StatefulWidget {
       required this.Validite,
       required this.Date,
       required this.Price,
-      required this.Admin,
       required this.UserData})
       : super(key: key);
 
@@ -247,17 +223,6 @@ class _CardState extends State<Card> {
                     ],
                   ),
                 ),
-                widget.Admin
-                    ? IconButton(
-                        onPressed: () {
-                          deletePlan(context, widget.Date);
-                        },
-                        icon: const Icon(
-                          Icons.delete,
-                          size: 34,
-                          color: Colors.red,
-                        ))
-                    : Center(),
               ],
             ),
             Container(

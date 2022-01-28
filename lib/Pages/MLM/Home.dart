@@ -3,7 +3,8 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:ppc/Function/AdMobe.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  final Map UserData;
+  const Home({Key? key, required this.UserData}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();

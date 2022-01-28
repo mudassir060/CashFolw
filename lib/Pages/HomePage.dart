@@ -192,7 +192,6 @@ class Grid_Card extends StatelessWidget {
             MaterialPageRoute(
               builder: (context) => Plan(
                 UserData: UserData,
-                Admin: false,
               ),
             ),
           );

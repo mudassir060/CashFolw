@@ -8,9 +8,9 @@ class Fee_Setting extends StatefulWidget {
   @override
   _Fee_SettingState createState() => _Fee_SettingState();
 }
-    final Stream<QuerySnapshot> _FeeStream = FirebaseFirestore.instance
-        .collection('Fees & Bonus')
-        .snapshots();
+
+final Stream<QuerySnapshot> _FeeStream =
+    FirebaseFirestore.instance.collection('Fees & Bonus').snapshots();
 var _currencies = [
   "Withdraw",
   "Deposit",
@@ -38,155 +38,160 @@ class _Fee_SettingState extends State<Fee_Setting> {
               scrollDirection: Axis.horizontal,
               child: SingleChildScrollView(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    // Padding(
-                    //   padding: const EdgeInsets.all(10),
-                    //   child: Container(
-                    //     width: 300,
-                    //     height: 400,
-                    //     child: Padding(
-                    //       padding: const EdgeInsets.all(12.0),
-                    //       child: Column(
-                    //         crossAxisAlignment: CrossAxisAlignment.start,
-                    //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //         children: [
-                    //           _space,
-                    //           const Text(
-                    //             "Fees Setting",
-                    //             style: TextStyle(
-                    //                 fontSize: 25,
-                    //                 fontWeight: FontWeight.bold,
-                    //                 color: Color(0xff7530fb)),
-                    //           ),
-                    //           _space,
-                    //           _Line,
-                    //           _space,
-                    //           const Text(
-                    //             "Select Level",
-                    //             style: TextStyle(fontWeight: FontWeight.bold),
-                    //           ),
-                    //           FormField<String>(
-                    //             builder: (FormFieldState<String> state) {
-                    //               return InputDecorator(
-                    //                 decoration: const InputDecoration(
-                    //                     hintText: 'Select Option',
-                    //                     border: OutlineInputBorder()),
-                    //                 isEmpty: _currentSelectedValue == '',
-                    //                 child: DropdownButtonHideUnderline(
-                    //                   child: DropdownButton<String>(
-                    //                     value: _currentSelectedValue,
-                    //                     isDense: true,
-                    //                     onChanged: (value) => {
-                    //                       _currentSelectedValue = value,
-                    //                       state.didChange(value),
-                    //                       setState(() {
-                    //                         SelectLevel = _currentSelectedValue;
-                    //                       })
-                    //                     },
-                    //                     items: _currencies.map((String value) {
-                    //                       return DropdownMenuItem<String>(
-                    //                         value: value,
-                    //                         child: Text(value),
-                    //                       );
-                    //                     }).toList(),
-                    //                   ),
-                    //                 ),
-                    //               );
-                    //             },
-                    //           ),
-                    //           _space,
-                    //           const Text(
-                    //             "Fees%",
-                    //             style: TextStyle(fontWeight: FontWeight.bold),
-                    //           ),
-                    //           TextField(
-                    //             controller: Feecontroller,
-                    //             decoration: const InputDecoration(
-                    //                 border: OutlineInputBorder(),
-                    //                 // labelText: 'Email',
-                    //                 hintText: ""),
-                    //           ),
-                    //           _space,
-                    //           Center(
-                    //             child: ElevatedButton(
-                    //               child: const Padding(
-                    //                 padding: EdgeInsets.only(left: 70, right: 70),
-                    //                 child: Text(
-                    //                   'Save',
-                    //                   style: TextStyle(
-                    //                     color: Colors.white,
-                    //                     fontWeight: FontWeight.bold,
-                    //                     fontSize: 15,
-                    //                   ),
-                    //                 ),
-                    //               ),
-                    //               onPressed: () async {
-                    //                 FirebaseFirestore firestore =
-                    //                     FirebaseFirestore.instance;
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Container(
+                        width: 300,
+                        height: 400,
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              _space,
+                              const Text(
+                                "Fees Setting",
+                                style: TextStyle(
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xff7530fb)),
+                              ),
+                              _space,
+                              _Line,
+                              _space,
+                              const Text(
+                                "Select Level",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              FormField<String>(
+                                builder: (FormFieldState<String> state) {
+                                  return InputDecorator(
+                                    decoration: const InputDecoration(
+                                        hintText: 'Select Option',
+                                        border: OutlineInputBorder()),
+                                    isEmpty: _currentSelectedValue == '',
+                                    child: DropdownButtonHideUnderline(
+                                      child: DropdownButton<String>(
+                                        value: _currentSelectedValue,
+                                        isDense: true,
+                                        onChanged: (value) => {
+                                          _currentSelectedValue = value,
+                                          state.didChange(value),
+                                          setState(() {
+                                            SelectLevel = _currentSelectedValue;
+                                          })
+                                        },
+                                        items: _currencies.map((String value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: Text(value),
+                                          );
+                                        }).toList(),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                              _space,
+                              const Text(
+                                "Fees%",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              TextField(
+                                controller: Feecontroller,
+                                decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    // labelText: 'Email',
+                                    hintText: ""),
+                              ),
+                              _space,
+                              Center(
+                                child: ElevatedButton(
+                                  child: const Padding(
+                                    padding:
+                                        EdgeInsets.only(left: 70, right: 70),
+                                    child: Text(
+                                      'Save',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                  ),
+                                  onPressed: () async {
+                                    FirebaseFirestore firestore =
+                                        FirebaseFirestore.instance;
 
-                    //                 if (int.parse(Feecontroller.text).runtimeType ==
-                    //                     int) {
-                    //                   await firestore
-                    //                       .collection("Fees & Bonus")
-                    //                       .doc(SelectLevel)
-                    //                       .set({
-                    //                     "Level": SelectLevel,
-                    //                     "Value": int.parse(Feecontroller.text)
-                    //                   });
-                    //                   AlertDialog alert = const AlertDialog(
-                    //                     title: Center(child: Text("Done")),
-                    //                   );
-                    //                   showDialog(
-                    //                     context: context,
-                    //                     builder: (BuildContext context) {
-                    //                       return alert;
-                    //                     },
-                    //                   );
-                    //                 } else {
-                    //                    AlertDialog alert = const AlertDialog(
-                    //                     title: Center(child: Text("Fill all filed")),
-                    //                   );
-                    //                   showDialog(
-                    //                     context: context,
-                    //                     builder: (BuildContext context) {
-                    //                       return alert;
-                    //                     },
-                    //                   );
-                    //                 }
-                    //               },
-                    //               style: ButtonStyle(
-                    //                 shape: MaterialStateProperty.all<
-                    //                     RoundedRectangleBorder>(
-                    //                   RoundedRectangleBorder(
-                    //                     borderRadius: BorderRadius.circular(18.0),
-                    //                   ),
-                    //                 ),
-                    //               ),
-                    //             ),
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     ),
-                    //     decoration: BoxDecoration(
-                    //       color: Colors.white,
-                    //       borderRadius: const BorderRadius.only(
-                    //           topLeft: Radius.circular(10),
-                    //           topRight: Radius.circular(10),
-                    //           bottomLeft: Radius.circular(10),
-                    //           bottomRight: Radius.circular(10)),
-                    //       boxShadow: [
-                    //         BoxShadow(
-                    //           color: Colors.grey.withOpacity(0.5),
-                    //           spreadRadius: 5,
-                    //           blurRadius: 7,
-                    //           offset:
-                    //               const Offset(0, 3), // changes position of shadow
-                    //         ),
-                    //       ],
-                    //     ),
-                    //   ),
-                    // ),
-
+                                    if (int.parse(Feecontroller.text)
+                                            .runtimeType ==
+                                        int) {
+                                      await firestore
+                                          .collection("Fees & Bonus")
+                                          .doc(SelectLevel)
+                                          .set({
+                                        "Level": SelectLevel,
+                                        "Value": int.parse(Feecontroller.text)
+                                      });
+                                      AlertDialog alert = const AlertDialog(
+                                        title: Center(child: Text("Done")),
+                                      );
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return alert;
+                                        },
+                                      );
+                                    } else {
+                                      AlertDialog alert = const AlertDialog(
+                                        title: Center(
+                                            child: Text("Fill all filed")),
+                                      );
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return alert;
+                                        },
+                                      );
+                                    }
+                                  },
+                                  style: ButtonStyle(
+                                    shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(18.0),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                              bottomLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 5,
+                              blurRadius: 7,
+                              offset: const Offset(
+                                  0, 3), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
@@ -201,7 +206,7 @@ class _Fee_SettingState extends State<Fee_Setting> {
                                   child: Row(
                                     children: [
                                       Container(
-                                          width: 200,
+                                          width: 150,
                                           child: const Text("Level",
                                               style: TextStyle(
                                                   color: Color(0xff7530fb),
@@ -209,7 +214,7 @@ class _Fee_SettingState extends State<Fee_Setting> {
                                                   fontWeight:
                                                       FontWeight.bold))),
                                       Container(
-                                          width: 200,
+                                          width: 150,
                                           child: const Text(
                                             "Fee",
                                             style: TextStyle(
@@ -223,40 +228,44 @@ class _Fee_SettingState extends State<Fee_Setting> {
                               ),
                             ),
                             Center(
-                          child: StreamBuilder<QuerySnapshot>(
-                            stream: _PlanStream,
-                            builder: (BuildContext context,
-                                AsyncSnapshot<QuerySnapshot> snapshot) {
-                              if (snapshot.hasError) {
-                                return const Text('Something went wrong');
-                              }
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return const Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              }
-                              var vwidth = MediaQuery.of(context).size.width;
-                              var vhight = MediaQuery.of(context).size.height;
-                              var Index = 0;
-                              return SizedBox(
-                                height: vhight,
-                                child: ListView(
-                                  physics: const BouncingScrollPhysics(
-                                      parent: AlwaysScrollableScrollPhysics()),
-                                  controller: ScrollController(),
-                                  children: snapshot.data!.docs
-                                      .map((DocumentSnapshot document) {
-                                    Map<String, dynamic> data =
-                                        document.data()! as Map<String, dynamic>;
-                                    Index++;
-                                    return Ro_w(titel: '${data['Level']}', value: '${data['_Price']}');
-                                  }).toList(),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
+                              child: StreamBuilder<QuerySnapshot>(
+                                stream: _FeeStream,
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                                  if (snapshot.hasError) {
+                                    return const Text('Something went wrong');
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  }
+                                  var vwidth =
+                                      MediaQuery.of(context).size.width;
+                                  var vhight =
+                                      MediaQuery.of(context).size.height;
+                                  return SizedBox(
+                                    height: 200,
+                                    width: 320,
+                                    child: ListView(
+                                      physics: const BouncingScrollPhysics(
+                                          parent:
+                                              AlwaysScrollableScrollPhysics()),
+                                      controller: ScrollController(),
+                                      children: snapshot.data!.docs
+                                          .map((DocumentSnapshot document) {
+                                        Map<String, dynamic> data = document
+                                            .data()! as Map<String, dynamic>;
+                                        return Ro_w(
+                                            titel: '${data['Level']}',
+                                            value: '${data['Value']}');
+                                      }).toList(),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -289,6 +298,8 @@ class Ro_w extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("${titel}");
+    print(value);
     return Padding(
       padding: const EdgeInsets.all(2.0),
       child: Container(
@@ -297,8 +308,8 @@ class Ro_w extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
-              Container(width: 200, child: Text("$titel")),
-              Container(width: 200, child: Text("$value")),
+              Container(width: 150, child: Text("$titel")),
+              Container(width: 150, child: Text("$value")),
             ],
           ),
         ),

@@ -142,7 +142,6 @@ class _Create_PlanState extends State<Create_Plan> {
             child: SingleChildScrollView(
               child: Container(
                 width: vwidth - 50,
-                height: vhight,
                 child: Center(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ppc/Pages/Admin/Create_Plan.dart';
 import 'package:ppc/Pages/Admin/DepositList.dart';
+import 'package:ppc/Pages/Admin/Fee_Setting.dart';
 import 'package:ppc/Pages/Admin/P_DepositList.dart';
 import 'package:ppc/Pages/Admin/P_WithdrawList.dart';
 import 'package:ppc/Pages/Admin/PlanList.dart';
@@ -68,7 +69,7 @@ class _SideNavigationState extends State<SideNavigation> {
                     NavigationRailDestination(
                       icon: Icon(Icons.person_outline),
                       selectedIcon: Icon(Icons.person),
-                      label: Text('Users\nList'),
+                      label: Center(child: Text('Users\nList')),
                     ),
                     NavigationRailDestination(
                       icon: Icon(Icons.wallet_giftcard),
@@ -76,19 +77,24 @@ class _SideNavigationState extends State<SideNavigation> {
                       label: Text('Panding\nWithdraw'),
                     ),
                     NavigationRailDestination(
-                      icon: Icon(Icons.account_balance_wallet),
-                      selectedIcon: Icon(Icons.account_balance_wallet_outlined),
-                      label: Text('Withdraw\nList'),
+                      icon: Icon(Icons.account_balance_wallet_outlined),
+                      selectedIcon: Icon(Icons.account_balance_wallet),
+                      label: Center(child: Text('Withdraw\nList')),
                     ),
                     NavigationRailDestination(
                       icon: Icon(Icons.document_scanner),
                       selectedIcon: Icon(Icons.star),
-                      label: Text('Panding\nDeposit'),
+                      label: Center(child: Text('Panding\nDeposit')),
                     ),
                     NavigationRailDestination(
                       icon: Icon(Icons.star_border),
                       selectedIcon: Icon(Icons.star),
-                      label: Text('Deposit\nList'),
+                      label: Center(child: Text('Deposit\nList')),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.settings_outlined),
+                      selectedIcon: Icon(Icons.settings),
+                      label: Center(child: Text('Fees\nBonus')),
                     ),
                   ],
                 )
@@ -102,15 +108,15 @@ class _SideNavigationState extends State<SideNavigation> {
                       ? PlanList()
                       : _selectedIndex == 2
                           ? UserList()
-                          : _selectedIndex == 2
+                          : _selectedIndex == 3
                               ? P_WithdrawList()
-                              : _selectedIndex == 3
+                              : _selectedIndex == 4
                                   ? WithdrawList()
-                                  : _selectedIndex == 4
+                                  : _selectedIndex == 5
                                       ? P_DepositList()
-                                      : _selectedIndex == 5
+                                      : _selectedIndex == 6
                                           ? DepositList()
-                                          : Create_Plan()
+                                          : Fee_Setting()
               // Center(
               //   child: Text('selectedIndex: $_selectedIndex'),
               // ),
