@@ -54,30 +54,26 @@ class _DepositState extends State<Deposit> {
       try {
         FirebaseFirestore firestore = FirebaseFirestore.instance;
         DateTime now = DateTime.now();
-        String formattedDate = DateFormat('yyyyy.MMMMM.dd GGG hh:mm aaa').format(now);
-        await firestore.collection("Panding Deposit").doc(formattedDate+UserData["UID"]).set({
+        String formattedDate =
+            DateFormat('yyyyy.MMMMM.dd GGG hh:mm aaa').format(now);
+        await firestore
+            .collection("Panding Deposit")
+            .doc(formattedDate + UserData["UID"])
+            .set({
           "username": UserData["username"],
           "email": EmailController.text,
           "UID": UserData["UID"],
           "PhoneNo": UserData["PhoneNo"],
+          "Referral By": UserData["Referral By"],
           "Available_Balance": UserData["Available_Balance"],
           "Date": formattedDate,
           "Del": formattedDate + UserData["UID"],
           "Payment ID": PinController.text,
           "Amount": int.parse(AmountController.text),
         });
-        Widget okButton = TextButton(
-          child: Text("OK"),
-          onPressed: () {
-            Navigator.of(context).pop(); // dismiss dialog
-          },
-        );
+        print("=========>${UserData["Referral By"]}");
         AlertDialog alert = AlertDialog(
           title: Center(child: Text("Done")),
-          // content: Text("Done"),
-          // actions: [
-          //   okButton,
-          // ],
         );
         showDialog(
           context: context,
@@ -86,18 +82,9 @@ class _DepositState extends State<Deposit> {
           },
         );
       } catch (e) {
-        Widget okButton = TextButton(
-          child: Text("OK"),
-          onPressed: () {
-            Navigator.of(context).pop(); // dismiss dialog
-          },
-        );
         AlertDialog alert = AlertDialog(
           title: Center(child: Text("Error")),
           content: Text("${e.toString()}"),
-          // actions: [
-          //   okButton,
-          // ],
         );
         showDialog(
           context: context,
@@ -157,7 +144,7 @@ class _DepositState extends State<Deposit> {
                           child: Column(
                             children: [
                               const Text(
-                                "Get Your Fund To your account",
+                                "Sent Your Fund To your account",
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,

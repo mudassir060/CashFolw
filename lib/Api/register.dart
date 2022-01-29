@@ -20,16 +20,16 @@ class Registration extends StatefulWidget {
 
 class _RegistrationState extends State<Registration> {
   final TextEditingController usernamecontroller =
-      TextEditingController(text: "Mudassir");
+      TextEditingController();
   final TextEditingController useremailcontroller =
-      TextEditingController(text: "abc@email.com");
+      TextEditingController();
   final TextEditingController phonenocontroller =
-      TextEditingController(text: "03454335400");
+      TextEditingController();
   // final TextEditingController otpcontroller = TextEditingController();
   final TextEditingController userpasswordcontroller =
-      TextEditingController(text: "qwerty");
+      TextEditingController();
   final TextEditingController ReferralBycontroller =
-      TextEditingController(text: "115");
+      TextEditingController();
   String UID = '';
   bool isCheck = false;
   bool NoData = false;
@@ -42,7 +42,7 @@ class _RegistrationState extends State<Registration> {
         looding = true;
       });
       final String username = usernamecontroller.text;
-      final String useremail = useremailcontroller.text;
+      final String useremail = useremailcontroller.text.trim();
       final String PhoneNo = phonenocontroller.text;
       final String userpassword = userpasswordcontroller.text;
       final String ReferralBy = ReferralBycontroller.text;
@@ -86,7 +86,7 @@ class _RegistrationState extends State<Registration> {
             "UID": user.user.uid,
             "Available_Balance": 0,
             "Panding Balance": 0,
-            "Daily Ads": 50,
+            "Daily Ads": 0,
             "Total Point": 0,
             "Total Click": 0,
             "Remain Today Click": 0,
@@ -100,8 +100,8 @@ class _RegistrationState extends State<Registration> {
             "username": username,
             "email": useremail,
             "PhoneNo": PhoneNo,
-            "password": userpassword,
             "Referral": LastReferral,
+            "Amount": 0,
           });
 
           await firestore.collection("ReferralUID").doc("$LastReferral").set({
@@ -116,9 +116,6 @@ class _RegistrationState extends State<Registration> {
               await firestore.collection("users").doc(ReferralUID["UID"]).get();
           final ReferBY = snapshhot.data();
 
-          final DocumentSnapshot snapshh =
-              await firestore.collection("SetValue").doc('Referral').get();
-          final ReferB = snapshh.data();
 
           Navigator.push(
             context,

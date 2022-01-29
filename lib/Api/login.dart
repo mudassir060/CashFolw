@@ -19,9 +19,9 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   bool looding = false;
   final TextEditingController useremailcontroller =
-      TextEditingController(text: "abc@email.com");
+      TextEditingController();
   final TextEditingController userpasswordcontroller =
-      TextEditingController(text: "qwerty");
+      TextEditingController();
 
   void register() async {
     setState(() {
@@ -30,7 +30,7 @@ class _LoginState extends State<Login> {
     Map UserData = {};
     FirebaseAuth auth = FirebaseAuth.instance;
     FirebaseFirestore firestore = FirebaseFirestore.instance;
-    final String useremail = useremailcontroller.text;
+    final String useremail = useremailcontroller.text.trim();
     final String userpassword = userpasswordcontroller.text;
     try {
       final UserCredential user = await auth.signInWithEmailAndPassword(

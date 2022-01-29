@@ -7,6 +7,7 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:ppc/Function/PopUp.dart';
 import 'package:ppc/Function/deletePlan.dart';
 import 'package:ppc/Pages/Admin/Create_Plan.dart';
+import 'package:ppc/Pages/Publisher/Deposit.dart';
 import 'package:ppc/Widget/Color.dart';
 
 class Plan extends StatefulWidget {
@@ -26,11 +27,11 @@ class _PlanState extends State<Plan> {
       .collection('Plans')
       .orderBy('_Price', descending: false)
       .snapshots();
-var Num = 0;
+  var Num = 0;
   var UserData = {};
   @override
   Widget build(BuildContext context) {
-        getdata() async {
+    getdata() async {
       FirebaseFirestore firestore = FirebaseFirestore.instance;
 
       final DocumentSnapshot snapshot =
@@ -48,13 +49,13 @@ var Num = 0;
       });
     }
     if (kDebugMode) {
-      print({"Plan Page", "${ UserData}"});
+      print({"Plan Page", "${UserData}"});
     }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Plan",
       theme: ThemeData(
-          primarySwatch: kToDark,
+        primarySwatch: kToDark,
       ),
       home: Scaffold(
         appBar: AppBar(
@@ -106,7 +107,7 @@ var Num = 0;
                             Daily_Limit: '${data['_Daily_Limit']}',
                             Date: '${data['Date']}',
                             Validite: '${data['_Validite']}',
-                            UserData:  UserData,
+                            UserData: UserData,
                           );
                         }).toList(),
                       ),
@@ -154,23 +155,23 @@ class _CardState extends State<Card> {
     return Padding(
       padding: const EdgeInsets.all(18.0),
       child: Container(
-          decoration: const BoxDecoration(
-                       gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Colors.blue,
-                        Colors.purple,
-                      ],
-                    ),
-                    // color: Colors.lightBlue,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      topRight: Radius.circular(10),
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10),
-                    ),
-                  ),
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.blue,
+              Colors.purple,
+            ],
+          ),
+          // color: Colors.lightBlue,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10),
+            topRight: Radius.circular(10),
+            bottomLeft: Radius.circular(10),
+            bottomRight: Radius.circular(10),
+          ),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -181,7 +182,7 @@ class _CardState extends State<Card> {
                   height: vhight / 4.5,
                   width: vwidth - 30,
                   decoration: const BoxDecoration(
-                       gradient: LinearGradient(
+                    gradient: LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                       colors: [
@@ -243,88 +244,96 @@ class _CardState extends State<Card> {
                 ],
               ),
             ),
-               InkWell(
-                    onTap: () async {
-                      FirebaseFirestore firestore = FirebaseFirestore.instance;
-                      var Balance = widget.UserData["Available_Balance"] -
-                          int.parse(widget.Price);
-                      var Daily_Ads = widget.UserData["Daily Ads"] +
-                          int.parse(widget.Daily_Limit);
+            InkWell(
+              onTap: () async {
+                FirebaseFirestore firestore = FirebaseFirestore.instance;
+                var Balance = widget.UserData["Available_Balance"] -
+                    int.parse(widget.Price);
+                var Daily_Ads = widget.UserData["Daily Ads"] +
+                    int.parse(widget.Daily_Limit);
 
-                      var Total_Point =
-                          widget.UserData["Total Point"] + int.parse(widget.No);
-                      // var Validity =
-                      //     widget.UserData["Total Point"] - int.parse(widget.Validite);
-                      var value1 = widget.UserData["Available_Balance"];
-                      var value2 = int.parse(widget.Price);
-                      if (value2 <= value1) {
-                        await firestore
-                            .collection("users")
-                            .doc("${widget.UserData["UID"]}")
-                            .update({
-                          "Available_Balance": Balance,
-                          // "Daily Ads": Daily_Ads,
-                          "Total Point": Total_Point,
-                          "Validity": widget.No,
-                        });
-                     
-      AlertDialog alert = AlertDialog(
-        // title: Center(child: Text("Error")),
-        content: Text("Done"),
-       
-      );
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
-   
-                      } else {
-                          Widget okButton = TextButton(
-        child: Text("OK"),
-        onPressed: () {
-          Navigator.of(context).pop(); // dismiss dialog
-        },
-      );
-      AlertDialog alert = AlertDialog(
-        title: Center(child: Text("Error")),
-        content: Text("Account Balance is Low"),
-        actions: [
-          okButton,
-        ],
-      );
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
-   
-                      }
+                var Total_Point =
+                    widget.UserData["Total Point"] + int.parse(widget.No);
+                // var Validity =
+                //     widget.UserData["Total Point"] - int.parse(widget.Validite);
+                var value1 = widget.UserData["Available_Balance"];
+                var value2 = int.parse(widget.Price);
+                if (value2 <= value1) {
+                  await firestore
+                      .collection("users")
+                      .doc("${widget.UserData["UID"]}")
+                      .update({
+                    "Available_Balance": Balance,
+                    // "Daily Ads": Daily_Ads,
+                    "Total Point": Total_Point,
+                    "Validity": widget.No,
+                  });
+
+                  AlertDialog alert = AlertDialog(
+                    // title: Center(child: Text("Error")),
+                    content: Text("Done"),
+                  );
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return alert;
                     },
-                    child: Container(
-                      height: vhight / 11,
-                      width: vwidth - 30,
-                      child: const Center(
-                        child: Text(
-                          "Subscribe",
-                          style: TextStyle(
-                            fontSize: 30,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      decoration: const BoxDecoration(
-                        // color: Colors.lightBlue,
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10),
-                        ),
-                      ),
+                  );
+                } else {
+                  Widget okButton = TextButton(
+                    child: Text("OK"),
+                    onPressed: () {
+                      Widget okButton = TextButton(
+                        child: Text("OK"),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Deposit(
+                                      UserData: UserData,
+                                    )),
+                          ); // dismiss dialog
+                        },
+                      );
+                      ; // dismiss dialog
+                    },
+                  );
+                  AlertDialog alert = AlertDialog(
+                    title: Center(child: Text("Error")),
+                    content: Text("Account Balance is Low"),
+                    actions: [
+                      okButton,
+                    ],
+                  );
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return alert;
+                    },
+                  );
+                }
+              },
+              child: Container(
+                height: vhight / 11,
+                width: vwidth - 30,
+                child: const Center(
+                  child: Text(
+                    "Subscribe",
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.white,
                     ),
-                  )
-               
+                  ),
+                ),
+                decoration: const BoxDecoration(
+                  // color: Colors.lightBlue,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(10),
+                    bottomRight: Radius.circular(10),
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),

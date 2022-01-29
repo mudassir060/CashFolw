@@ -30,10 +30,11 @@ If you are interested to join me please use my invitation referral code# ${widge
     return Container(
       child: Column(
         children: [
+          SizedBox(height: 30,),
           Welcome(
               titel: "Welcome to Cash Flow!",
               subtitel: "Powered by Skywings",
-              UserData: widget.UserData),
+              UserData: widget.UserData, Page: false,),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(

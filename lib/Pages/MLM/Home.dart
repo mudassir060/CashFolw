@@ -30,73 +30,70 @@ class _HomeState extends State<Home> {
     var vhight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 25),
-          child: Column(
-            children: [
-              Welcome(
-                  titel: "Welcome to Cash Flow!",
-                  subtitel: "Powered by Skywings",
-                  UserData: widget.UserData),
-              Container(
-                width: vwidth,
-                height: 250,
+        child: Column(
+          children: [
+            Welcome(
+                titel: "Welcome to Cash Flow!",
+                subtitel: "Powered by Skywings",
+                UserData: widget.UserData, Page: false,),
+            Container(
+              width: vwidth,
+              height: 250,
+              decoration: BoxDecoration(
+                image: const DecorationImage(
+                  image: AssetImage('images/Poster.jpeg'),
+                  fit: BoxFit.fitWidth,
+                ),
+                borderRadius: BorderRadius.circular(10),
+                shape: BoxShape.rectangle,
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ViewAd(
+                            UserData: widget.UserData,
+                          )),
+                );
+              },
+              child: Container(
+                width: vwidth - 70,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(
+                      Icons.ad_units,
+                      size: 34,
+                      color: Color(0xff7530fb),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        "Watch ads and Earn Money",
+                        style:
+                            TextStyle(fontSize: 18, color: Color(0xff7530fb)),
+                      ),
+                    ),
+                  ],
+                ),
                 decoration: BoxDecoration(
-                  image: const DecorationImage(
-                    image: AssetImage('images/Poster.jpeg'),
-                    fit: BoxFit.fitWidth,
-                  ),
-                  borderRadius: BorderRadius.circular(10),
-                  shape: BoxShape.rectangle,
-                ),
+                    border: Border.all(
+                  color: Color(0xff7530fb),
+                )),
               ),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ViewAd(
-                              UserData: widget.UserData,
-                            )),
-                  );
-                },
-                child: Container(
-                  width: vwidth - 70,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(
-                        Icons.ad_units,
-                        size: 34,
-                        color: Color(0xff7530fb),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          "Watch ads and Earn Money",
-                          style:
-                              TextStyle(fontSize: 18, color: Color(0xff7530fb)),
-                        ),
-                      ),
-                    ],
-                  ),
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                    color: Color(0xff7530fb),
-                  )),
-                ),
-              ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: Container(
-              //     height: 50,
-              //     color: Colors.transparent,
-              //     child: AdWidget(ad: myBanner),
-              //   ),
-              // ),
-            ],
-          ),
+            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Container(
+            //     height: 50,
+            //     color: Colors.transparent,
+            //     child: AdWidget(ad: myBanner),
+            //   ),
+            // ),
+          ],
         ),
       ),
     );

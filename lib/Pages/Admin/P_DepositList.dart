@@ -43,7 +43,7 @@ class _P_DepositListState extends State<P_DepositList> {
         //       )),
         // ),
         body: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
+          scrollDirection: Axis.horizontal,
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(10),
@@ -152,8 +152,8 @@ class _P_DepositListState extends State<P_DepositList> {
                                   controller: ScrollController(),
                                   children: snapshot.data!.docs
                                       .map((DocumentSnapshot document) {
-                                    Map<String, dynamic> data =
-                                        document.data()! as Map<String, dynamic>;
+                                    Map<String, dynamic> data = document.data()!
+                                        as Map<String, dynamic>;
                                     Index++;
                                     return RefRow(
                                       Data: data,
@@ -216,22 +216,24 @@ class _RefRowState extends State<RefRow> {
       width: vwidth - 15,
       child: InkWell(
         onTap: () {
-            if (Show_More == false) {
-              setState(() {
-                Show_More = true;
-              });
-            }
-            else{
-              setState(() {
-                Show_More = false;
-              });
-            }
+          if (Show_More == false) {
+            setState(() {
+              Show_More = true;
+            });
+          } else {
+            setState(() {
+              Show_More = false;
+            });
+          }
         },
         child: Padding(
           padding: const EdgeInsets.only(left: 2),
           child: Column(
             children: [
-              Container(color: Colors.white, height: 4,),
+              Container(
+                color: Colors.white,
+                height: 4,
+              ),
               Padding(
                 padding: const EdgeInsets.all(12),
                 child: Row(
@@ -287,7 +289,8 @@ class _RefRowState extends State<RefRow> {
                                 ),
                               ),
                               onPressed: () {
-                                CancelPayment(context, widget.Data['Del'], "Delete");
+                                CancelPayment(
+                                    context, widget.Data['Del'], "Delete");
                               },
                               style: ButtonStyle(
                                 shape: MaterialStateProperty.all<
@@ -399,6 +402,25 @@ Aprove(context, Data) async {
     await firestore.collection("users").doc(Data["UID"]).update({
       "Available_Balance": Balance,
     });
+    print("======================${Data["Referral By"]}");
+    // // // // // // // // // // Get Referral UID  // // // // // // // // // //
+    final DocumentSnapshot snapshot = await firestore
+        .collection("ReferralUID")
+        .doc("${Data["Referral By"]}")
+        .get();
+    final ReferralUID = snapshot.data();
+    print("======================$ReferralUID");
+    // // // // // // // // // // Get Referral Data  // // // // // // // // // //
+    final DocumentSnapshot snapshhot =
+        await firestore.collection("users").doc(ReferralUID["UID"]).get();
+    final ReferBY = snapshhot.data();
+    // // // // // // // // // // Update Referral Data  // // // // // // // // // //
+    var par = (2 / Data["Amount"] * 100);
+    print("======%=====>$par");
+    await firestore.collection("users").doc(ReferBY["UID"]).update({
+      "Available_Balance": ReferBY["Available_Balance"]+par,
+    });
+
     await firestore.collection("Deposit").doc().set({
       "username": Data["username"],
       "email": Data["email"],
@@ -410,8 +432,8 @@ Aprove(context, Data) async {
       "Payment ID": Data['Payment ID'],
       "Amount": Data["Amount"],
     });
+
     CancelPayment(context, Data['Del'], "Approve");
-    
   } catch (e) {
     Widget okButton = TextButton(
       child: Text("OK"),

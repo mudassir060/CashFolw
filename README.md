@@ -38,8 +38,8 @@ git push -u origin main
 # Connect with flutter 
 cd C:\Users\mudas\AppData\Local\Android\Sdk\platforms
 adb tcpip 5555
-adb connect 10.75.46.123
 adb connect 192.168.10.6
+adb connect 10.75.46.123
 
 
 # Can we check the device to be smartphone or tablet in Flutter?

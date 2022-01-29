@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:ppc/Pages/Publisher/Deposit.dart';
 import 'package:ppc/Pages/Viewer/Withdraw.dart';
 
 class Welcome extends StatefulWidget {
   final String titel;
   final String subtitel;
+  final bool Page;
   final Map UserData;
   const Welcome(
       {Key? key,
       required this.titel,
       required this.subtitel,
-      required this.UserData})
+      required this.UserData,
+      required this.Page})
       : super(key: key);
 
   @override
@@ -27,25 +30,59 @@ class _WelcomeState extends State<Welcome> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(
+            height: 30,
+          ),
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => Withdraw(UserData: UserData)),
-                    );
-                  },
-                  icon: const Icon(
-                    Icons.account_balance_wallet,
-                    size: 40,
-                    color: Colors.white54,
-                  ),
-                )
+                widget.Page
+                    ? InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    Deposit(UserData: widget.UserData)),
+                          );
+                        },
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage("images/Icon/deposit.png"),
+                              fit: BoxFit.fill,
+                            ),
+                            // borderRadius: BorderRadius.circular(10),
+                            shape: BoxShape.rectangle,
+                          ),
+                        ),
+                      )
+                    : InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    Withdraw(UserData: widget.UserData)),
+                          );
+                        },
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage("images/Icon/withdrawal.png"),
+                              fit: BoxFit.fill,
+                            ),
+                            // borderRadius: BorderRadius.circular(10),
+                            shape: BoxShape.rectangle,
+                          ),
+                        ),
+                      )
               ],
             ),
           ),
@@ -96,7 +133,7 @@ class _WelcomeState extends State<Welcome> {
                   Padding(
                     padding: EdgeInsets.all(3.0),
                     child: Text(
-                      "Referral No: ${widget.UserData["JoinDate"]}",
+                      "Referral No: ${widget.UserData["Referral"]}",
                       style: const TextStyle(
                           fontWeight: FontWeight.bold, color: Colors.white),
                     ),
@@ -111,10 +148,13 @@ class _WelcomeState extends State<Welcome> {
                   ),
                   Padding(
                     padding: EdgeInsets.all(3.0),
-                    child: Text(
-                      "Email: ${widget.UserData["email"]}",
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.white),
+                    child: Container(
+                      width: 200,
+                      child: Text(
+                        "Email: ${widget.UserData["email"]}",
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.white),
+                      ),
                     ),
                   ),
                 ],
