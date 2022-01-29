@@ -27,11 +27,10 @@ If you are interested to join me please use my invitation referral code# ${widge
 
     var vwidth = MediaQuery.of(context).size.width;
     var vhight = MediaQuery.of(context).size.height;
-    return SingleChildScrollView(
-      child: Container(
+    return Center(
+      child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 30,),
             Welcome(
                 titel: "Welcome to Cash Flow!",
                 subtitel: "Powered by Skywings",

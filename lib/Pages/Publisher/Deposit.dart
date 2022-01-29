@@ -72,8 +72,17 @@ class _DepositState extends State<Deposit> {
           "Amount": int.parse(AmountController.text),
         });
         print("=========>${UserData["Referral By"]}");
+        Widget okButton = TextButton(
+          child: Text("OK"),
+          onPressed: () {
+            Navigator.of(context).pop(); // dismiss dialog
+          },
+        );
         AlertDialog alert = AlertDialog(
           title: Center(child: Text("Done")),
+          actions: [
+            okButton,
+          ],
         );
         showDialog(
           context: context,
