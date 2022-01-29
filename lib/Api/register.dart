@@ -82,6 +82,7 @@ class _RegistrationState extends State<Registration> {
             "email": useremail,
             "PhoneNo": PhoneNo,
             "password": userpassword,
+            "JoinDate": formattedDate,
             "UID": user.user.uid,
             "Available_Balance": 0,
             "Panding Balance": 0,
@@ -91,8 +92,8 @@ class _RegistrationState extends State<Registration> {
             "Remain Today Click": 0,
             "Referral": LastReferral,
             "Referral By": ReferralBy,
-            "Last Login": formattedDate,
-            "Last Add View" : 0
+            "Last Login": "",
+            "Last Add View": 0
           });
 
           await firestore.collection(ReferralBy).doc(UID).set({
@@ -119,8 +120,6 @@ class _RegistrationState extends State<Registration> {
               await firestore.collection("SetValue").doc('Referral').get();
           final ReferB = snapshh.data();
 
-
-
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -141,26 +140,25 @@ class _RegistrationState extends State<Registration> {
         setState(() {
           looding = false;
         });
-          Widget okButton = TextButton(
-        child: Text("OK"),
-        onPressed: () {
-          Navigator.of(context).pop(); // dismiss dialog
-        },
-      );
-      AlertDialog alert = AlertDialog(
-        title: Center(child: Text("Error")),
-        content: Text("${e.toString()}"),
-        actions: [
-          okButton,
-        ],
-      );
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
-   
+        Widget okButton = TextButton(
+          child: Text("OK"),
+          onPressed: () {
+            Navigator.of(context).pop(); // dismiss dialog
+          },
+        );
+        AlertDialog alert = AlertDialog(
+          title: Center(child: Text("Error")),
+          content: Text("${e.toString()}"),
+          actions: [
+            okButton,
+          ],
+        );
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return alert;
+          },
+        );
       }
     }
 
@@ -186,8 +184,8 @@ class _RegistrationState extends State<Registration> {
                   children: [
                     looding
                         ? const Positioned(
-                          top: 300,
-                          left: 150,
+                            top: 300,
+                            left: 150,
                             child: Center(child: CircularProgressIndicator()))
                         : Center(),
                     Container(

@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:ppc/Pages/Viewer/Withdraw.dart';
 
 class Welcome extends StatefulWidget {
-  const Welcome({Key? key}) : super(key: key);
+  final String titel;
+  final String subtitel;
+  final Map UserData;
+  const Welcome(
+      {Key? key,
+      required this.titel,
+      required this.subtitel,
+      required this.UserData})
+      : super(key: key);
 
   @override
   _WelcomeState createState() => _WelcomeState();
@@ -23,11 +32,20 @@ class _WelcomeState extends State<Welcome> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                const Icon(
-                  Icons.account_balance_wallet,
-                  size: 40,
-                  color: Colors.white54,
-                ),
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Withdraw(UserData: UserData)),
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.account_balance_wallet,
+                    size: 40,
+                    color: Colors.white54,
+                  ),
+                )
               ],
             ),
           ),
@@ -37,17 +55,17 @@ class _WelcomeState extends State<Welcome> {
               child: Container(
                 width: vwidth,
                 child: Column(
-                  children: const [
+                  children: [
                     Text(
-                      "Welcome to Cash Flow!",
-                      style: TextStyle(
+                      widget.titel,
+                      style: const TextStyle(
                           fontSize: 27,
                           fontWeight: FontWeight.bold,
                           color: Colors.white),
                     ),
                     Text(
-                      "Powered by Skywings",
-                      style: TextStyle(
+                      widget.subtitel,
+                      style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Colors.white),
@@ -58,21 +76,48 @@ class _WelcomeState extends State<Welcome> {
             ),
           ),
           Row(
-            children: const [
-              Icon(
+            children: [
+              const Icon(
                 Icons.person,
                 size: 140,
                 color: Colors.white54,
               ),
-              Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Text(
-                  "Skywings",
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(3.0),
+                    child: Text(
+                      "Name: ${widget.UserData["username"]}",
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(3.0),
+                    child: Text(
+                      "Referral No: ${widget.UserData["JoinDate"]}",
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(3.0),
+                    child: Text(
+                      "Join Date: ${widget.UserData["JoinDate"]}",
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(3.0),
+                    child: Text(
+                      "Email: ${widget.UserData["email"]}",
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

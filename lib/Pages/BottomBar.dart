@@ -71,6 +71,8 @@ import 'package:ppc/Pages/MLM/InvestPlan.dart';
 import 'package:ppc/Pages/Profile.dart';
 import 'package:ppc/Widget/Color.dart';
 
+import 'MLM/MyInvest.dart';
+
 class BottomBar extends StatefulWidget {
   final Map UserData;
   const BottomBar({Key? key, required this.UserData}) : super(key: key);
@@ -100,8 +102,8 @@ class _BottomBarState extends State<BottomBar> {
   Widget build(BuildContext context) {
     List<Widget> tabPages = [
       InvestPlan(UserData: widget.UserData),
+      MyInvest(UserData: widget.UserData),
       Home(UserData: widget.UserData),
-      Dashboard(UserData: widget.UserData),
       ProfilePage(UserData: widget.UserData),
     ];
     if (kDebugMode) {
