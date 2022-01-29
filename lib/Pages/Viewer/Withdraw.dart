@@ -134,7 +134,7 @@ class _WithdrawState extends State<Withdraw> {
         ),
         body: SingleChildScrollView(
           child: Container(
-            height: vhight,
+            height: vhight-100,
             width: vwidth,
             child: Center(
               child: Container(

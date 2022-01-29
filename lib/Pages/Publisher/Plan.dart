@@ -267,18 +267,11 @@ class _CardState extends State<Card> {
                           "Total Point": Total_Point,
                           "Validity": widget.No,
                         });
-                          Widget okButton = TextButton(
-        child: Text("OK"),
-        onPressed: () {
-          Navigator.of(context).pop(); // dismiss dialog
-        },
-      );
+                     
       AlertDialog alert = AlertDialog(
         // title: Center(child: Text("Error")),
         content: Text("Done"),
-        actions: [
-          okButton,
-        ],
+       
       );
       showDialog(
         context: context,

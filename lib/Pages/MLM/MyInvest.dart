@@ -15,8 +15,11 @@ class _MyInvestState extends State<MyInvest> {
   Widget build(BuildContext context) {
     InviteNow() {
       Share.share(
-          """Join Cash Flow With My Invite Code ${widget.UserData["Referral"]} immediately!
- Invite your friends to watch Ads, you can earn for each friend! https://example.com""");
+        """*CASHFLOW MLM & ADS* 
+Are you still looking for a side hustle without risking your job?
+I have found something that might work with you.
+If you are interested to join me please use my invitation referral code# ${widget.UserData["Referral"]} to join my team and get great bonus and opportunities to create your own team with cash flow."""
+);
       // share;
 //                       Share.shareFiles(['${directory.path}/image.jpg'], text: 'Great picture');
 // Share.shareFiles(['${directory.path}/image1.jpg', '${directory.path}/image2.jpg']);
@@ -143,11 +146,11 @@ class _MyInvestState extends State<MyInvest> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                  const Icon(
-                        Icons.people,
-                        color: Color(0xff7530fb),
-                        size: 40,
-                      ),
+                    const Icon(
+                      Icons.people,
+                      color: Color(0xff7530fb),
+                      size: 40,
+                    ),
                     Text(
                       "${widget.UserData["Referral"]}",
                       style: const TextStyle(

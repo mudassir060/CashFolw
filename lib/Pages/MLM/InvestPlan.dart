@@ -34,14 +34,15 @@ class _InvestPlanState extends State<InvestPlan> {
               Row(
                 children: [
                   CustomButton(
-                    txt: "Plan LML",
+                    txt: "Plan MLM",
                     btnFunction: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Plan(
-                                  UserData: widget.UserData,
-                                )),
+                          builder: (context) => Plan(
+                            UserData: widget.UserData,
+                          ),
+                        ),
                       );
                     },
                     icon: Icons.monetization_on,
@@ -361,9 +362,9 @@ class CustomButton extends StatelessWidget {
           width: 120,
           margin: EdgeInsets.all(10.0),
           decoration: BoxDecoration(
-              color: Colors.deepPurple[400],
+              color: Color(0xff7530fb),
               border: Border.all(
-                color: Colors.deepPurple,
+                color: const Color(0xff7530fb),
               ),
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           child: Column(

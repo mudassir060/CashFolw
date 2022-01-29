@@ -64,7 +64,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ppc/Pages/Dashboard.dart';
+import 'package:ppc/Pages/MLM/Dashboard.dart';
 import 'package:ppc/Pages/HomePage.dart';
 import 'package:ppc/Pages/MLM/Home.dart';
 import 'package:ppc/Pages/MLM/InvestPlan.dart';
@@ -101,10 +101,10 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     List<Widget> tabPages = [
+      Home(UserData: widget.UserData),
       InvestPlan(UserData: widget.UserData),
       MyInvest(UserData: widget.UserData),
-      Home(UserData: widget.UserData),
-      ProfilePage(UserData: widget.UserData),
+      Dashboard(UserData: widget.UserData),
     ];
     if (kDebugMode) {
       print({"Bottom Bar", widget.UserData});
