@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:ppc/Function/PopUp.dart';
+import 'package:ppc/Pages/Admin/PlanList.dart';
 
 class Create_Plan extends StatefulWidget {
   @override
@@ -54,71 +55,73 @@ class _Create_PlanState extends State<Create_Plan> {
           //   ),
           // );
           setState(() {});
-            Widget okButton = TextButton(
-        child: Text("OK"),
-        onPressed: () {
-          Navigator.of(context).pop(); // dismiss dialog
-        },
-      );
-      AlertDialog alert = AlertDialog(
-        // title: Center(child: Text("Error")),
-        content: Text("Create Plan Successfully"),
-        actions: [
-          okButton,
-        ],
-      );
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
-   
+          Widget okButton = TextButton(
+            child: Text("OK"),
+            onPressed: () {
+              Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>const PlanList()),
+                          ); // dismiss dialog
+            },
+          );
+          AlertDialog alert = AlertDialog(
+            // title: Center(child: Text("Error")),
+            content: Text("Create Plan Successfully"),
+            actions: [
+              okButton,
+            ],
+          );
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return alert;
+            },
+          );
+
           // Navigator.of(context).pop();
         } catch (e) {
-          print("Error ==============>$e");
-            Widget okButton = TextButton(
-        child: Text("OK"),
-        onPressed: () {
-          Navigator.of(context).pop(); // dismiss dialog
-        },
-      );
-      AlertDialog alert = AlertDialog(
-        title: Center(child: Text("Error")),
-        content: Text("${e.toString()}"),
-        actions: [
-          okButton,
-        ],
-      );
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
-   
+          // print("Error ==============>$e");
+          // Widget okButton = TextButton(
+          //   child: Text("OK"),
+          //   onPressed: () {
+          //     Navigator.of(context).pop(); // dismiss dialog
+          //   },
+          // );
+          AlertDialog alert = AlertDialog(
+            title: Center(child: Text("Error")),
+            content: Text("${e.toString()}"),
+            // actions: [
+            //   okButton,
+            // ],
+          );
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return alert;
+            },
+          );
         }
       } else {
-          Widget okButton = TextButton(
-        child: Text("OK"),
-        onPressed: () {
-          Navigator.of(context).pop(); // dismiss dialog
-        },
-      );
-      AlertDialog alert = AlertDialog(
-        title: Center(child: Text("Error")),
-        content: Text("Please fill all requirement"),
-        actions: [
-          okButton,
-        ],
-      );
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
-   
+        // Widget okButton = TextButton(
+        //   child: Text("OK"),
+        //   onPressed: () {
+        //     Navigator.of(context).pop(); // dismiss dialog
+        //   },
+        // );
+        AlertDialog alert = const AlertDialog(
+          title: Center(child: Text("Error")),
+          content: Text("Please fill all requirement"),
+          // actions: [
+          //   okButton,
+          // ],
+        );
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return alert;
+          },
+        );
       }
       // print([username, useremail, userpassword]);
     }
@@ -138,7 +141,7 @@ class _Create_PlanState extends State<Create_Plan> {
         // ),
         body: Center(
           child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
+            scrollDirection: Axis.horizontal,
             child: SingleChildScrollView(
               child: Container(
                 width: vwidth - 50,
@@ -201,7 +204,8 @@ class _Create_PlanState extends State<Create_Plan> {
                           TextField(
                             controller: daily_limitcontroller,
                             decoration: const InputDecoration(
-                                border: OutlineInputBorder(), hintText: "1-5000"),
+                                border: OutlineInputBorder(),
+                                hintText: "1-5000"),
                           ),
                           _space,
                           const Padding(
@@ -229,7 +233,8 @@ class _Create_PlanState extends State<Create_Plan> {
                           TextField(
                             controller: pointscontroller,
                             decoration: const InputDecoration(
-                                border: OutlineInputBorder(), hintText: "0-5000"),
+                                border: OutlineInputBorder(),
+                                hintText: "0-5000"),
                           ),
                           _space,
                           Center(

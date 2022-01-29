@@ -274,19 +274,9 @@ class _PostAdState extends State<PostAd> {
                                               .update({
                                             "Total Point": Total_Point,
                                           });
-                                          Widget okButton = TextButton(
-                                            child: Text("OK"),
-                                            onPressed: () {
-                                              Navigator.of(context)
-                                                  .pop(); // dismiss dialog
-                                            },
-                                          );
+                                         
                                           AlertDialog alert = AlertDialog(
-                                            title: Center(child: Text("Error")),
-                                            content: Text("Done"),
-                                            actions: [
-                                              okButton,
-                                            ],
+                                            title: Center(child: Text("Done")),
                                           );
                                           showDialog(
                                             context: context,

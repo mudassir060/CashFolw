@@ -27,168 +27,170 @@ If you are interested to join me please use my invitation referral code# ${widge
 
     var vwidth = MediaQuery.of(context).size.width;
     var vhight = MediaQuery.of(context).size.height;
-    return Container(
-      child: Column(
-        children: [
-          SizedBox(height: 30,),
-          Welcome(
-              titel: "Welcome to Cash Flow!",
-              subtitel: "Powered by Skywings",
-              UserData: widget.UserData, Page: false,),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              width: vwidth,
-              height: 70,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      "Plan Name",
-                      style: TextStyle(
+    return SingleChildScrollView(
+      child: Container(
+        child: Column(
+          children: [
+            SizedBox(height: 30,),
+            Welcome(
+                titel: "Welcome to Cash Flow!",
+                subtitel: "Powered by Skywings",
+                UserData: widget.UserData, Page: false,),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: vwidth,
+                height: 70,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Plan Name",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff7530fb)),
+                      ),
+                      Text(
+                        "${widget.UserData["Plan Name"]}",
+                        style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xff7530fb)),
-                    ),
-                    Text(
-                      "${widget.UserData["Plan Name"]}",
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xff7530fb),
+                          color: Color(0xff7530fb),
+                        ),
                       ),
+                    ],
+                  ),
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3), // changes position of shadow
                     ),
                   ],
                 ),
               ),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: const Offset(0, 3), // changes position of shadow
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: vwidth,
+                height: 70,
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Earning",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xff7530fb)),
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "${widget.UserData["Available_Balance"]}",
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            " \$ ",
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xff7530fb)),
+                          ),
+                          Text('/person')
+                        ],
+                      )
+                    ],
                   ),
-                ],
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              width: vwidth,
-              height: 70,
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      "Earning",
-                      style: TextStyle(
+            const SizedBox(
+              height: 90,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: vwidth,
+                height: 70,
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Icon(
+                        Icons.people,
+                        color: Color(0xff7530fb),
+                        size: 40,
+                      ),
+                      Text(
+                        "${widget.UserData["Referral"]}",
+                        style: const TextStyle(
                           fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xff7530fb)),
+                          color: Colors.black26,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: InviteNow,
+                        icon: const Icon(
+                          Icons.forward_outlined,
+                          color: Color(0xff7530fb),
+                          size: 30,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3), // changes position of shadow
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          "${widget.UserData["Available_Balance"]}",
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          " \$ ",
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff7530fb)),
-                        ),
-                        Text('/person')
-                      ],
-                    )
                   ],
                 ),
               ),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: const Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 90,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              width: vwidth,
-              height: 70,
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Icon(
-                      Icons.people,
-                      color: Color(0xff7530fb),
-                      size: 40,
-                    ),
-                    Text(
-                      "${widget.UserData["Referral"]}",
-                      style: const TextStyle(
-                        fontSize: 20,
-                        color: Colors.black26,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: InviteNow,
-                      icon: const Icon(
-                        Icons.forward_outlined,
-                        color: Color(0xff7530fb),
-                        size: 30,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: const Offset(0, 3), // changes position of shadow
-                  ),
-                ],
-              ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

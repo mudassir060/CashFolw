@@ -45,7 +45,7 @@ class _WelcomeState extends State<Welcome> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    Deposit(UserData: widget.UserData)),
+                                    Withdraw(UserData: widget.UserData)),
                           );
                         },
                         child: Container(
@@ -53,10 +53,11 @@ class _WelcomeState extends State<Welcome> {
                           height: 50,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage("images/Icon/deposit.png"),
-                              fit: BoxFit.fill,
+                              image: AssetImage("images/Icon/withdrawal.png"),
+                              fit: BoxFit.fitWidth,
                             ),
-                            // borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            color: Colors.white,
                             shape: BoxShape.rectangle,
                           ),
                         ),
@@ -67,7 +68,7 @@ class _WelcomeState extends State<Welcome> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    Withdraw(UserData: widget.UserData)),
+                                    Deposit(UserData: widget.UserData)),
                           );
                         },
                         child: Container(
@@ -75,10 +76,11 @@ class _WelcomeState extends State<Welcome> {
                           height: 50,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage("images/Icon/withdrawal.png"),
-                              fit: BoxFit.fill,
+                              image: AssetImage("images/Icon/deposit.png"),
+                              fit: BoxFit.fitWidth,
                             ),
-                            // borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            color: Colors.white,
                             shape: BoxShape.rectangle,
                           ),
                         ),

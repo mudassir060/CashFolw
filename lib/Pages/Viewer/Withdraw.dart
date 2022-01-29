@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
+import 'package:ppc/Pages/BottomBar.dart';
 import 'package:ppc/Widget/Color.dart';
 import 'package:intl/intl.dart';
 
@@ -73,7 +74,12 @@ class _WithdrawState extends State<Withdraw> {
         Widget okButton = TextButton(
           child: Text("OK"),
           onPressed: () {
-            Navigator.of(context).pop(); // dismiss dialog
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => BottomBar(UserData: widget.UserData)),
+            );
+            ; // dismiss dialog
           },
         );
         AlertDialog alert = AlertDialog(
@@ -90,12 +96,12 @@ class _WithdrawState extends State<Withdraw> {
           },
         );
       } catch (e) {
-        Widget okButton = TextButton(
-          child: Text("OK"),
-          onPressed: () {
-            Navigator.of(context).pop(); // dismiss dialog
-          },
-        );
+        // Widget okButton = TextButton(
+        //   child: Text("OK"),
+        //   onPressed: () {
+        //     Navigator.of(context).pop(); // dismiss dialog
+        //   },
+        // );
         AlertDialog alert = AlertDialog(
           title: Center(child: Text("Error")),
           content: Text("${e.toString()}"),
@@ -134,7 +140,7 @@ class _WithdrawState extends State<Withdraw> {
         ),
         body: SingleChildScrollView(
           child: Container(
-            height: vhight-100,
+            height: vhight - 100,
             width: vwidth,
             child: Center(
               child: Container(

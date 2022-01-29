@@ -327,12 +327,12 @@ Future<void> CancelPayment(context, _doc) {
       },
     );
   }).catchError((error) {
-    Widget okButton = TextButton(
-      child: Text("OK"),
-      onPressed: () {
-        // Navigator.of(context).pop(); // dismiss dialog
-      },
-    );
+    // Widget okButton = TextButton(
+    //   child: Text("OK"),
+    //   onPressed: () {
+    //     // Navigator.of(context).pop(); // dismiss dialog
+    //   },
+    // );
     AlertDialog alert = AlertDialog(
       title: Center(child: Text("Error")),
       content: Text("Failed to delete: $error"),

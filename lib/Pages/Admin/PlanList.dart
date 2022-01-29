@@ -290,18 +290,18 @@ class RefRow extends StatelessWidget {
 CollectionReference Plans = FirebaseFirestore.instance.collection('Plans');
 Future<void> deletePlan(context, _doc) {
   return Plans.doc(_doc).delete().then((values) {
-    Widget okButton = TextButton(
-      child: Text("OK"),
-      onPressed: () {
-        Navigator.of(context).pop(); // dismiss dialog
-      },
-    );
-    AlertDialog alert = AlertDialog(
+    // Widget okButton = TextButton(
+    //   child: Text("OK"),
+    //   onPressed: () {
+    //     Navigator.of(context).pop(); // dismiss dialog
+    //   },
+    // );
+    AlertDialog alert = const AlertDialog(
       title: Center(child: Text("Error")),
       content: Text("Delete Successfully"),
-      actions: [
-        okButton,
-      ],
+      // actions: [
+      //   okButton,
+      // ],
     );
     showDialog(
       context: context,
@@ -310,12 +310,12 @@ Future<void> deletePlan(context, _doc) {
       },
     );
   }).catchError((error) {
-    Widget okButton = TextButton(
-      child: Text("OK"),
-      onPressed: () {
-        // Navigator.of(context).pop(); // dismiss dialog
-      },
-    );
+    // Widget okButton = TextButton(
+    //   child: Text("OK"),
+    //   onPressed: () {
+    //     // Navigator.of(context).pop(); // dismiss dialog
+    //   },
+    // );
     AlertDialog alert = AlertDialog(
       title: Center(child: Text("Error")),
       content: Text("Failed to delete: $error"),

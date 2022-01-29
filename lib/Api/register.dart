@@ -137,18 +137,18 @@ class _RegistrationState extends State<Registration> {
         setState(() {
           looding = false;
         });
-        Widget okButton = TextButton(
-          child: Text("OK"),
-          onPressed: () {
-            Navigator.of(context).pop(); // dismiss dialog
-          },
-        );
+        // Widget okButton = TextButton(
+        //   child: Text("OK"),
+        //   onPressed: () {
+        //     Navigator.of(context).pop(); // dismiss dialog
+        //   },
+        // );
         AlertDialog alert = AlertDialog(
           title: Center(child: Text("Error")),
           content: Text("${e.toString()}"),
-          actions: [
-            okButton,
-          ],
+          // actions: [
+          //   okButton,
+          // ],
         );
         showDialog(
           context: context,

@@ -373,12 +373,12 @@ Future<void> CancelPayment(context, _doc, SMS) {
       },
     );
   }).catchError((error) {
-    Widget okButton = TextButton(
-      child: Text("OK"),
-      onPressed: () {
-        // Navigator.of(context).pop(); // dismiss dialog
-      },
-    );
+    // Widget okButton = TextButton(
+    //   child: Text("OK"),
+    //   onPressed: () {
+    //     // Navigator.of(context).pop(); // dismiss dialog
+    //   },
+    // );
     AlertDialog alert = AlertDialog(
       title: Center(child: Text("Error")),
       content: Text("$error"),
@@ -435,12 +435,12 @@ Aprove(context, Data) async {
 
     CancelPayment(context, Data['Del'], "Approve");
   } catch (e) {
-    Widget okButton = TextButton(
-      child: Text("OK"),
-      onPressed: () {
-        Navigator.of(context).pop(); // dismiss dialog
-      },
-    );
+    // Widget okButton = TextButton(
+    //   child: Text("OK"),
+    //   onPressed: () {
+    //     Navigator.of(context).pop(); // dismiss dialog
+    //   },
+    // );
     AlertDialog alert = AlertDialog(
       title: Center(child: Text("Error")),
       content: Text("${e.toString()}"),

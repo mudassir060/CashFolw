@@ -70,18 +70,18 @@ class _LoginState extends State<Login> {
         looding = false;
       });
       print("Error ==============>$e");
-      Widget okButton = TextButton(
-        child: Text("OK"),
-        onPressed: () {
-          Navigator.of(context).pop(); // dismiss dialog
-        },
-      );
+      // Widget okButton = TextButton(
+      //   child: Text("OK"),
+      //   onPressed: () {
+      //     Navigator.of(context).pop(); // dismiss dialog
+      //   },
+      // );
       AlertDialog alert = AlertDialog(
         title: Center(child: Text("Error")),
         content: Text("${e.toString()}"),
-        actions: [
-          okButton,
-        ],
+        // actions: [
+        //   okButton,
+        // ],
       );
       showDialog(
         context: context,
