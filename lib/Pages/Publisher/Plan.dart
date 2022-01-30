@@ -267,6 +267,7 @@ class _CardState extends State<Card> {
                     // "Daily Ads": Daily_Ads,
                     "Total Point": Total_Point,
                     "Validity": widget.No,
+                    "PlanName": widget.titel
                   });
 
                   AlertDialog alert = AlertDialog(

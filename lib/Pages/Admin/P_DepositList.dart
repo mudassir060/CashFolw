@@ -419,6 +419,7 @@ Aprove(context, Data) async {
     print("======%=====>$par");
     await firestore.collection("users").doc(ReferBY["UID"]).update({
       "Available_Balance": ReferBY["Available_Balance"]+par,
+      "Refel Bounes": ReferBY["Refel Bounes"]+par,
     });
 
     await firestore.collection("Deposit").doc().set({

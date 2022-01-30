@@ -93,7 +93,11 @@ class _RegistrationState extends State<Registration> {
             "Referral": LastReferral,
             "Referral By": ReferralBy,
             "Last Login": "",
-            "Last Add View": 0
+            "Last Add View": 0,
+            "Refel Bounes": 0,
+            "Ads Bounes": 0,
+            "team Bounes": 0,
+            "PlanName": ""
           });
 
           await firestore.collection(ReferralBy).doc(UID).set({
@@ -115,6 +119,7 @@ class _RegistrationState extends State<Registration> {
           final DocumentSnapshot snapshhot =
               await firestore.collection("users").doc(ReferralUID["UID"]).get();
           final ReferBY = snapshhot.data();
+
 
 
           Navigator.push(

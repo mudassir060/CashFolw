@@ -274,7 +274,7 @@ class _PostAdState extends State<PostAd> {
                                               .update({
                                             "Total Point": Total_Point,
                                           });
-                                         
+
                                           AlertDialog alert = AlertDialog(
                                             title: Center(child: Text("Done")),
                                           );
@@ -284,30 +284,28 @@ class _PostAdState extends State<PostAd> {
                                               return alert;
                                             },
                                           );
-
                                           setState(() {});
                                         } else {
-                                         
-                                                Widget okButton = TextButton(
-        child: Text("OK"),
-        onPressed: () {
-          Navigator.of(context).pop(); // dismiss dialog
-        },
-      );
-      AlertDialog alert = AlertDialog(
-        title: Center(child: Text("Error")),
-        content: Text("Faild"),
-        actions: [
-          okButton,
-        ],
-      );
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
-   
+                                          // Widget okButton = TextButton(
+                                          //   child: Text("OK"),
+                                          //   onPressed: () {
+                                          //     Navigator.of(context)
+                                          //         .pop(); // dismiss dialog
+                                          //   },
+                                          // );
+                                          AlertDialog alert = const AlertDialog(
+                                            title: Center(child: Text("Error")),
+                                            content: Text("Faild"),
+                                            // actions: [
+                                            //   okButton,
+                                            // ],
+                                          );
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return alert;
+                                            },
+                                          );
                                         }
                                       },
                                       style: ButtonStyle(

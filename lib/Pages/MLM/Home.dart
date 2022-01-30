@@ -81,7 +81,7 @@ class _HomeState extends State<Home> {
                 ),
                 decoration: BoxDecoration(
                     border: Border.all(
-                  color: Color(0xff7530fb),
+                  color: const Color(0xff7530fb),
                 )),
               ),
             ),

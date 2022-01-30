@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ppc/Pages/HomePage.dart';
 import 'package:ppc/Widget/Color.dart';
+// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -17,13 +18,16 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+      // FlutterSecureStorage storage = const FlutterSecureStorage(); // 1
   bool looding = false;
   final TextEditingController useremailcontroller =
-      TextEditingController();
+      TextEditingController(text: "abc@email.com");
   final TextEditingController userpasswordcontroller =
-      TextEditingController();
+      TextEditingController(text: "qwerty");
 
   void register() async {
+    // storage.write(key: "uid", value: userpasswordcontroller.text);
+
     setState(() {
       looding = true;
     });
