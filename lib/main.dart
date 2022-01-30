@@ -38,68 +38,70 @@ class MyApp extends StatelessWidget {
             // Once complete, show your application
             if (snapshot.connectionState == ConnectionState.done) {
               Map UserData = {};
-              return Center(
-                child: Column(
-                  children: [
-                    SizedBox(height: 170,),
-                    ElevatedButton(
-                      child: Padding(
-                        padding: const EdgeInsets.all(56.0),
-                        child: const Text(
-                          'User',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => SplashScreen()),
-                        );
-                      },
-                      style: ButtonStyle(
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    ElevatedButton(
-                      child: Padding(
-                        padding: const EdgeInsets.all(50.0),
-                        child: const Text(
-                          'Admin',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => SideNavigation()),
-                        );
-                      },
-                      style: ButtonStyle(
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              );
+              return SplashScreen()
+              // Center(
+              //   child: Column(
+              //     children: [
+              //       SizedBox(height: 170,),
+              //       ElevatedButton(
+              //         child: Padding(
+              //           padding: const EdgeInsets.all(56.0),
+              //           child: const Text(
+              //             'User',
+              //             style: TextStyle(
+              //               color: Colors.white,
+              //               fontWeight: FontWeight.bold,
+              //               fontSize: 15,
+              //             ),
+              //           ),
+              //         ),
+              //         onPressed: () {
+              //           Navigator.push(
+              //             context,
+              //             MaterialPageRoute(builder: (context) => SplashScreen()),
+              //           );
+              //         },
+              //         style: ButtonStyle(
+              //           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              //             RoundedRectangleBorder(
+              //               borderRadius: BorderRadius.circular(18.0),
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //       SizedBox(
+              //         height: 30,
+              //       ),
+              //       ElevatedButton(
+              //         child: Padding(
+              //           padding: const EdgeInsets.all(50.0),
+              //           child: const Text(
+              //             'Admin',
+              //             style: TextStyle(
+              //               color: Colors.white,
+              //               fontWeight: FontWeight.bold,
+              //               fontSize: 15,
+              //             ),
+              //           ),
+              //         ),
+              //         onPressed: () {
+              //           Navigator.push(
+              //             context,
+              //             MaterialPageRoute(builder: (context) => SideNavigation()),
+              //           );
+              //         },
+              //         style: ButtonStyle(
+              //           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              //             RoundedRectangleBorder(
+              //               borderRadius: BorderRadius.circular(18.0),
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // );
+          
             }
 
             // Otherwise, show something whilst waiting for initialization to complete
