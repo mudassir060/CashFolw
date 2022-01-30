@@ -21,9 +21,9 @@ class _LoginState extends State<Login> {
       // FlutterSecureStorage storage = const FlutterSecureStorage(); // 1
   bool looding = false;
   final TextEditingController useremailcontroller =
-      TextEditingController(text: "abc@email.com");
+      TextEditingController();
   final TextEditingController userpasswordcontroller =
-      TextEditingController(text: "qwerty");
+      TextEditingController();
 
   void register() async {
     // storage.write(key: "uid", value: userpasswordcontroller.text);

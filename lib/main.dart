@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
             // Once complete, show your application
             if (snapshot.connectionState == ConnectionState.done) {
               Map UserData = {};
-              return SplashScreen()
+              return SplashScreen();
               // Center(
               //   child: Column(
               //     children: [
@@ -101,7 +101,7 @@ class MyApp extends StatelessWidget {
               //     ],
               //   ),
               // );
-          
+
             }
 
             // Otherwise, show something whilst waiting for initialization to complete
