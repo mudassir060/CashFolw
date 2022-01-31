@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:ppc/Function/AdMobe.dart';
 import 'package:ppc/Pages/MLM/Welcome.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -12,6 +14,16 @@ class MyInvest extends StatefulWidget {
 }
 
 class _MyInvestState extends State<MyInvest> {
+    void dispose() {
+    myBanner.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    myBanner.load();
+    super.initState();
+  }
   var Num = 0;
   var UserData = {};
   @override
@@ -165,6 +177,14 @@ If you are interested to join me please use my invitation referral code# ${widge
             Row_Data(
                 titel: "Refel Bounes", value: "${UserData["Refel Bounes"]}"),
             Row_Data(titel: "Team Bounes", value: "${UserData["team Bounes"]}"),
+           Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 50,
+                color: Colors.transparent,
+                child: AdWidget(ad: myBanner),
+              ),
+            ),
             Row_Data(titel: "Ads Bounes", value: "${UserData["Ads Bounes"]}"),
             Row_Data(titel: "Totel Point", value: "${UserData["Total Point"]}"),
             Row_Data(
