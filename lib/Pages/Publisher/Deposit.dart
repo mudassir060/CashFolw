@@ -72,17 +72,17 @@ class _DepositState extends State<Deposit> {
           "Amount": int.parse(AmountController.text),
         });
         print("=========>${UserData["Referral By"]}");
-        Widget okButton = TextButton(
-          child: Text("OK"),
-          onPressed: () {
-            Navigator.of(context).pop(); // dismiss dialog
-          },
-        );
+        // Widget okButton = TextButton(
+        //   child: Text("OK"),
+        //   onPressed: () {
+        //     Navigator.of(context).pop(); // dismiss dialog
+        //   },
+        // );
         AlertDialog alert = AlertDialog(
           title: Center(child: Text("Done")),
-          actions: [
-            okButton,
-          ],
+          // actions: [
+          //   okButton,
+          // ],
         );
         showDialog(
           context: context,
@@ -176,6 +176,7 @@ class _DepositState extends State<Deposit> {
                                   ),
                                   TextField(
                                     controller: AmountController,
+                                    keyboardType: TextInputType.number,
                                     decoration: InputDecoration(
                                         filled: true,
                                         fillColor: Colors.white,
@@ -228,15 +229,27 @@ class _DepositState extends State<Deposit> {
                                     ),
                                   ),
                                   _space,
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 15),
-                                    child: Text(
-                                      "Paymet ID",
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                  Row(
+                                    children: [
+                                      const Padding(
+                                        padding: EdgeInsets.only(left: 15),
+                                        child: Text(
+                                          "Paymet ID",
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                      Container(
+                                          width: 200,
+                                          child: Text(
+                                            "Sent Money by jazzcash (03009590142) and put Tid",
+                                            style: TextStyle(
+                                                fontSize: 10,
+                                                color: Colors.white),
+                                          ))
+                                    ],
                                   ),
                                   TextField(
                                     controller: PinController,

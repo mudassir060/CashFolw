@@ -18,12 +18,10 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-      // FlutterSecureStorage storage = const FlutterSecureStorage(); // 1
+  // FlutterSecureStorage storage = const FlutterSecureStorage(); // 1
   bool looding = false;
-  final TextEditingController useremailcontroller =
-      TextEditingController();
-  final TextEditingController userpasswordcontroller =
-      TextEditingController();
+  final TextEditingController useremailcontroller = TextEditingController(text: "xyz@gmail.com");
+  final TextEditingController userpasswordcontroller = TextEditingController(text: "qwerty");
 
   void register() async {
     // storage.write(key: "uid", value: userpasswordcontroller.text);
@@ -124,144 +122,214 @@ class _LoginState extends State<Login> {
           child: SizedBox(
             width: vwidth,
             height: vhight,
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Stack(
-                children: [
-                  looding
-                      ? const Positioned(
-                          child: Center(child: CircularProgressIndicator()))
-                      : Center(),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      // SizedBox(height: 20),
-                      Center(
-                        child: Column(
+            child: CustomPaint(
+              painter: CurvePainter2(),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 0, left: 12, right: 12),
+                child: Stack(
+                  children: [
+                    looding
+                        ? const Positioned(
+                            child: Center(child: CircularProgressIndicator()))
+                        : Center(),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Column(
                           children: [
-                            Container(
-                              height: 190,
-                              width: 220,
-                              decoration: BoxDecoration(
-                                image: const DecorationImage(
-                                  image: AssetImage('images/Logo.png'),
-                                  fit: BoxFit.fitWidth,
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                                shape: BoxShape.rectangle,
-                              ),
+                            SizedBox(height: 40),
+                            Text(
+                              "Welcome!",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 35),
                             ),
-                            const SizedBox(height: 20),
-                            // // // // // // // // // // Email input // // // // // // // // //
-                            TextField(
-                              controller: useremailcontroller,
-                              decoration: const InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  labelText: 'Email',
-                                  hintText: "Email"),
-                            ),
-                            const SizedBox(height: 15),
-                            TextField(
-                              controller: userpasswordcontroller,
-                              obscureText: _obscureText,
-                              decoration: InputDecoration(
-                                border: const OutlineInputBorder(),
-                                labelText: 'Password',
-                                hintText: "Password",
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    // Based on passwordVisible state choose the icon
-                                    _obscureText
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
-                                    // color: Theme.of(context).primaryColorDark,
-                                  ),
-                                  onPressed: () {
-                                    _toggle();
-                                  },
-                                ),
-                              ),
-                            ),
-
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                TextButton(
-                                    onPressed: () {},
-                                    child: const Text(
-                                      'Forget Password',
-                                      style: TextStyle(fontSize: 10.0),
-                                    )),
-                              ],
-                            ),
-                            // SizedBox(height: 10),
-                            ElevatedButton(
-                              child: const Text(
-                                'LogIn',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                ),
-                              ),
-                              onPressed: register,
-                              style: ButtonStyle(
-                                shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                TextButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const Registration(),
-                                        ),
-                                      );
-                                    },
-                                    child: Row(
-                                      children: const [
-                                        Text(
-                                          "Don't have an account? ",
-                                          style: TextStyle(
-                                              fontSize: 12.0,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        Text(
-                                          "Sign up",
-                                          style: TextStyle(
-                                              fontSize: 12.0,
-                                              color: Colors.purple,
-                                              decoration:
-                                                  TextDecoration.underline,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
-                                    )),
-                                const SizedBox(height: 50),
-                              ],
+                            Text(
+                              "Sign in and get started",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
                             ),
                           ],
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                        Center(
+                          child: Column(
+                            children: [
+                              SizedBox(height: 20),
+                              Container(
+                                height: 130,
+                                width: 280,
+                                decoration: BoxDecoration(
+                                  image: const DecorationImage(
+                                    image: AssetImage('images/Logo.png'),
+                                    fit: BoxFit.fitWidth,
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                  shape: BoxShape.rectangle,
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              // // // // // // // // // // Email input // // // // // // // // //
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: Text(
+                                      "Email",
+                                      style: TextStyle(color: Colors.black38),
+                                    ),
+                                  ),
+                                  TextField(
+                                    controller: useremailcontroller,
+                                    decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        // labelText: 'Email',
+                                        hintText: "Email"),
+                                  ),
+                                  const SizedBox(height: 15),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: Text(
+                                      "Password",
+                                      style: TextStyle(color: Colors.black38),
+                                    ),
+                                  ),
+                                  TextField(
+                                    controller: userpasswordcontroller,
+                                    obscureText: _obscureText,
+                                    decoration: InputDecoration(
+                                      border: const OutlineInputBorder(),
+                                      // labelText: 'Password',
+                                      hintText: "Password",
+                                      suffixIcon: IconButton(
+                                        icon: Icon(
+                                          // Based on passwordVisible state choose the icon
+                                          _obscureText
+                                              ? Icons.visibility
+                                              : Icons.visibility_off,
+                                          // color: Theme.of(context).primaryColorDark,
+                                        ),
+                                        onPressed: () {
+                                          _toggle();
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  TextButton(
+                                      onPressed: () {},
+                                      child: const Text(
+                                        'Forget Password',
+                                        style: TextStyle(fontSize: 14.0),
+                                      )),
+                                ],
+                              ),
+                              // SizedBox(height: 10),
+                              ElevatedButton(
+                                child: const Padding(
+                                  padding:
+                                      EdgeInsets.only(left: 100, right: 100),
+                                  child: Text(
+                                    'Sign in',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                                onPressed: register,
+                                style: ButtonStyle(
+                                  shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18.0),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              const Text(
+                                "Don't have an account? ",
+                                style: TextStyle(
+                                    fontSize: 12.0,
+                                    color: Color(0xff7530fb),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                                                            const SizedBox(height: 10),
+                              ElevatedButton(
+                                child: const Padding(
+                                  padding:
+                                      EdgeInsets.only(left: 100, right: 100),
+                                  child: Text(
+                                    'Sign up',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const Registration(),
+                                    ),
+                                  );
+                                },
+                                style: ButtonStyle(
+                                  shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18.0),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
         ),
       ),
     );
+  }
+}
+
+class CurvePainter2 extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    var paint = Paint();
+    paint.color = Color(0xff7530fb);
+    paint.style = PaintingStyle.fill; // Change this to fill
+
+    var path = Path();
+
+    path.moveTo(0, size.height * 0.25);
+    path.quadraticBezierTo(
+        size.width / 4, size.height / 6, size.width, size.height * 0.15);
+    path.lineTo(size.width, 0);
+    path.lineTo(0, 0);
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return true;
   }
 }

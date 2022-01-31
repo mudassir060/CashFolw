@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "320247803843",
-    "project_id": "ppc7fe8b",
-    "storage_bucket": "ppc7fe8b.appspot.com"
+    "project_number": "677226741679",
+    "project_id": "cashflow-69504",
+    "storage_bucket": "cashflow-69504.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:320247803843:android:6949ab08c81ea3d44d1776",
+        "mobilesdk_app_id": "1:677226741679:android:1f60279917db833406795a",
         "android_client_info": {
           "package_name": "com.example.ppc"
         }
       },
       "oauth_client": [
         {
-          "client_id": "320247803843-v5b37jfheh65s25gjdksqqs2srqs8g61.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.ppc",
-            "certificate_hash": "3243a9aefb1e5e0cc92dbb808b4e63314ee08fda"
-          }
-        },
-        {
-          "client_id": "320247803843-tku4d83r2ilhjs670gukkmj4p2713q4o.apps.googleusercontent.com",
+          "client_id": "677226741679-r23ve9ln74ufqflovk83u9krmq8ircf1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDjtKYVvRPgSzZyOcXuto8kh-AYlFXUzBU"
+          "current_key": "AIzaSyDIZ3cuGdylpDA2Gssq0SwZ0DcbBlV2wC0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "320247803843-tku4d83r2ilhjs670gukkmj4p2713q4o.apps.googleusercontent.com",
+              "client_id": "677226741679-r23ve9ln74ufqflovk83u9krmq8ircf1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -27,8 +27,16 @@ class _MyInvestState extends State<MyInvest> {
       });
     }
 
+    @override
+    void initState() {
+      getdata();
+            print("++++++++++++++++++++++initState");
+      super.initState();
+    }
+
     if (Num == 0) {
       getdata();
+      print("++++++++++++++++++++++with Function");
       setState(() {
         Num = 1;
       });
@@ -154,11 +162,13 @@ If you are interested to join me please use my invitation referral code# ${widge
                 ),
               ),
             ),
-            Row_Data(titel: "Refel Bounes", value: "${UserData["Refel Bounes"]}"),
+            Row_Data(
+                titel: "Refel Bounes", value: "${UserData["Refel Bounes"]}"),
             Row_Data(titel: "Team Bounes", value: "${UserData["team Bounes"]}"),
             Row_Data(titel: "Ads Bounes", value: "${UserData["Ads Bounes"]}"),
             Row_Data(titel: "Totel Point", value: "${UserData["Total Point"]}"),
-            Row_Data(titel: "Totel Clicks", value: "${UserData["Total Click"]}"),
+            Row_Data(
+                titel: "Totel Clicks", value: "${UserData["Total Click"]}"),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(

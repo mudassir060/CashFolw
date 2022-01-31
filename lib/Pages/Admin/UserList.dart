@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ppc/Widget/Color.dart';
@@ -43,7 +44,7 @@ class _UserListState extends State<UserList> {
         //       )),
         // ),
         body: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
+          scrollDirection: Axis.horizontal,
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(10),
@@ -149,8 +150,8 @@ class _UserListState extends State<UserList> {
                                   controller: ScrollController(),
                                   children: snapshot.data!.docs
                                       .map((DocumentSnapshot document) {
-                                    Map<String, dynamic> data =
-                                        document.data()! as Map<String, dynamic>;
+                                    Map<String, dynamic> data = document.data()!
+                                        as Map<String, dynamic>;
                                     Index++;
                                     return RefRow(
                                       No: Index,
@@ -268,18 +269,28 @@ class _RefRowState extends State<RefRow> {
                       children: [
                         ShowFull(titel: "Email", DATA: widget.Data['email']),
                         ShowFull(
-                            titel: "Phone NO", DATA: "${widget.Data['PhoneNo']}"),
-                        ShowFull(titel: "Panding Balance", DATA: "${widget.Data['Panding Balance']}"),
-                        ShowFull(titel: "Referral", DATA: "${widget.Data['Referral']}"),
-                        ShowFull(titel: "Total Point", DATA:"${ widget.Data['Total Point']}"),
-                        ShowFull(titel: "Total Click", DATA: "${widget.Data['Total Click']}"),
-                        ShowFull(titel: "Panding Balance", DATA: "${widget.Data['Panding Balance']}"),
+                            titel: "Phone NO",
+                            DATA: "${widget.Data['PhoneNo']}"),
+                        ShowFull(
+                            titel: "Panding Balance",
+                            DATA: "${widget.Data['Panding Balance']}"),
+                        ShowFull(
+                            titel: "Referral",
+                            DATA: "${widget.Data['Referral']}"),
+                        ShowFull(
+                            titel: "Total Point",
+                            DATA: "${widget.Data['Total Point']}"),
+                        ShowFull(
+                            titel: "Total Click",
+                            DATA: "${widget.Data['Total Click']}"),
+                        ShowFull(
+                            titel: "Panding Balance",
+                            DATA: "${widget.Data['Panding Balance']}"),
                         ShowFull(
                             titel: "Available_Balance",
                             DATA: "${widget.Data['Available_Balance']}"),
                         ShowFull(
-                            titel: "Password",
-                            DATA: widget.Data['password']),
+                            titel: "Password", DATA: widget.Data['password']),
                         ElevatedButton(
                           child: const Padding(
                             padding: EdgeInsets.only(left: 50, right: 50),
@@ -315,7 +326,15 @@ class _RefRowState extends State<RefRow> {
   }
 }
 
-Future<void> CancelPayment(context, _doc) {
+Future<void> CancelPayment(context, _doc) async {
+  try {
+    await FirebaseAuth.instance.currentUser!.delete();
+  } on FirebaseAuthException catch (e) {
+    if (e.code == 'requires-recent-login') {
+      print(
+          'The user must reauthenticate before this operation can be executed.');
+    }
+  }
   CollectionReference Panding_Deposit =
       FirebaseFirestore.instance.collection('users');
   return Panding_Deposit.doc(_doc).delete().then((values) {
