@@ -207,7 +207,7 @@ class _RegistrationState extends State<Registration> {
                       children: [
                         Column(
                           children: [
-                            SizedBox(height: 40),
+                            SizedBox(height: 35),
                             Text(
                               "New Account!",
                               style:
@@ -223,7 +223,7 @@ class _RegistrationState extends State<Registration> {
                         Center(
                           child: Column(
                             children: [
-                              SizedBox(height: 65),
+                              SizedBox(height: 75),
                               // Container(
                               //   height: 130,
                               //   width: 280,
@@ -485,9 +485,9 @@ class CurvePainter2 extends CustomPainter {
 
     var path = Path();
 
-    path.moveTo(0, size.height * 0.25);
+    path.moveTo(0, size.height * 0.20);
     path.quadraticBezierTo(
-        size.width / 4, size.height / 6, size.width, size.height * 0.15);
+        size.width / 4, size.height / 7, size.width, size.height * 0.12);
     path.lineTo(size.width, 0);
     path.lineTo(0, 0);
 

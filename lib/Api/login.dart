@@ -20,8 +20,8 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   // FlutterSecureStorage storage = const FlutterSecureStorage(); // 1
   bool looding = false;
-  final TextEditingController useremailcontroller = TextEditingController(text: "xyz@gmail.com");
-  final TextEditingController userpasswordcontroller = TextEditingController(text: "qwerty");
+  final TextEditingController useremailcontroller = TextEditingController();
+  final TextEditingController userpasswordcontroller = TextEditingController();
 
   void register() async {
     // storage.write(key: "uid", value: userpasswordcontroller.text);
@@ -156,7 +156,7 @@ class _LoginState extends State<Login> {
                             children: [
                               SizedBox(height: 20),
                               Container(
-                                height: 130,
+                                height: 120,
                                 width: 280,
                                 decoration: BoxDecoration(
                                   image: const DecorationImage(
@@ -167,7 +167,7 @@ class _LoginState extends State<Login> {
                                   shape: BoxShape.rectangle,
                                 ),
                               ),
-                              const SizedBox(height: 20),
+                              // const SizedBox(height: 20),
                               // // // // // // // // // // Email input // // // // // // // // //
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.start,

@@ -17,7 +17,7 @@ class _InviteFriendState extends State<InviteFriend> {
   var UserData = {};
   @override
   Widget build(BuildContext context) {
-        getdata() async {
+    getdata() async {
       FirebaseFirestore firestore = FirebaseFirestore.instance;
 
       final DocumentSnapshot snapshot =
@@ -34,14 +34,16 @@ class _InviteFriendState extends State<InviteFriend> {
         Num = 1;
       });
     }
-InviteNow() {
-  Share.share(
-                          """Join Cash Flow With My Invite Code ${ UserData["Referral"]} immediately!
- Invite your friends to watch Ads, you can earn for each friend! https://example.com""");
-                      // share;
+    InviteNow() {
+      Share.share("""*CASHFLOW MLM & ADS* 
+Are you still looking for a side hustle without risking your job?
+I have found something that might work with you.
+If you are interested to join me please use my invitation referral code# ${widget.UserData["Referral"]} to join my team and get great bonus and opportunities to create your own team with cash flow.""");
+
+      // share;
 //                       Share.shareFiles(['${directory.path}/image.jpg'], text: 'Great picture');
 // Share.shareFiles(['${directory.path}/image1.jpg', '${directory.path}/image2.jpg']);
-}
+    }
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
